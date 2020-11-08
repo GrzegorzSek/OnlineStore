@@ -4,7 +4,7 @@
 <title>Online store</title>
 <meta name="description" content="Online store">
 <meta name="keywords" content="Online store">
-<meta name="author" content="Online store">
+<meta name="author" content="Grzegorz Sęk">
 		
 <link rel="stylesheet" href="css/bootstrap.min.css">
 <link rel="stylesheet" href="css/main.css">
