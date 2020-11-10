@@ -34,7 +34,7 @@
                 <div class="form-row">
                     <div class="form-group col-md-6">
                         <label for="email">Email</label>
-                        <input type="email" class="form-control" id="email" placeholder="email" required>
+                        <input type="email" class="form-control" id="emailSignUp" placeholder="email" required>
                         <div class="valid-feedback">
                             Jest OK!
                         </div>
@@ -55,7 +55,7 @@
                 </div>
                 <div class="form-group">
                     <label for="address">Adres</label>
-                    <input type="text" class="form-control" id="address" placeholder="województwo" required>
+                    <input type="text" class="form-control" id="address" placeholder="Adres" required>
                     <div class="valid-feedback">
                             Jest OK!
                         </div>
@@ -65,7 +65,7 @@
                 </div>
                 <div class="form-group">
                     <label for="address2">Adres 2</label>
-                    <input type="text" class="form-control" id="address2" placeholder="adres" required>
+                    <input type="text" class="form-control" id="address2" placeholder="Adres 2" required>
                     <div class="valid-feedback">
                             Jest OK!
                         </div>
@@ -76,7 +76,7 @@
                 <div class="form-row">
                     <div class="form-group col-md-8">
                         <label for="city">Miasto</label>
-                        <input type="text" class="form-control" id="city" required>
+                        <input type="text" class="form-control" id="city" placeholder="Miasto" required>
                         <div class="valid-feedback">
                             Jest OK!
                         </div>
@@ -86,7 +86,7 @@
                     </div>
                     <div class="form-group col-md-4">
                         <label for="zipCode">kod pocztowy</label>
-                        <input type="text" class="form-control" id="zipCode" required>
+                        <input type="text" class="form-control" id="zipCode" placeholder="00-000" required>
                         <div class="valid-feedback">
                             Jest OK!
                         </div>

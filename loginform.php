@@ -8,15 +8,20 @@
         </button>
       </div>
       <div class="modal-body">
-		<label>Adres e-mail</label>
-		<input type="email" placeholder="e-mail" name="e-mail" class="form-control" id="e-mailAdress"/>
-		<label>Hasło</label>
-		<input type="password" placeholder="hasło" name="password" class="form-control" id="password"/>
-      </div>
-      <div class="modal-footer">
-            <a type="button" data-toggle="modal" href="#signUp">Nie masz konta? Zarejestruj się.</a>
-            <button type="button" class="btn btn-secondary" data-dismiss="modal">Zamknij</button>
-            <button type="button" class="btn btn-primary">Zaloguj</button>
+        <form class="form-login">
+          <div class="form-row">
+            <div class="form-group col-12">
+              <div id="message"></div>
+              <label for="email">Adres e-mail</label><br>
+              <input type="email" name="email" placeholder="email" class="form-control" id="email" required/><br>
+              <label for="password">Hasło</label><br>
+              <input type="password" name="password" placeholder="password" class="form-control" id="password" required/><br>
+              <a type="button" data-toggle="modal" href="#signUp">Nie masz konta? Zarejestruj się.</a>
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Zamknij</button>
+              <button type="button" name="but_submit" class="btn btn-primary" id="but_submit">Zaloguj</buton>
+            </div>
+          </div>
+        </form>
       </div>
     </div>
   </div>
