@@ -1,3 +1,7 @@
+<?php
+
+	include("config.php");
+?>
 <!doctype html>
 <html lang="pl">
 	<head>
@@ -21,6 +25,36 @@
 			});
 		}, false);
 		})();
+		</script>
+
+		<script>
+			//LOGIN SCRIPT
+			$(document).ready(function(){
+
+				$("#but_submit").click(function(){
+					var email = $("#email").val().trim();
+					var password = $("#password").val().trim();
+
+					if( email != "" && password != "" ){
+						$.ajax({
+							url:'checkuser.php',
+							type:'post',
+							data:{email:email,password:password},
+							success:function(response){
+								var msg = "";
+								if(response == 1){
+									window.location = "index.php";
+								}else{
+									msg = "Błędny email lub hasło!";
+								}
+								$("#message").html(msg);
+								return false;
+							}
+						});
+					}
+				});
+
+			});
 		</script>
 	</head>
   <body>
@@ -65,10 +99,10 @@
 
 					<ul class="navbar-nav">
 						<li class="nav-item">
-							<img src="favicons/myAccountIcon.png" data-toggle="modal" data-target="#signIn" alt="myAccountIcon">				
+							<img src="favicons/myAccountIcon.png" data-toggle="modal" data-target="#signIn" alt="myAccountIcon" style="cursor: pointer">				
 						</li>
 						<li class="nav-item">
-							<img src="favicons/shoppingCartIcon.png" data-toggle="modal" data-target="#userShoppingCart" alt="shoppingCartIcon"></a>						
+							<img src="favicons/shoppingCartIcon.png" data-toggle="modal" data-target="#userShoppingCart" alt="shoppingCartIcon" style="cursor: pointer"></a>						
 						</li>
 					</ul>
 				</div>
