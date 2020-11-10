@@ -54,6 +54,16 @@
                     </div>
                 </div>
                 <div class="form-group">
+                    <label for="phonenumber">Numer telefonu</label>
+                    <input type="text" class="form-control" id="phonenumber" placeholder="numer telefonu" required>
+                    <div class="valid-feedback">
+                            Jest OK!
+                        </div>
+                        <div class="invalid-feedback">
+                            podaj właściwe dane!
+                        </div>
+                </div>
+                <div class="form-group">
                     <label for="address">Adres</label>
                     <input type="text" class="form-control" id="address" placeholder="Adres" required>
                     <div class="valid-feedback">
@@ -124,7 +134,7 @@
                 </div>
                 <div class="row float-right pr-3">
                     <button type="button" class="btn btn-secondary mr-1" data-dismiss="modal">Zamknij</button>
-                    <button type="submit" class="btn btn-primary">Zarejestruj</button>
+                    <button type="button" class="btn btn-primary" id="butsave">Zarejestruj</button>
                 </div>
             </form>
       </div>

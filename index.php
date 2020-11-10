@@ -6,8 +6,8 @@
 <html lang="pl">
 	<head>
 		<?php include 'head.php';?>
-		<script>
-		// Example starter JavaScript for disabling form submissions if there are invalid fields
+		<!--<script>
+		//SPRAWDZA PUSTE POLA
 		(function() {
 		'use strict';
 		window.addEventListener('load', function() {
@@ -15,7 +15,7 @@
 			var forms = document.getElementsByClassName('needs-validation');
 			// Loop over them and prevent submission
 			var validation = Array.prototype.filter.call(forms, function(form) {
-			form.addEventListener('submit', function(event) {
+			form.addEventListener('butsave', function(event) {
 				if (form.checkValidity() === false) {
 				event.preventDefault();
 				event.stopPropagation();
@@ -25,7 +25,7 @@
 			});
 		}, false);
 		})();
-		</script>
+		</script>-->
 
 		<script>
 			//LOGIN SCRIPT
@@ -43,7 +43,7 @@
 							success:function(response){
 								var msg = "";
 								if(response == 1){
-									window.location = "index.php";
+									window.location = "dashboard.php";
 								}else{
 									msg = "Błędny email lub hasło!";
 								}
@@ -54,6 +54,60 @@
 					}
 				});
 
+			});
+		</script>
+
+		<script>
+			//REJESTRACJA
+			$(document).ready(function() {
+				$('#butsave').on('click', function() {
+					//$("#butsave").attr("disabled", "disabled");
+					var name = $('#name').val();
+					var surname = $('#surname').val();
+					var emailSignUp = $('#emailSignUp').val();
+					var password = $('#password').val();
+					var phonenumber = $('#phonenumber').val();
+					var address = $('#address').val();
+					var address2 = $('#address2').val();
+					var city = $('#city').val();
+					var zipCode = $('#zipCode').val();
+					var inputVoivodeship = $('#inputVoivodeship').val();
+					if(name!="" && surname!="" && emailSignUp!="" && phonenumber!="" && address!="" && address2!="" && city!="" && zipCode!=""){
+						$.ajax({
+							url: "registersave.php",
+							type: "POST",
+							data: {
+								name: name,
+								surname: surname,
+								email: emailSignUp,
+								password: password,
+								phonenumber: phonenumber,
+								address: address,
+								address2: address2,
+								city: city,			
+								zipCode: zipCode,
+								voivodeship: inputVoivodeship,
+							},
+							cache: false,
+							success: function(dataResult){
+								var dataResult = JSON.parse(dataResult);
+								if(dataResult.statusCode==200){
+									$("#butsave").removeAttr("disabled");
+									$('#fupForm').find('input:text').val('');
+									$("#success").show();
+									$('#success').html('Dane zostały zapisane!'); 						
+								}
+								else if(dataResult.statusCode==201){
+								alert("Error occured !");
+								}
+								
+							}
+						});
+					}
+					else{
+						alert('Uzupełnij wszystkie pola!');
+					}
+				});
 			});
 		</script>
 	</head>
