@@ -17,6 +17,59 @@
             });
             });
         </script>
+
+        <script>
+			//ADD USER SCRIPT
+			$(document).ready(function() {
+				$('#butsave').on('click', function() {
+					var name = $('#name').val();
+					var surname = $('#surname').val();
+					var email = $('#email').val();
+					var password = $('#password').val();
+					var phonenumber = $('#phonenumber').val();
+					var address = $('#address').val();
+					var address2 = $('#address2').val();
+					var city = $('#city').val();
+					var zipCode = $('#zipCode').val();
+					var inputVoivodeship = $('#inputVoivodeship').val();
+					if(name!="" && surname!="" && email!="" && password!="" && phonenumber!="" && address!="" && address2!="" && city!="" && zipCode!=""){
+						$.ajax({
+							url: "registersave.php",
+							type: "POST",
+							data: {
+								name: name,
+								surname: surname,
+								email: email,
+								password: password,
+								phonenumber: phonenumber,
+								address: address,
+								address2: address2,
+								city: city,			
+								zipCode: zipCode,
+								voivodeship: inputVoivodeship,
+							},
+							cache: false,
+							success: function(dataResult){
+								var msg = "";
+								var dataResult = JSON.parse(dataResult);
+								if(dataResult.statusCode==200){
+									var msg = "Użytkownik został dodany!";
+									$("#messageAddUser").html(msg);
+									setTimeout(function() {$('#addUserModal').modal('hide');}, 2000);
+								}
+								else if(dataResult.statusCode==201){
+								alert("Error occured!");
+								}
+								
+							}
+						});
+					}
+					else{
+						alert('Uzupełnij wszystkie pola!');
+					}
+				});
+			});
+		</script>
 	</head>
   <body>
 		<header>
@@ -29,7 +82,7 @@
                 <div class="row pb-1">
                     <div class="col-12">
                         <form class="form-inline float-right">
-                            <button class="btn btn-success mr-5" type="button">Dodaj użytkownika</button>
+                            <button class="btn btn-success mr-5" type="button" data-toggle="modal" data-target="#addUserModal" id="addUser">Dodaj użytkownika</button>
                             <input class="form-control mr-1" type="search" placeholder="szukaj" id="searchInput">
                             <!-- <button class="btn btn-dark" type="submit">znajdź</button> -->
                         </form>
@@ -106,3 +159,5 @@
         <?php include 'foot.php';?>
     </footer>
 </html>
+
+<?php include 'adduser.php';?>
