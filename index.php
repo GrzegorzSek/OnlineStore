@@ -70,7 +70,7 @@
 					var city = $('#city').val();
 					var zipCode = $('#zipCode').val();
 					var inputVoivodeship = $('#inputVoivodeship').val();
-					if(name!="" && surname!="" && emailSignUp!="" && phonenumber!="" && address!="" && address2!="" && city!="" && zipCode!=""){
+					if(name!="" && surname!="" && emailSignUp!="" && password!="" && phonenumber!="" && address!="" && address2!="" && city!="" && zipCode!=""){
 						$.ajax({
 							url: "registersave.php",
 							type: "POST",

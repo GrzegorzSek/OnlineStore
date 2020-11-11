@@ -46,7 +46,7 @@ nav
 }
 .break
 {
-	background-color: cadetblue;
+	/* background-color: cadetblue; */
 	padding-top: 40px;
 }
 .collapse img{
@@ -66,6 +66,6 @@ nav
 }
 .mainContent
 {
-	background-color: aqua;
+	/* background-color: aqua; */
 	min-height: 600px;
 }
