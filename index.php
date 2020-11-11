@@ -48,7 +48,6 @@
 									msg = "Błędny email lub hasło!";
 								}
 								$("#message").html(msg);
-								return false;
 							}
 						});
 					}
@@ -58,10 +57,9 @@
 		</script>
 
 		<script>
-			//REJESTRACJA
+			//REGISTER SCRIPT
 			$(document).ready(function() {
 				$('#butsave').on('click', function() {
-					//$("#butsave").attr("disabled", "disabled");
 					var name = $('#name').val();
 					var surname = $('#surname').val();
 					var emailSignUp = $('#emailSignUp').val();
@@ -90,15 +88,15 @@
 							},
 							cache: false,
 							success: function(dataResult){
+								var msg = "";
 								var dataResult = JSON.parse(dataResult);
 								if(dataResult.statusCode==200){
-									$("#butsave").removeAttr("disabled");
-									$('#fupForm').find('input:text').val('');
-									$("#success").show();
-									$('#success').html('Dane zostały zapisane!'); 						
+									var msg = "Udało Ci się zarejestrować!";
+									$("#messageSignUp").html(msg);
+									setTimeout(function() {$('#signUp').modal('hide');}, 2000);
 								}
 								else if(dataResult.statusCode==201){
-								alert("Error occured !");
+								alert("Error occured!");
 								}
 								
 							}

@@ -10,6 +10,7 @@
       <div class="modal-body">
             <form class="needs-validation" novalidate>
                 <div class="form-row">
+                    <div class="form-group col-md-12" id="messageSignUp"></div>
                     <div class="form-group col-md-6">
                         <label for="name">Imię</label>
                         <input type="text" class="form-control" id="name" placeholder="Imię" required>
