@@ -69,3 +69,7 @@ nav
 	/* background-color: aqua; */
 	min-height: 600px;
 }
+.adminTable
+{
+	font-size: 12px;
+}

@@ -5,147 +5,94 @@
 <!doctype html>
 <html lang="pl">
 	<head>
-		<?php include 'head.php';?>
+        <?php include 'head.php';?>
+        <script>
+            //SKRYPT DO SZUKANIA
+            $(document).ready(function(){
+            $("#searchInput").on("keyup", function() {
+                var value = $(this).val().toLowerCase();
+                $("#adminTable tr").filter(function() {
+                $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+                });
+            });
+            });
+        </script>
 	</head>
   <body>
 		<header>
-			<nav class="navbar fixed-top navbar-light bg-light navbar-expand-lg">
-				<a class="navbar-brand" href="#">LOGO</a>			
-
-				<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#mainMenu">
-					<span class="navbar-toggler-icon"></span>
-				</button>
-
-				<div class="collapse navbar-collapse text-uppercase" id="mainMenu">
-					<ul class="navbar-nav mr-auto">
-						<li class="nav-item active">
-							<a class="nav-link" href="index.php"> Główna</a>						
-						</li>
-						<li class="nav-item">
-							<a class="nav-link" href="#"> Kat 1</a>						
-						</li>
-						<li class="nav-item dropdown">
-							<a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button"> Kat 2</a>	
-							<div class="dropdown-menu">
-								<a class="dropdown-item" href="listofproducts.php">podKat1</a>
-								<a class="dropdown-item" href="#">podKat2</a>
-								<a class="dropdown-item" href="#">podKat3</a>
-								<a class="dropdown-item" href="#">podKat4</a>
-								<a class="dropdown-item" href="#">podKat5</a>
-							</div>					
-						</li>
-						<li class="nav-item">
-							<a class="nav-link" href="#"> Kat 3</a>						
-						</li>
-						<li class="nav-item">
-							<a class="nav-link" href="#"> Kontakt</a>						
-						</li>
-					</ul>
-
-					<form class="form-inline mr-auto">
-						<input class="form-control mr-1" type="search" placeholder="szukaj">
-						<button class="btn btn-secondary" type="submit">znajdź</button>
-					</form>
-
-					<ul class="navbar-nav">
-						<li class="nav-item">
-							<img src="favicons/myAccountIcon.png" data-toggle="modal" data-target="#signIn" alt="myAccountIcon">				
-						</li>
-						<li class="nav-item">
-							<img src="favicons/shoppingCartIcon.png" data-toggle="modal" data-target="#userShoppingCart" alt="shoppingCartIcon"></a>						
-						</li>
-					</ul>
-				</div>
-			</nav>
+        <?php include 'header.php';?>
 		</header>
 	<main>
 		<section class="mainContent">
             <div class="break"></div>
             <div class="container-fluid pt-1">
                 <div class="row pb-1">
-                    <div class="col-12 d-inline">
+                    <div class="col-12">
                         <form class="form-inline float-right">
-						    <input class="form-control mr-1" type="search" placeholder="szukaj">
-						<button class="btn btn-dark" type="submit">znajdź</button>
-					</form>
+                            <button class="btn btn-success mr-5" type="button">Dodaj użytkownika</button>
+                            <input class="form-control mr-1" type="search" placeholder="szukaj" id="searchInput">
+                            <!-- <button class="btn btn-dark" type="submit">znajdź</button> -->
+                        </form>
                     </div>
                 </div>
                 <div class="row pr-1">
-                    <div class="col-2 border-left border-right border px-0 bg-light">
+                    <div class="col-1 border-left border-right border px-0 bg-light">
                         <div class="list-group">
-                            <button type="button" class="list-group-item list-group-item-action active btn-light">Użytkownicy</button>
-                            <button type="button" class="list-group-item list-group-item-action btn-light">Zamówienia</button>
-                            <button type="button" class="list-group-item list-group-item-action btn-light">Produkty</button>
+                            <button type="button" class="list-group-item list-group-item-action active btn-light btn-sm">Użytkownicy</button>
+                            <button type="button" class="list-group-item list-group-item-action btn-light btn-sm">Zamówienia</button>
+                            <button type="button" class="list-group-item list-group-item-action btn-light btn-sm">Produkty</button>
                         </div>
                     </div>
-                    <div class="col-10 border p-0">
+                    <div class="col-11 border p-0">
+                        <?php
+                            $sql = "SELECT * FROM user";
+                            $result = mysqli_query($link, $sql);
+                        ?>
                         <table class="table table-hover table-sm">
                             <thead>
                                 <tr>
-                                <th scope="col">#</th>
-                                <th scope="col">First</th>
-                                <th scope="col">Last</th>
-                                <th scope="col">Handle</th>
+                                    <th scope="col">#</th>
+                                    <th scope="col">imię</th>
+                                    <th scope="col">Nazwisko</th>
+                                    <th scope="col">Email</th>
+                                    <th scope="col">nr telefonu</th>
+                                    <th scope="col">Adres</th>
+                                    <th scope="col">Adres 2</th>
+                                    <th scope="col">Miasto</th>
+                                    <th scope="col">Kod pocztowy</th>
+                                    <th scope="col">Województwo</th>
+                                    <th scope="col">Akcja</th>
                                 </tr>
                             </thead>
-                            <tbody>
+                            <tbody class="adminTable" id="adminTable">
+                                <?php
+                                    $iter = 0;
+                                    if (mysqli_num_rows($result) > 0){
+                                        while ($row = mysqli_fetch_assoc($result)){                                                                
+                                ?>
                                 <tr>
-                                <th scope="row">1</th>
-                                <td>Mark</td>
-                                <td>Otto</td>
-                                <td>@mdo</td>
+                                    <th scope="row"><?php echo $iter = $iter + 1 ?></th>
+                                    <td><?php echo $row['name'] ?></td>
+                                    <td><?php echo $row['surname'] ?></td>
+                                    <td><?php echo $row['email'] ?></td>
+                                    <td><?php echo $row['phonenumber'] ?></td>
+                                    <td><?php echo $row['address'] ?></td>
+                                    <td><?php echo $row['address2'] ?></td>
+                                    <td><?php echo $row['city'] ?></td>
+                                    <td><?php echo $row['zipCode'] ?></td>
+                                    <td><?php echo $row['voivodeship'] ?></td>
+                                    <td>
+                                        <button class="btn btn-primary btn-sm" type="button">edytuj</button>
+                                        <button class="btn btn-danger btn-sm" type="button">usuń</button>
+                                    </td>
                                 </tr>
-                                <tr>
-                                <th scope="row">2</th>
-                                <td>Jacob</td>
-                                <td>Thornton</td>
-                                <td>@fat</td>
-                                </tr>
-                                <tr>
-                                <th scope="row">3</th>
-                                <td colspan="2">Larry the Bird</td>
-                                <td>@twitter</td>
-                                </tr>
-                                <th scope="row">3</th>
-                                <td colspan="2">Larry the Bird</td>
-                                <td>@twitter</td>
-                                </tr>
-                                <th scope="row">3</th>
-                                <td colspan="2">Larry the Bird</td>
-                                <td>@twitter</td>
-                                </tr>
-                                <th scope="row">3</th>
-                                <td colspan="2">Larry the Bird</td>
-                                <td>@twitter</td>
-                                </tr>
-                                <th scope="row">3</th>
-                                <td colspan="2">Larry the Bird</td>
-                                <td>@twitter</td>
-                                </tr>
-                                <th scope="row">3</th>
-                                <td colspan="2">Larry the Bird</td>
-                                <td>@twitter</td>
-                                </tr>
-                                <th scope="row">3</th>
-                                <td colspan="2">Larry the Bird</td>
-                                <td>@twitter</td>
-                                </tr>
-                                <th scope="row">3</th>
-                                <td colspan="2">Larry the Bird</td>
-                                <td>@twitter</td>
-                                </tr>
-                                <th scope="row">3</th>
-                                <td colspan="2">Larry the Bird</td>
-                                <td>@twitter</td>
-                                </tr>
-                                <th scope="row">3</th>
-                                <td colspan="2">Larry the Bird</td>
-                                <td>@twitter</td>
-                                </tr>
-                                <th scope="row">3</th>
-                                <td colspan="2">Larry the Bird</td>
-                                <td>@twitter</td>
-                                </tr>
+                                <?php
+                                        }
+                                    }else{
+                                        echo "nie ma więcej danych.";
+                                    }
+                                ?>
+
                             </tbody>
                         </table>
                     </div>
@@ -153,7 +100,7 @@
             </div>
 		</section>
         <div class="break"></div>
-	</main>		
+    </main>		
     </body>
     <footer class="page-footer pt-4">
         <?php include 'foot.php';?>
