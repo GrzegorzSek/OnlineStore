@@ -16,6 +16,8 @@
               <input type="email" name="email" placeholder="email" class="form-control" id="email" required/><br>
               <label for="password">Hasło</label><br>
               <input type="password" name="password" placeholder="password" class="form-control" id="password" required/><br>
+            </div>
+            <div class="form-group col-12 text-right">
               <a type="button" data-toggle="modal" href="#signUp">Nie masz konta? Zarejestruj się.</a>
               <button type="button" class="btn btn-secondary" data-dismiss="modal">Zamknij</button>
               <button type="button" name="but_submit" class="btn btn-primary" id="but_submit">Zaloguj</buton>
