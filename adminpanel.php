@@ -22,16 +22,16 @@
 			//ADD USER SCRIPT
 			$(document).ready(function() {
 				$('#butsave').on('click', function() {
-					var name = $('#name').val();
-					var surname = $('#surname').val();
-					var email = $('#email').val();
-					var password = $('#password').val();
-					var phonenumber = $('#phonenumber').val();
-					var address = $('#address').val();
-					var address2 = $('#address2').val();
-					var city = $('#city').val();
-					var zipCode = $('#zipCode').val();
-					var inputVoivodeship = $('#inputVoivodeship').val();
+					var name = $('#addName').val();
+					var surname = $('#addSurname').val();
+					var email = $('#addEmail').val();
+					var password = $('#addPassword').val();
+					var phonenumber = $('#addPhonenumber').val();
+					var address = $('#addAddress').val();
+					var address2 = $('#addAddress2').val();
+					var city = $('#addCity').val();
+					var zipCode = $('#addZipCode').val();
+					var voivodeship = $('#addVoivodeship').val();
 					if(name!="" && surname!="" && email!="" && password!="" && phonenumber!="" && address!="" && address2!="" && city!="" && zipCode!=""){
 						$.ajax({
 							url: "registersave.php",
@@ -46,7 +46,7 @@
 								address2: address2,
 								city: city,			
 								zipCode: zipCode,
-								voivodeship: inputVoivodeship,
+								voivodeship: voivodeship,
 							},
 							cache: false,
 							success: function(dataResult){
@@ -69,7 +69,87 @@
 					}
 				});
 			});
-		</script>
+        </script>
+
+        <script>
+            //EDIT SCRIPT
+            $(document).ready(function(){
+                $(document).on('click','button[data-role=update]',function(){
+                    //alert($(this).data('id'));
+                    var id = $(this).data('id');
+                    var name = $('#'+id).children('td[data-target=name]').text();
+                    var surname = $('#'+id).children('td[data-target=surname]').text();
+                    var email = $('#'+id).children('td[data-target=email]').text();
+                    var phonenumber = $('#'+id).children('td[data-target=phonenumber]').text();
+                    var address = $('#'+id).children('td[data-target=address]').text();
+                    var address2 = $('#'+id).children('td[data-target=address2]').text();
+                    var city = $('#'+id).children('td[data-target=city]').text();
+                    var zipCode = $('#'+id).children('td[data-target=zipCode]').text();
+                    var voivodeship = $('#'+id).children('td[data-target=voivodeship]').text();
+
+                    $('#userId').val(id);
+                    $('#name').val(name);
+                    $('#surname').val(surname);
+                    $('#email').val(email);
+                    $('#phonenumber').val(phonenumber);
+                    $('#address').val(address);
+                    $('#address2').val(address2);
+                    $('#city').val(city);
+                    $('#zipCode').val(zipCode);
+                    $('#voivodeship').val(voivodeship);                           
+                });
+                $('#update').on('click', function() {
+                    var id = $('#userId').val();
+					var name = $('#name').val();
+					var surname = $('#surname').val();
+					var email = $('#email').val();
+					var password = $('#password').val();
+					var phonenumber = $('#phonenumber').val();
+					var address = $('#address').val();
+					var address2 = $('#address2').val();
+					var city = $('#city').val();
+					var zipCode = $('#zipCode').val();
+					var voivodeship = $('#voivodeship').val();
+					if(name!="" && surname!="" && email!="" && password!="" && phonenumber!="" && address!="" && address2!="" && city!="" && zipCode!="" && voivodeship!=""){
+						$.ajax({
+							url: "editusermodal.php",
+							type: "POST",
+							data: {
+                                id: id,
+								name: name,
+								surname: surname,
+								email: email,
+								password: password,
+								phonenumber: phonenumber,
+								address: address,
+								address2: address2,
+								city: city,			
+								zipCode: zipCode,
+								voivodeship: voivodeship,
+							},
+							cache: false,
+							success: function(dataResult){
+								var msg = "";
+								var dataResult = JSON.parse(dataResult);
+								if(dataResult.statusCode==200){
+									var msg = "Dane użytkownika zostały zaktualizowane!";
+									$("#messageEditUser").html(msg);
+									setTimeout(function() {$('#editUserModal').modal('hide');}, 2000);
+								}
+								else if(dataResult.statusCode==201){
+								alert("Error occured!");
+								}
+								
+							}
+						});
+					}
+					else{
+						alert('Uzupełnij wszystkie pola!');
+					}
+				});
+            });
+        </script>
+        
 	</head>
   <body>
 		<header>
@@ -123,20 +203,20 @@
                                     if (mysqli_num_rows($result) > 0){
                                         while ($row = mysqli_fetch_assoc($result)){                                                                
                                 ?>
-                                <tr>
+                                <tr id="<?php echo $row['id']; ?>">
                                     <th scope="row"><?php echo $iter = $iter + 1 ?></th>
-                                    <td><?php echo $row['name'] ?></td>
-                                    <td><?php echo $row['surname'] ?></td>
-                                    <td><?php echo $row['email'] ?></td>
-                                    <td><?php echo $row['phonenumber'] ?></td>
-                                    <td><?php echo $row['address'] ?></td>
-                                    <td><?php echo $row['address2'] ?></td>
-                                    <td><?php echo $row['city'] ?></td>
-                                    <td><?php echo $row['zipCode'] ?></td>
-                                    <td><?php echo $row['voivodeship'] ?></td>
+                                    <td data-target="name"><?php echo $row['name'] ?></td>
+                                    <td data-target="surname"><?php echo $row['surname'] ?></td>
+                                    <td data-target="email"><?php echo $row['email'] ?></td>
+                                    <td data-target="phonenumber"><?php echo $row['phonenumber'] ?></td>
+                                    <td data-target="address"><?php echo $row['address'] ?></td>
+                                    <td data-target="address2"><?php echo $row['address2'] ?></td>
+                                    <td data-target="city"><?php echo $row['city'] ?></td>
+                                    <td data-target="zipCode"><?php echo $row['zipCode'] ?></td>
+                                    <td data-target="voivodeship"><?php echo $row['voivodeship'] ?></td>
                                     <td>
-                                        <button class="btn btn-primary btn-sm" type="button">edytuj</button>
-                                        <button class="btn btn-danger btn-sm" type="button">usuń</button>
+                                        <button class="btn btn-primary btn-sm" type="button" data-role="update" data-id="<?php echo $row['id']; ?>" data-toggle="modal" data-target="#editUserModal" id="editUser">Edytuj</button>
+                                        <button class="btn btn-danger btn-sm" type="button">Usuń</button>
                                     </td>
                                 </tr>
                                 <?php
@@ -161,3 +241,4 @@
 </html>
 
 <?php include 'adduser.php';?>
+<?php include 'edituserdata.php';?>

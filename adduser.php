@@ -13,102 +13,48 @@
                     <div class="form-group col-md-12" id="messageAddUser"></div>
                     <div class="form-group col-md-6">
                         <label for="name">Imię</label>
-                        <input type="text" class="form-control" id="name" placeholder="Imię" required>
-                        <div class="valid-feedback">
-                            Jest OK!
-                        </div>
-                        <div class="invalid-feedback">
-                            podaj właściwe dane!
-                        </div>
+                        <input type="text" class="form-control" id="addName" placeholder="Imię" required>           
                     </div>
                     <div class="form-group col-md-6">
                         <label for="surname">Nazwisko</label>
-                        <input type="text" class="form-control" id="surname" placeholder="nazwisko" required>
-                        <div class="valid-feedback">
-                            Jest OK!
-                        </div>
-                        <div class="invalid-feedback">
-                            podaj właściwe dane!
-                        </div>
+                        <input type="text" class="form-control" id="addSurname" placeholder="nazwisko" required>                       
                     </div>
                 </div>
                 <div class="form-row">
                     <div class="form-group col-md-6">
                         <label for="email">Email</label>
-                        <input type="email" class="form-control" id="email" placeholder="email" required>
-                        <div class="valid-feedback">
-                            Jest OK!
-                        </div>
-                        <div class="invalid-feedback">
-                            podaj właściwe dane!
-                        </div>
+                        <input type="email" class="form-control" id="addEmail" placeholder="email" required>    
                     </div>
                     <div class="form-group col-md-6">
                         <label for="password">Hasło</label>
-                        <input type="password" class="form-control" id="password" placeholder="hasło" required>
-                        <div class="valid-feedback">
-                            Jest OK!
-                        </div>
-                        <div class="invalid-feedback">
-                            podaj właściwe dane!
-                        </div>
+                        <input type="password" class="form-control" id="addPassword" placeholder="hasło" required>
                     </div>
                 </div>
                 <div class="form-group">
                     <label for="phonenumber">Numer telefonu</label>
-                    <input type="text" class="form-control" id="phonenumber" placeholder="numer telefonu" required>
-                    <div class="valid-feedback">
-                            Jest OK!
-                        </div>
-                        <div class="invalid-feedback">
-                            podaj właściwe dane!
-                        </div>
+                    <input type="text" class="form-control" id="addPhonenumber" placeholder="numer telefonu" required>
                 </div>
                 <div class="form-group">
                     <label for="address">Adres</label>
-                    <input type="text" class="form-control" id="address" placeholder="Adres" required>
-                    <div class="valid-feedback">
-                            Jest OK!
-                        </div>
-                        <div class="invalid-feedback">
-                            podaj właściwe dane!
-                        </div>
+                    <input type="text" class="form-control" id="addAddress" placeholder="Adres" required>
                 </div>
                 <div class="form-group">
                     <label for="address2">Adres 2</label>
-                    <input type="text" class="form-control" id="address2" placeholder="Adres 2" required>
-                    <div class="valid-feedback">
-                            Jest OK!
-                        </div>
-                        <div class="invalid-feedback">
-                            podaj właściwe dane!
-                        </div>
+                    <input type="text" class="form-control" id="addAddress2" placeholder="Adres 2" required>
                 </div>
                 <div class="form-row">
                     <div class="form-group col-md-8">
                         <label for="city">Miasto</label>
-                        <input type="text" class="form-control" id="city" placeholder="Miasto" required>
-                        <div class="valid-feedback">
-                            Jest OK!
-                        </div>
-                        <div class="invalid-feedback">
-                            podaj właściwe dane!
-                        </div>
+                        <input type="text" class="form-control" id="addCity" placeholder="Miasto" required>
                     </div>
                     <div class="form-group col-md-4">
                         <label for="zipCode">kod pocztowy</label>
-                        <input type="text" class="form-control" id="zipCode" placeholder="00-000" required>
-                        <div class="valid-feedback">
-                            Jest OK!
-                        </div>
-                        <div class="invalid-feedback">
-                            podaj właściwe dane!
-                        </div>
+                        <input type="text" class="form-control" id="addZipCode" placeholder="00-000" required>
                     </div>
                 </div>
                 <label for="voivodeship">Województwo</label>
                 <div class="form-group">
-                    <select id="inputVoivodeship" class="form-control" required>
+                    <select id="addVoivodeship" class="form-control" required>
                         <option>dolnośląskie</option>
                         <option>kujawsko-pomorskie</option>
                         <option>lubelskie</option>
@@ -126,12 +72,6 @@
                         <option>wielkopolskie</option>
                         <option>zachodniopomorskie</option>
                     </select>
-                    <div class="valid-feedback">
-                            Jest OK!
-                        </div>
-                        <div class="invalid-feedback">
-                            podaj właściwe dane!
-                        </div>
                 </div>
                 <div class="row float-right pr-3">
                     <button type="button" class="btn btn-secondary mr-1" data-dismiss="modal">Zamknij</button>
