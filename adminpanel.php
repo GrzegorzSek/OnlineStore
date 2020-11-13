@@ -34,7 +34,7 @@
 					var voivodeship = $('#addVoivodeship').val();
 					if(name!="" && surname!="" && email!="" && password!="" && phonenumber!="" && address!="" && address2!="" && city!="" && zipCode!=""){
 						$.ajax({
-							url: "registersave.php",
+							url: "scripts/registersave.php",
 							type: "POST",
 							data: {
 								name: name,
@@ -53,9 +53,13 @@
 								var msg = "";
 								var dataResult = JSON.parse(dataResult);
 								if(dataResult.statusCode==200){
+                                    $("#butsave").prop('disabled', true);
 									var msg = "Użytkownik został dodany!";
 									$("#messageAddUser").html(msg);
-									setTimeout(function() {$('#addUserModal').modal('hide');}, 2000);
+                                    $("#usersData").load(location.href+" #usersData>*","");
+									setTimeout(function() {$('#addUserModal').modal('hide');}, 1000);
+                                    setTimeout(function() {$("#butsave").prop('disabled', false);}, 1000);  
+                                    setTimeout(function() {$("#messageAddUser").hide();}, 1000);          
 								}
 								else if(dataResult.statusCode==201){
 								alert("Error occured!");
@@ -112,7 +116,7 @@
 					var voivodeship = $('#voivodeship').val();
 					if(name!="" && surname!="" && email!="" && password!="" && phonenumber!="" && address!="" && address2!="" && city!="" && zipCode!="" && voivodeship!=""){
 						$.ajax({
-							url: "editusermodal.php",
+							url: "scripts/edituser.php",
 							type: "POST",
 							data: {
                                 id: id,
@@ -132,9 +136,13 @@
 								var msg = "";
 								var dataResult = JSON.parse(dataResult);
 								if(dataResult.statusCode==200){
+                                    $("#update").prop('disabled', true);
 									var msg = "Dane użytkownika zostały zaktualizowane!";
 									$("#messageEditUser").html(msg);
-									setTimeout(function() {$('#editUserModal').modal('hide');}, 2000);
+                                    $("#usersData").load(location.href+" #usersData>*","");
+									setTimeout(function() {$('#editUserModal').modal('hide');}, 1000);
+                                    setTimeout(function() {$("#update").prop('disabled', false);}, 1000);
+                                    setTimeout(function() {$("#messageEditUser").hide();}, 1000); 
 								}
 								else if(dataResult.statusCode==201){
 								alert("Error occured!");
@@ -146,6 +154,44 @@
 					else{
 						alert('Uzupełnij wszystkie pola!');
 					}
+				});
+            });
+        </script>
+
+        <script>
+            //DELETE USER SCRIPT
+            $(document).ready(function(){
+                var id;
+                $(document).on('click','button[data-role=delete]', function(){
+                    id = $(this).data('id');
+                    $('#userId').val(id);        
+                    //alert($(this).data('id'));              
+                });
+                $('#deleteUser').on('click', function() {			
+                    $.ajax({
+                        url: "scripts/deleteuser.php",
+                        type: "POST",
+                        data: {
+                            id: id,
+                        },
+                        cache: false,
+                        success: function(dataResult){
+                            var msg = "";
+                            var dataResult = JSON.parse(dataResult);
+                            if(dataResult.statusCode==200){
+                                $("#deleteUser").prop('disabled', true);
+                                var msg = "Użytkownik został usunięty!";
+                                $("#messageDeleteUser").html(msg);
+                                $("#usersData").load(location.href+" #usersData>*","");
+                                setTimeout(function() {$('#deleteUserModal').modal('hide');}, 1000);
+                                setTimeout(function() {$("#deleteUser").prop('disabled', false);}, 1000);
+                                setTimeout(function() {$("#messageDeleteUser").hide();}, 1000);
+                            }
+                            else if(dataResult.statusCode==201){
+                                alert("Error occured!");
+                            }		
+                        }
+                    });					
 				});
             });
         </script>
@@ -176,7 +222,7 @@
                             <button type="button" class="list-group-item list-group-item-action btn-light btn-sm">Produkty</button>
                         </div>
                     </div>
-                    <div class="col-11 border p-0">
+                    <div class="col-11 border p-0" id="usersData">
                         <?php
                             $sql = "SELECT * FROM user";
                             $result = mysqli_query($link, $sql);
@@ -216,7 +262,7 @@
                                     <td data-target="voivodeship"><?php echo $row['voivodeship'] ?></td>
                                     <td>
                                         <button class="btn btn-primary btn-sm" type="button" data-role="update" data-id="<?php echo $row['id']; ?>" data-toggle="modal" data-target="#editUserModal" id="editUser">Edytuj</button>
-                                        <button class="btn btn-danger btn-sm" type="button">Usuń</button>
+                                        <button class="btn btn-danger btn-sm" type="button" data-role="delete" data-id="<?php echo $row['id']; ?>" data-toggle="modal" data-target="#deleteUserModal">Usuń</button>
                                     </td>
                                 </tr>
                                 <?php
@@ -240,5 +286,7 @@
     </footer>
 </html>
 
-<?php include 'adduser.php';?>
-<?php include 'edituserdata.php';?>
+<?php include 'modals/adduser.php';?>
+<?php include 'modals/edituserdata.php';?>
+<?php include 'modals/deleteuser.php';?>
+<?php include 'scripts/deleteuser.php';?>

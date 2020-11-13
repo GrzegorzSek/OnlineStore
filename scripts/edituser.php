@@ -1,5 +1,5 @@
 <?php
-    include 'config.php';
+    include '../config.php';
     
     $id=$_POST['id'];
 	$name=$_POST['name'];

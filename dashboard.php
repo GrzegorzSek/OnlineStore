@@ -42,7 +42,7 @@ if(!isset($_SESSION['userid'])){
 
                 if( email != "" && password != "" ){
                     $.ajax({
-                        url:'checkuser.php',
+                        url:'scripts/checkuser.php',
                         type:'post',
                         data:{email:email,password:password},
                         success:function(response){
@@ -77,7 +77,7 @@ if(!isset($_SESSION['userid'])){
                 var inputVoivodeship = $('#inputVoivodeship').val();
                 if(name!="" && surname!="" && emailSignUp!="" && password!="" && phonenumber!="" && address!="" && address2!="" && city!="" && zipCode!=""){
                     $.ajax({
-                        url: "registersave.php",
+                        url: "scripts/registersave.php",
                         type: "POST",
                         data: {
                             name: name,
@@ -180,6 +180,6 @@ if(!isset($_SESSION['userid'])){
 </footer>
 </html>
 
-<?php include 'loginform.php';?>
-<?php include 'signupform.php';?>
+<?php include 'modals/loginform.php';?>
+<?php include 'modals/signupform.php';?>
 

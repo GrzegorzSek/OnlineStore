@@ -1,5 +1,5 @@
 <?php
-    include "config.php";
+    include "../config.php";
 
     $email = mysqli_real_escape_string($link, $_POST['email']);
     $password = mysqli_real_escape_string($link, $_POST['password']);

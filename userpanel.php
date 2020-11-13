@@ -25,7 +25,7 @@
 					var voivodeship = $('#voivodeship').val();
 					if(name!="" && surname!="" && email!="" && password!="" && phonenumber!="" && address!="" && address2!="" && city!="" && zipCode!=""){
 						$.ajax({
-							url: "updateuser.php",
+							url: "scripts/updateuser.php",
 							type: "POST",
 							data: {
 								name: name,
