@@ -24,6 +24,10 @@
             </div>
           </div>
         </form>
+        <div class="text-center">
+          <hr>
+          <a class="text-center" type="button" data-dismiss="modal" data-toggle="modal" href="#forgottenPassword">Zapomniałeś hasło? Kliknij tutaj.</a>
+        </div>
       </div>
     </div>
   </div>

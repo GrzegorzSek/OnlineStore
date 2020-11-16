@@ -27,7 +27,7 @@
                 <a class="nav-link" href="#"> Kat 3</a>						
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="#"> Kontakt</a>						
+                <a class="nav-link" href="contact.php"> Kontakt</a>						
             </li>
         </ul>
 

@@ -11,6 +11,7 @@
 	<head>
 		<?php include 'head.php';?>
 		<script>
+		//UPDATE USER
 			$(document).ready(function() {
 				$('#buttonUpdate').on('click', function() {
 					var name = $('#name').val();
