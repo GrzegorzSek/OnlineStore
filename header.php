@@ -8,7 +8,7 @@
     <div class="collapse navbar-collapse text-uppercase" id="mainMenu">
         <ul class="navbar-nav mr-auto">
             <li class="nav-item active">
-                <a class="nav-link" href="index.php"> Główna</a>						
+                <a class="nav-link" href="dashboard.php"> Główna</a>						
             </li>
             <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" id="clothes">Ubrania</a>	
@@ -54,7 +54,9 @@
                 </div>				
             </li>
             <li class="nav-item mr-2">
-                <img src="favicons/shoppingCartIcon.png" data-toggle="modal" data-target="#userShoppingCart" alt="shoppingCartIcon" style="cursor: pointer"></a>						
+                <a href="cart.php">
+                    <img src="favicons/shoppingCartIcon.png" type="button" alt="shoppingCartIcon">
+                </a>
             </li>
         </ul>
     </div>

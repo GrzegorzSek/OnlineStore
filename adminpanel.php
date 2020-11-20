@@ -79,7 +79,7 @@
             //EDIT SCRIPT
             $(document).ready(function(){
                 $(document).on('click','button[data-role=update]',function(){
-                    //alert($(this).data('id'));
+                    //alert($(this).data('id')); //wyświetla data-id przecisku
                     var id = $(this).data('id');
                     var name = $('#'+id).children('td[data-target=name]').text();
                     var surname = $('#'+id).children('td[data-target=surname]').text();
@@ -91,7 +91,7 @@
                     var zipCode = $('#'+id).children('td[data-target=zipCode]').text();
                     var voivodeship = $('#'+id).children('td[data-target=voivodeship]').text();
 
-                    $('#userId').val(id);
+                    $('#userId').val(id); //ustawia wartosci w formularzu
                     $('#name').val(name);
                     $('#surname').val(surname);
                     $('#email').val(email);
@@ -182,7 +182,7 @@
                                 $("#deleteUser").prop('disabled', true);
                                 var msg = "Użytkownik został usunięty!";
                                 $("#messageDeleteUser").html(msg);
-                                $("#usersData").load(location.href+" #usersData>*","");
+                                $("#usersData").load(location.href+" #usersData>*","");//odświeża okno z danymi
                                 setTimeout(function() {$('#deleteUserModal').modal('hide');}, 1000);
                                 setTimeout(function() {$("#deleteUser").prop('disabled', false);}, 1000);
                                 setTimeout(function() {$("#messageDeleteUser").hide();}, 1000);
@@ -222,7 +222,7 @@
                             <button type="button" class="list-group-item list-group-item-action btn-light btn-sm">Produkty</button>
                         </div>
                     </div>
-                    <div class="col-11 border p-0" id="usersData">
+                    <div class="col-11 border p-0 table-responsive" id="usersData">
                         <?php
                             $sql = "SELECT * FROM user";
                             $result = mysqli_query($link, $sql);
