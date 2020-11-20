@@ -32,6 +32,6 @@
         </div>
 	    </div>
         <div class="footer-copyright text-center py-3">© 2020 Copyright:
-    		<a href="#">Link</a>
+    		<a href="dashboard.php">Online</a>
 			</div>
 	    </div>

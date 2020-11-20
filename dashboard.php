@@ -7,6 +7,14 @@ if(!isset($_SESSION['userid'])){
 }
 
 ?>
+<?php
+    $query = "SELECT * FROM product LIMIT 6";
+    $rows = mysqli_query($link, $query);
+        $results = array();
+    while ($result =  mysqli_fetch_array($rows)){
+        $results[] = $result;
+    }
+?>
 <!doctype html>
 <html lang="pl">
 <head>
@@ -22,52 +30,14 @@ if(!isset($_SESSION['userid'])){
         <div class="break"></div>
         <div class="container"> 
             <div class="row">
-                <!-- Here photos-->					
-                <div class="col-sm-6 col-md-4">
-                    <figure> 
-                        <a href="productdetails.php"><img src="img/marynarka.jpg" alt="dress2"></a>
-                    </figure>
-                </div>
-                <div class="col-sm-6 col-md-4">
-                    <figure>
-                        <a href="#"><img src="img/marynarka.jpg" alt="dress3"></a>
-                    </figure>
-                </div>
-                <div class="col-sm-6 col-md-4">
-                    <figure>
-                        <a href="#"><img src="img/marynarka.jpg" alt="dress4"></a>
-                    </figure>
-                </div>	
-                <div class="col-sm-6 col-md-4">
-                    <figure>
-                        <a href="#"><img src="img/marynarka.jpg" alt="dress2"></a>
-                    </figure>
-                </div>
-                <div class="col-sm-6 col-md-4">
-                    <figure>
-                        <a href="#"><img src="img/marynarka.jpg" alt="dress3"></a>
-                    </figure>
-                </div>
-                <div class="col-sm-6 col-md-4">
-                    <figure>
-                        <a href="#"><img src="img/marynarka.jpg" alt="dress4"></a>
-                    </figure>
-                </div>
-                <div class="col-sm-6 col-md-4">
-                    <figure>
-                        <a href="#"><img src="img/marynarka.jpg" alt="dress2"></a>
-                    </figure>
-                </div>
-                <div class="col-sm-6 col-md-4">
-                    <figure>
-                        <a href="#"><img src="img/marynarka.jpg" alt="dress3"></a>
-                    </figure>
-                </div>
-                <div class="col-sm-6 col-md-4">
-                    <figure>
-                        <a href="#"><img src="img/marynarka.jpg" alt="dress4"></a>
-                    </figure>
-                </div>				
+                <!-- Here photos-->		
+                <?php foreach ($results as $result){ ?>			
+                    <div class="col-sm-6 col-md-4">
+                        <figure> 
+                            <a href="productdetails.php?id=<?php echo $result['id']; ?>"><img src="<?php echo $result['image']; ?>" alt="<?php echo $result['name']; ?>"></a>
+                        </figure>
+                    </div>
+                <?php }?>
             </div>
         </div>
     </section>
@@ -77,7 +47,4 @@ if(!isset($_SESSION['userid'])){
 <?php include 'foot.php';?>
 </footer>
 </html>
-
-<?php include 'modals/loginform.php';?>
-<?php include 'modals/signupform.php';?>
 

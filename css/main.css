@@ -73,3 +73,7 @@ nav
 {
 	font-size: 12px;
 }
+.tab-content
+{
+min-height: 200px;
+}

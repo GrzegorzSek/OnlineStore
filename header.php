@@ -14,34 +14,34 @@
                 <a class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" id="clothes">Ubrania</a>	
                 <div class="dropdown-menu">
                     <a class="dropdown-item" href="listofproducts.php?category=<?php echo "1" ?>&subcategory=<?php echo "1" ?>" id="trousers">Spodnie</a>
-                    <a class="dropdown-item" href="listofproducts.php?category=<?php echo "2" ?>&subcategory=<?php echo "1" ?>" id="t-shirts">koszulki</a>
-                    <a class="dropdown-item" href="listofproducts.php?category=<?php echo "3" ?>&subcategory=<?php echo "1" ?>" id="blouses">bluzy</a>
+                    <a class="dropdown-item" href="listofproducts.php?category=<?php echo "1" ?>&subcategory=<?php echo "2" ?>" id="t-shirts">koszulki</a>
+                    <a class="dropdown-item" href="listofproducts.php?category=<?php echo "1" ?>&subcategory=<?php echo "3" ?>" id="blouses">bluzy</a>
                 </div>					
             </li>
             <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button">Buty</a>	
                 <div class="dropdown-menu">
-                    <a class="dropdown-item" href="listofproducts.php?category=<?php echo "1" ?>&subcategory=<?php echo "2" ?>">botki</a>
-                    <a class="dropdown-item" href="listofproducts.php?category=<?php echo "2" ?>&subcategory=<?php echo "2" ?>">na obcasie</a>
+                    <a class="dropdown-item" href="listofproducts.php?category=<?php echo "2" ?>&subcategory=<?php echo "4" ?>">botki</a>
+                    <a class="dropdown-item" href="listofproducts.php?category=<?php echo "2" ?>&subcategory=<?php echo "5" ?>">na obcasie</a>
                     <a class="dropdown-item" href="listofproducts.php?category=<?php echo "2" ?>&subcategory=<?php echo "6" ?>">sportowe</a>
                 </div>					
             </li>
             <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button">Akcesoria</a>	
                 <div class="dropdown-menu">
-                    <a class="dropdown-item" href="listofproducts.php?category=<?php echo "1" ?>&subcategory=<?php echo "4" ?>">torby</a>
-                    <a class="dropdown-item" href="listofproducts.php?category=<?php echo "1" ?>&subcategory=<?php echo "5" ?>">plecaki</a>
-                    <a class="dropdown-item" href="listofproducts.php?category=<?php echo "1" ?>&subcategory=<?php echo "6" ?>">biżuteria</a>
+                    <a class="dropdown-item" href="listofproducts.php?category=<?php echo "3" ?>&subcategory=<?php echo "7" ?>">torby</a>
+                    <a class="dropdown-item" href="listofproducts.php?category=<?php echo "3" ?>&subcategory=<?php echo "8" ?>">plecaki</a>
+                    <a class="dropdown-item" href="listofproducts.php?category=<?php echo "3" ?>&subcategory=<?php echo "9" ?>">biżuteria</a>
                 </div>					
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="contact.php"> Kontakt</a>						
+                <a class="nav-link" href="contact.php">Kontakt</a>						
             </li>
         </ul>
 
-        <form class="form-inline mr-auto">
-            <input class="form-control mr-1" type="search" placeholder="szukaj">
-            <button class="btn btn-secondary" type="submit">znajdź</button>
+        <form class="form-inline mr-auto" onsubmit="window.location='searchpage.php?search=' + search.value; return false;">
+            <input class="form-control mr-1" type="search" placeholder="szukaj" id="search" name="search" required>
+            <button class="btn btn-secondary" type="submit" value="send">znajdź</button>
         </form>
 
         <ul class="navbar-nav">

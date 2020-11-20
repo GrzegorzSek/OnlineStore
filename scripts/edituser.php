@@ -13,7 +13,7 @@
     $zipCode=$_POST['zipCode'];
     $voivodeship=$_POST['voivodeship'];
 
-	$sql = "UPDATE user SET `name`='$name', `surname`='$surname', `email`='$email', `password`='$password', `phonenumber`='$phonenumber', `address`='$address', `address2`='$address2', `city`='$city', `zipCode`='$zipCode', `voivodeship`='$voivodeship' WHERE `id`='$id'";
+	 = "UPDATE user SET `name`='$name', `surname`='$surname', `email`='$email', `password`='$password', `phonenumber`='$phonenumber', `address`='$address', `address2`='$address2', `city`='$city', `zipCode`='$zipCode', `voivodeship`='$voivodeship' WHERE `id`='$id'";
 
 	if (mysqli_query($link, $sql)) {
 		echo json_encode(array("statusCode"=>200));
