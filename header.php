@@ -10,21 +10,29 @@
             <li class="nav-item active">
                 <a class="nav-link" href="index.php"> Główna</a>						
             </li>
-            <li class="nav-item">
-                <a class="nav-link" href="#"> Kat 1</a>						
-            </li>
             <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button"> Kat 2</a>	
+                <a class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" id="clothes">Ubrania</a>	
                 <div class="dropdown-menu">
-                    <a class="dropdown-item" href="listofproducts.php">podKat1</a>
-                    <a class="dropdown-item" href="#">podKat2</a>
-                    <a class="dropdown-item" href="#">podKat3</a>
-                    <a class="dropdown-item" href="#">podKat4</a>
-                    <a class="dropdown-item" href="#">podKat5</a>
+                    <a class="dropdown-item" href="listofproducts.php?category=<?php echo "1" ?>&subcategory=<?php echo "1" ?>" id="trousers">Spodnie</a>
+                    <a class="dropdown-item" href="listofproducts.php?category=<?php echo "2" ?>&subcategory=<?php echo "1" ?>" id="t-shirts">koszulki</a>
+                    <a class="dropdown-item" href="listofproducts.php?category=<?php echo "3" ?>&subcategory=<?php echo "1" ?>" id="blouses">bluzy</a>
                 </div>					
             </li>
-            <li class="nav-item">
-                <a class="nav-link" href="#"> Kat 3</a>						
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button">Buty</a>	
+                <div class="dropdown-menu">
+                    <a class="dropdown-item" href="listofproducts.php?category=<?php echo "1" ?>&subcategory=<?php echo "2" ?>">botki</a>
+                    <a class="dropdown-item" href="listofproducts.php?category=<?php echo "2" ?>&subcategory=<?php echo "2" ?>">na obcasie</a>
+                    <a class="dropdown-item" href="listofproducts.php?category=<?php echo "2" ?>&subcategory=<?php echo "6" ?>">sportowe</a>
+                </div>					
+            </li>
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button">Akcesoria</a>	
+                <div class="dropdown-menu">
+                    <a class="dropdown-item" href="listofproducts.php?category=<?php echo "1" ?>&subcategory=<?php echo "4" ?>">torby</a>
+                    <a class="dropdown-item" href="listofproducts.php?category=<?php echo "1" ?>&subcategory=<?php echo "5" ?>">plecaki</a>
+                    <a class="dropdown-item" href="listofproducts.php?category=<?php echo "1" ?>&subcategory=<?php echo "6" ?>">biżuteria</a>
+                </div>					
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="contact.php"> Kontakt</a>						
@@ -37,15 +45,15 @@
         </form>
 
         <ul class="navbar-nav">
-            <li class="nav-item dropdown">
-                <img src="favicons/myAccountIcon.png"  class="dropdown-toggle" data-toggle="dropdown" alt="myAccountIcon" style="cursor: pointer">
+            <li class="nav-item dropdown mr-4">
+                <img src="favicons/myAccountIcon.png" type="button" class="dropdown-toggle" data-offset="10,20" data-toggle="dropdown" alt="myAccountIcon">
                 <div class="dropdown-menu">
                     <a class="dropdown-item" href="userpanel.php">mój profil</a>
-                    <a class="dropdown-item" href="#">zamówienia</a>
+                    <a class="dropdown-item" href="userpanel.php">zamówienia</a>
                     <a class="dropdown-item" href="logout.php">wyloguj</a>
                 </div>				
             </li>
-            <li class="nav-item">
+            <li class="nav-item mr-2">
                 <img src="favicons/shoppingCartIcon.png" data-toggle="modal" data-target="#userShoppingCart" alt="shoppingCartIcon" style="cursor: pointer"></a>						
             </li>
         </ul>

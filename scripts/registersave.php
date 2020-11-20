@@ -9,7 +9,8 @@
     $address2=$_POST['address2'];
     $city=$_POST['city'];
     $zipCode=$_POST['zipCode'];
-    $voivodeship=$_POST['voivodeship'];
+	$voivodeship=$_POST['voivodeship'];
+	
 	$sql = "INSERT INTO `user`( `name`, `surname`, `email`, `password`, `phonenumber`, `address`, `address2`, `city`, `zipCode`, `voivodeship`) 
 	VALUES ('$name','$surname','$email','$password','$phonenumber','$address','$address2','$city','$zipCode','$voivodeship')";
 	if (mysqli_query($link, $sql)) {

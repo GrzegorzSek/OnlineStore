@@ -8,7 +8,7 @@ $(document).ready(function(){
             $.ajax({
                 url:'scripts/checkuser.php',
                 type:'post',
-                data:{email:email,password:password},
+                data:{email:email, password:password},
                 success:function(response){
                     var msg = "";
                     if(response == 1){
