@@ -167,4 +167,3 @@
 </html>
 
 <?php include 'modals/deleteitem.php';?>
-<?php include 'scripts/deleteitem.php';?>

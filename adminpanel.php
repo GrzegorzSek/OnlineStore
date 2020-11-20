@@ -289,4 +289,3 @@
 <?php include 'modals/adduser.php';?>
 <?php include 'modals/edituserdata.php';?>
 <?php include 'modals/deleteuser.php';?>
-<?php include 'scripts/deleteuser.php';?>
