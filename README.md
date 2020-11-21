@@ -11,3 +11,7 @@ PHP7
 JavaScript
 jQuery
 MySQL
+
+Sendmail configuration: <br>
+
+database scheme .sql: <br>
