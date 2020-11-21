@@ -97,7 +97,7 @@
                                         cart.id as cartID, cart.client_id, cartitem.id as cartItemID, cartitem.cart_id, cartitem.product_id, cartitem.product_quantity
                                         FROM product INNER JOIN cartitem ON product.id=cartitem.product_id 
                                         INNER JOIN cart ON cartitem.cart_id=cart.id
-                                        WHERE cart.client_id='".$SESSION."'";
+                                        WHERE cart.client_id='$SESSION'";
                                 $result = mysqli_query($link, $sql);
                                 //var_dump(mysqli_error($link));
                             ?>
@@ -120,14 +120,14 @@
                                         $iter = 0;
                                         if (mysqli_num_rows($result) > 0){
                                             while ($row = mysqli_fetch_assoc($result)){ 
-                                                $amountToPay = $amountToPay + $row['price'];                                                          
+                                                $amountToPay = $amountToPay + $row['product_quantity']*$row['price'];                                                          
                                     ?>
                                     <tr id="<?php echo $row['cartItemID']; ?>">
                                         <th scope="row" class="align-middle"><?php echo $iter = $iter + 1 ?></th>
                                         <td data-target="name" class="align-middle"><?php echo $row['name'] ?></td>
                                         <td data-target="brand" class="align-middle"><?php echo $row['brand'] ?></td>
                                         <td data-target="size" class="align-middle"><?php echo $row['size'] ?></td>
-                                        <td data-target="product_quantity" class="align-middle"><input type="number" data-target="product_quantity" id="quantity<?php echo $row['cartItemID']; ?>" min="1" max="<?php echo $row['quantity'] ?>" value="<?php echo $row['product_quantity'] ?>"></td>
+                                        <td data-target="product_quantity" class="align-middle"><input type="number" data-target="product_quantity" id="quantity<?php echo $row['cartItemID']; ?>" min="1" max="<?php echo $row['quantity']+$row['product_quantity']; ?>" value="<?php echo $row['product_quantity'] ?>"></td>
                                         <td data-target="price" class="align-middle"><?php echo $row['price'] ?> zł</td>
                                         <td data-target="image" class="align-middle"><img src="<?php echo $row['image'] ?>" style="width:60px; height:80px;"></td>
                                         <td class="align-middle">
@@ -138,7 +138,9 @@
                                     <?php
                                             }
                                         }else{
-                                            echo "Twój koszyk jest pusty.";
+                                    ?>
+                                            <td colspan="8"><?php echo "Twój koszyk jest pusty."; ?></td>
+                                    <?php
                                         }
                                     ?>
                                     <tr id="summary">
@@ -146,7 +148,7 @@
                                         <td class="align-middle font-weight-bold">Kwota:</td>
                                         <td class="align-middle font-weight-bold"><?php echo number_format($amountToPay, 2); ?> zł</td>
                                         <td colspan="2">
-                                            <button class="btn btn-success btn" type="button">Przejdź do Kasy</button>
+                                            <button class="btn btn-success btn" type="button" data-toggle="modal" data-target="#cashDeskModal">Przejdź do Kasy</button>
                                         </td>
                                     </tr>
                                 </tbody>
@@ -167,3 +169,4 @@
 </html>
 
 <?php include 'modals/deleteitem.php';?>
+<?php include 'modals/cashdesk.php';?>
