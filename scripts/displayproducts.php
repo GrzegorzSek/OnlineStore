@@ -82,18 +82,18 @@ if(isset($_POST["action"]))
 		{
 			$output .= '
 			<div class="col-sm-6 col-md-4 mb-3">
-                <a href="productdetails.php?id='. $result['id'] .'">
+                <a href="productdetails.php?id='.$result['id'].'">
                     <div class="mask">
-                        <img class="img-fluid" src="'. $result['image'] .'">
+                        <img class="img-fluid" src="'.$result['image'].'">
                         <div class="mask rgba-black-slight"></div>
                     </div>
                 </a>				
                 <div class="text-center pt-4">
-                    <h5>'. $result['name'] .'</h5>
+                    <h5>'.$result['name'].'</h5>
                     <hr>
-                    <h6 class="mb-3">'. $result['price'] .' zł</h6>
-                    <button type="button" class="btn btn-primary btn-sm mr-1 mb-2">do koszyka</button>
-                    <button type="button" class="btn btn-light btn-sm mr-1 mb-2" ><a href="productdetails.php?id='. $result['id'] .'">szczegóły</a></button>
+                    <h6 class="mb-3">'.$result['price'].' zł</h6>
+                    <button type="button" class="btn btn-primary btn-sm mr-1 mb-2" data-role="addToCart" data-id="'.$result['id'].'" id="addToCart">Do koszyka</button>
+                    <button type="button" class="btn btn-light btn-sm mr-1 mb-2" ><a href="productdetails.php?id='.$result['id'].'">szczegóły</a></button>
                 </div>
             </div>
 			';

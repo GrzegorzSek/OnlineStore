@@ -11,6 +11,34 @@
 <html lang="pl">
 	<head>
     <?php include 'head.php';?>
+    <script>
+            //ADD item to cart
+            $(document).ready(function(){
+                var productId;
+                $(document).on('click','button[data-role=addToCart]', function(){
+                    productId = $(this).data('id');       
+                    //alert($(this).data('id'));     //wyswietlanie id produktu 
+
+					$.ajax({
+                        url: "scripts/addtocart.php",
+                        type: "POST",
+                        data: {
+                            productId: productId
+                        },
+                        cache: false,
+                        success: function(dataResult){
+                            var dataResult = JSON.parse(dataResult);
+                            if(dataResult.statusCode==200){
+								alert("Produkt został dodany do koszyka!");
+                            }
+                            else if(dataResult.statusCode==201){
+								alert("Error occured!");
+                            }		
+                        }
+                    });     
+                });
+            });
+        </script>
 	</head>
   	<body>
   		<header>
@@ -53,11 +81,11 @@
                                 <div class="tab-pane fade" id="shipping" role="tabpanel" aria-labelledby="contact-tab">Quia dolorum obcaecati obcaecati eum amet asperiores rerum, quibusdam deserunt rem! possimus dignissimos enim atque dicta excepturi laudantium explicabo sit.</div>
                             </div>
                         </div>
-                            <p>KOLOR</p>
+                            <p>Kolor: <?php echo $row['colour']; ?></p>
                             <p>Rozmiar: <?php echo $row['size']; ?></p>
                             <h1 class="mb-3 text-center">Cena: <?php echo $row['price']; ?>zł</h1>
                         </div>
-                        <button type="button" class="btn btn-primary btn-lg mr-1 mb-2 text-left" id="addToCart">Dodaj koszyka</button>
+                        <button type="button" class="btn btn-primary btn-sm mr-1 mb-2" data-role="addToCart" data-id="<?php echo $row['id']; ?>" id="addToCart">Do koszyka</button>
                     </div>
                 </div>
             </div>

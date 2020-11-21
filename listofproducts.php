@@ -7,6 +7,70 @@ $subcategory=$_GET["subcategory"];
 <html lang="pl">
 	<head>
 		<?php include 'head.php';?>
+		<script>
+		//SKRYPT DO WYSWIETLANIA POSORTOWANYCH DANYCH
+			$(document).ready(function(){
+				filter_data();
+
+				function filter_data()
+				{
+					var action = 'fetch_data';
+					var minimum_price = $('#minimum_price').val();
+					var maximum_price = $('#maximum_price').val();
+					var brand = get_filter('brand');
+					var size = get_filter('size');
+					var option = $( "#sorting" ).val();
+					$.ajax({
+						url:"scripts/displayproducts.php?category=<?php echo $category ?>&subcategory=<?php echo $subcategory ?>",
+						method:"POST",
+						data:{action:action, minimum_price:minimum_price, maximum_price:maximum_price, brand:brand, size:size, option:option},
+						success:function(data){
+							$('.filter_data').html(data);
+						}
+					});
+				}
+
+				function get_filter(class_name)
+				{
+					var filter = [];
+					$('.'+class_name+':checked').each(function(){
+						filter.push($(this).val());
+					});
+					return filter;
+				}
+				$("#filter").click(function(){
+					filter_data();
+				});
+			});
+		</script>
+        <script>
+            //ADD item to cart
+            $(document).ready(function(){
+                var productId;
+                $(document).on('click','button[data-role=addToCart]', function(){
+                    productId = $(this).data('id');       
+                    //alert($(this).data('id'));     //wyswietlanie id produktu 
+
+					$.ajax({
+                        url: "scripts/addtocart.php",
+                        type: "POST",
+                        data: {
+                            productId: productId
+                        },
+                        cache: false,
+                        success: function(dataResult){
+                            var dataResult = JSON.parse(dataResult);
+                            if(dataResult.statusCode==200){
+								alert("Produkt został dodany do koszyka!");
+                            }
+                            else if(dataResult.statusCode==201){
+								alert("Error occured!");
+                            }		
+                        }
+                    });     
+                });
+            });
+        </script>		
 	</head>
   	<body>
   	<header>
@@ -110,48 +174,13 @@ $subcategory=$_GET["subcategory"];
 					<!--TUTAJ PRODUKTY -->				
 					<div class="col-lg-10">
 						<div class="row filter_data">
-							
+							<!-- tutaj są wyświetlane produkty (z displayproducts.php)-->
 						</div>
 					</div>
 				</div>
 			</div>
 		</section>
 	</main>		
-	<script>
-			$(document).ready(function(){
-				filter_data();
-
-				function filter_data()
-				{
-					var action = 'fetch_data';
-					var minimum_price = $('#minimum_price').val();
-					var maximum_price = $('#maximum_price').val();
-					var brand = get_filter('brand');
-					var size = get_filter('size');
-					var option = $( "#sorting" ).val();
-					$.ajax({
-						url:"scripts/displayproducts.php?category=<?php echo $category ?>&subcategory=<?php echo $subcategory ?>",
-						method:"POST",
-						data:{action:action, minimum_price:minimum_price, maximum_price:maximum_price, brand:brand, size:size, option:option},
-						success:function(data){
-							$('.filter_data').html(data);
-						}
-					});
-				}
-
-				function get_filter(class_name)
-				{
-					var filter = [];
-					$('.'+class_name+':checked').each(function(){
-						filter.push($(this).val());
-					});
-					return filter;
-				}
-				$("#filter").click(function(){
-					filter_data();
-				});
-			});
-		</script>
   </body>
 	<footer class="page-footer pt-4">
 	<?php include 'foot.php';?>

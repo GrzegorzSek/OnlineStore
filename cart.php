@@ -62,9 +62,9 @@
                                 var msg = "produkt został usunięty!";
                                 $("#messageDeleteItem").html(msg);
                                 $("#cartItems").load(location.href+" #cartItems>*","");//odświeża okno z danymi
-                                setTimeout(function() {$('#deleteItemModal').modal('hide');}, 1000);
-                                setTimeout(function() {$("#deleteItem").prop('disabled', false);}, 1000);
-                                setTimeout(function() {$("#messageDeleteItem").hide();}, 1000);
+                                setTimeout(function() {$('#deleteItemModal').modal('hide');}, 250);
+                                setTimeout(function() {$("#deleteItem").prop('disabled', false);}, 250);
+                                setTimeout(function() {$("#messageDeleteItem").hide();}, 250);
                             }
                             else if(dataResult.statusCode==201){
                                 alert("Error occured!");
