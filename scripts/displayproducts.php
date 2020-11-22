@@ -57,7 +57,6 @@ if(isset($_POST["action"]))
 	{
 		$query .= "ORDER BY name DESC";
     }
-    //$query .= "ORDER BY name ASC";
     //zapisanie wierszy w tablicy
     $rows = mysqli_query($link, $query);
     if (!$rows) {
@@ -76,10 +75,8 @@ if(isset($_POST["action"]))
     $total_row = $row2['cntProduct'];
 
 	$output = '';
-	if($total_row > 0)
-	{
-		foreach($results as $result)
-		{
+	if($total_row > 0){
+		foreach($results as $result){
 			$output .= '
 			<div class="col-sm-6 col-md-4 mb-3">
                 <a href="productdetails.php?id='.$result['id'].'">
@@ -99,8 +96,7 @@ if(isset($_POST["action"]))
 			';
 		}
 	}
-	else
-	{
+	else{
 		$output = '<h3>No Data Found</h3>';
 	}
 	echo $output;

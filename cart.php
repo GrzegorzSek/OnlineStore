@@ -74,6 +74,36 @@
 				});
             });
         </script>
+        <script>
+            $(document).ready(function() {
+                $('#finlizeShopping').on('click', function() {
+                    var shippingMethod = $('#shippingMethod').val();
+                    //alert(shippingMethod);
+                    $.ajax({
+                        url: "scripts/finalizeorder.php",
+                        type: "POST",
+                        data: {
+                            shippingMethod: shippingMethod
+                        },
+                        cache: false,
+                        success: function(dataResult){
+                            var msg = "";
+                            var dataResult = JSON.parse(dataResult);
+                            if(dataResult.statusCode==200){
+                                var msg = "Zamówienie zostanie przekazane do realizacji po dokonaniu wpłaty na konto. Wszystkie dane zostaną przekazane niebawem w wiadomości email";
+                                $("#messageCashDesk").html(msg);
+                                alert("poszło");
+                                setTimeout(function() {$('#cashDeskModal').modal('hide');}, 500);
+                            }
+                            else if(dataResult.statusCode==201){
+                                alert("Error!");
+                            }
+                            
+                        }
+                    });
+                });
+            });
+        </script>
 	</head>
   <body>
 		<header>
