@@ -12,10 +12,10 @@
 
     //KONIEC tworzenia zamówienia
     //pobranie id złożonego zamówienia
-    $getOrderID_query = "SELECT id, MAX(created_at) FROM clientorder WHERE client_id='$SESSION'";
+    $getOrderID_query = "SELECT MAX(id) as order_id FROM clientorder WHERE client_id='$SESSION'";
     $resultOrderID = mysqli_query($link, $getOrderID_query);
     $rowOrderID = mysqli_fetch_array($resultOrderID);
-    $orderID = $rowOrderID['id'];
+    $orderID = $rowOrderID['order_id'];
     //koniec pobranie id złożonego zamówienia
 
     //dodanie zawartości zamówienia
@@ -61,12 +61,24 @@
     mysqli_query($link, $cleanCart_query);
     //KONIEC czyszczenia koszyka
 
+    //wpisanie kwoty zamówienia do BD
+    if($shippingMethod = "Poczta"){
+        $sum = $sum + 10;
+    }
+    if($shippingMethod = "Kurier"){
+        $sum = $sum + 15;
+    }
+    $addAmountToPay_query = "UPDATE clientorder SET amounttopay='$sum'";
+    mysqli_query($link, $addAmountToPay_query);
+    //KONIEC
+
     //Wysyłanie maila z danymi do dokonania płatności
     $subject="Twoje zamowienie ze strony OnlineStore";
-    $message = "Tytul przelewu: ".$orderID."\r\nKwota: ".number_format($sum, 2)."zł\r\nNa rachunek: 82 1020 5226 0000 6102 0417 7895";
+    $message = "Tytul przelewu: ".$orderID."\r\nKwota: ".number_format($sum, 2)."zl\r\nNa rachunek: 82 1020 5226 0000 6102 0417 7895";
     $mailHeaders = "Zamowienie: ";
     mail($email, $subject, $message, $mailHeaders);
     //KONIEC przelewu    
+
 
     if ($check=1) {
         echo json_encode(array("statusCode"=>200));

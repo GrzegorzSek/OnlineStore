@@ -77,6 +77,7 @@
         <script>
             $(document).ready(function() {
                 $('#finlizeShopping').on('click', function() {
+                    $('#finlizeShopping').prop('disabled', true);
                     var shippingMethod = $('#shippingMethod').val();
                     //alert(shippingMethod);
                     $.ajax({
@@ -92,8 +93,9 @@
                             if(dataResult.statusCode==200){
                                 var msg = "Zamówienie zostanie przekazane do realizacji po dokonaniu wpłaty na konto. Wszystkie dane zostaną przekazane niebawem w wiadomości email";
                                 $("#messageCashDesk").html(msg);
-                                alert("poszło");
-                                setTimeout(function() {$('#cashDeskModal').modal('hide');}, 500);
+                                setTimeout(function() {$('#cashDeskModal').modal('hide');}, 5000);
+                                $("#cartItems").load(location.href+" #cartItems>*","");//odświeża okno z danymi
+                                setTimeout(function() {$('#finlizeShopping').prop('disabled', false);}, 5000);
                             }
                             else if(dataResult.statusCode==201){
                                 alert("Error!");
