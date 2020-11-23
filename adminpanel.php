@@ -195,7 +195,44 @@
 				});
             });
         </script>
-        
+        <script>
+            //Skrypt do zamówienia w modal'u
+            $(document).ready(function(){
+                var OrderID;
+                $(document).on('click','button[data-role=adminOrderContent]', function(){
+					orderID = $(this).data('id');       
+					//alert($(this).data('id'));       
+					$.ajax({
+                        url: "scripts/fetchadminordercontent.php",
+                        type: "POST",
+                        data: {
+                            orderID: orderID
+                        },
+                        success : function(data){
+                        $('.fetchedOrderData').html(data);//wyświetla dane pobrane z BD
+                        }
+                    });				       
+                });
+                $(document).on('click','button[data-role=deleteOrderItem]', function(){
+                    var itemID = $(this).data('id');       
+                    // alert(itemID); 
+                    // alert(orderID);     
+                    $.ajax({
+                        url: "scripts/admindeleteorderitem.php",
+                        type: "POST",
+                        data: {
+                            orderID: orderID,
+                            itemID: itemID
+                        },
+                        success : function(data){
+                            $("#orders").load(location.href+" #orders>*","");
+                            $(".tr"+itemID).hide();
+                            alert("POSZŁO");
+                        }
+                    });					       
+                });	
+            });
+        </script>
 	</head>
   <body>
 		<header>
@@ -216,64 +253,122 @@
                 </div>
                 <div class="row pr-1">
                     <div class="col-1 border-left border-right border px-0 bg-light">
-                        <div class="list-group">
-                            <button type="button" class="list-group-item list-group-item-action active btn-light btn-sm">Użytkownicy</button>
-                            <button type="button" class="list-group-item list-group-item-action btn-light btn-sm">Zamówienia</button>
-                            <button type="button" class="list-group-item list-group-item-action btn-light btn-sm">Produkty</button>
+                        <div class="list-group" id="menu" role="tablist">
+                            <button type="button" class="list-group-item list-group-item-action active btn-light btn-sm" data-toggle="list" href="#users" role="tab">Użytkownicy</button>
+                            <button type="button" class="list-group-item list-group-item-action btn-light btn-sm" data-toggle="list" href="#orders" role="tab">Zamówienia</button>
+                            <button type="button" class="list-group-item list-group-item-action btn-light btn-sm" data-toggle="list" href="#products" role="tab">Produkty</button>
                         </div>
                     </div>
-                    <div class="col-11 border p-0 table-responsive" id="usersData">
-                        <?php
-                            $sql = "SELECT * FROM user";
-                            $result = mysqli_query($link, $sql);
-                        ?>
-                        <table class="table table-hover table-sm">
-                            <thead>
-                                <tr>
-                                    <th scope="col">#</th>
-                                    <th scope="col">imię</th>
-                                    <th scope="col">Nazwisko</th>
-                                    <th scope="col">Email</th>
-                                    <th scope="col">nr telefonu</th>
-                                    <th scope="col">Adres</th>
-                                    <th scope="col">Adres 2</th>
-                                    <th scope="col">Miasto</th>
-                                    <th scope="col">Kod pocztowy</th>
-                                    <th scope="col">Województwo</th>
-                                    <th scope="col">Akcja</th>
-                                </tr>
-                            </thead>
-                            <tbody class="adminTable" id="adminTable">
-                                <?php
-                                    $iter = 0;
-                                    if (mysqli_num_rows($result) > 0){
-                                        while ($row = mysqli_fetch_assoc($result)){                                                                
-                                ?>
-                                <tr id="<?php echo $row['id']; ?>">
-                                    <th scope="row"><?php echo $iter = $iter + 1 ?></th>
-                                    <td data-target="name"><?php echo $row['name'] ?></td>
-                                    <td data-target="surname"><?php echo $row['surname'] ?></td>
-                                    <td data-target="email"><?php echo $row['email'] ?></td>
-                                    <td data-target="phonenumber"><?php echo $row['phonenumber'] ?></td>
-                                    <td data-target="address"><?php echo $row['address'] ?></td>
-                                    <td data-target="address2"><?php echo $row['address2'] ?></td>
-                                    <td data-target="city"><?php echo $row['city'] ?></td>
-                                    <td data-target="zipCode"><?php echo $row['zipCode'] ?></td>
-                                    <td data-target="voivodeship"><?php echo $row['voivodeship'] ?></td>
-                                    <td>
-                                        <button class="btn btn-primary btn-sm" type="button" data-role="update" data-id="<?php echo $row['id']; ?>" data-toggle="modal" data-target="#editUserModal" id="editUser">Edytuj</button>
-                                        <button class="btn btn-danger btn-sm" type="button" data-role="delete" data-id="<?php echo $row['id']; ?>" data-toggle="modal" data-target="#deleteUserModal">Usuń</button>
-                                    </td>
-                                </tr>
-                                <?php
+                    <div class="col-11 border p-0 tab-content table-responsive" id="usersData">
+                        <div class="tab-pane active" id="users" role="tabpanel">
+                            <?php
+                                $sql = "SELECT * FROM user";
+                                $result = mysqli_query($link, $sql);
+                            ?>
+                            <table class="table table-hover table-sm">
+                                <thead>
+                                    <tr>
+                                        <th scope="col">#</th>
+                                        <th scope="col">imię</th>
+                                        <th scope="col">Nazwisko</th>
+                                        <th scope="col">Email</th>
+                                        <th scope="col">nr telefonu</th>
+                                        <th scope="col">Adres</th>
+                                        <th scope="col">Adres 2</th>
+                                        <th scope="col">Miasto</th>
+                                        <th scope="col">Kod pocztowy</th>
+                                        <th scope="col">Województwo</th>
+                                        <th scope="col">Akcja</th>
+                                    </tr>
+                                </thead>
+                                <tbody class="adminTable" id="adminTable">
+                                    <?php
+                                        $iter = 0;
+                                        if (mysqli_num_rows($result) > 0){
+                                            while ($row = mysqli_fetch_assoc($result)){                                                                
+                                    ?>
+                                    <tr id="<?php echo $row['id']; ?>">
+                                        <th scope="row"><?php echo $iter = $iter + 1 ?></th>
+                                        <td data-target="name"><?php echo $row['name'] ?></td>
+                                        <td data-target="surname"><?php echo $row['surname'] ?></td>
+                                        <td data-target="email"><?php echo $row['email'] ?></td>
+                                        <td data-target="phonenumber"><?php echo $row['phonenumber'] ?></td>
+                                        <td data-target="address"><?php echo $row['address'] ?></td>
+                                        <td data-target="address2"><?php echo $row['address2'] ?></td>
+                                        <td data-target="city"><?php echo $row['city'] ?></td>
+                                        <td data-target="zipCode"><?php echo $row['zipCode'] ?></td>
+                                        <td data-target="voivodeship"><?php echo $row['voivodeship'] ?></td>
+                                        <td>
+                                            <button class="btn btn-primary btn-sm" type="button" data-role="update" data-id="<?php echo $row['id']; ?>" data-toggle="modal" data-target="#editUserModal" id="editUser">Edytuj</button>
+                                            <button class="btn btn-danger btn-sm" type="button" data-role="delete" data-id="<?php echo $row['id']; ?>" data-toggle="modal" data-target="#deleteUserModal">Usuń</button>
+                                        </td>
+                                    </tr>
+                                    <?php
+                                            }
+                                        }else{
+                                            echo "nie ma więcej danych.";
                                         }
-                                    }else{
-                                        echo "nie ma więcej danych.";
-                                    }
-                                ?>
+                                    ?>
 
-                            </tbody>
-                        </table>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="tab-pane" id="orders" role="tabpanel">
+                            <?php
+                                $sql = "SELECT * FROM clientorder";
+                                $result = mysqli_query($link, $sql);
+                                //var_dump(mysqli_error($link));
+                            ?>
+                            <table class="table table-hover">
+                                <thead>
+                                    <tr>
+                                        <th scope="col">#</th>
+                                        <th scope="col">Nr zamówienia</th>
+                                        <th scope="col">Sposób wysyłki</th>
+                                        <th scope="col">Kwota</th>
+                                        <th scope="col">Numer telefonu</th>
+                                        <th scope="col">Adres</th>
+                                        <th scope="col">Data złożenia zamówienia</th>
+                                        <th scope="col">Ostatnia aktualizacja</th>
+                                        <th scope="col">Status</th>
+                                        <th scope="col">Akcja</th>
+                                    </tr>
+                                </thead>
+                                <tbody class="orderTable" id="orderTable">
+                                    <?php
+                                        $iter = 0;
+                                        if (mysqli_num_rows($result) > 0){
+                                            while ($row = mysqli_fetch_assoc($result)){                                                         
+                                    ?>
+                                    <tr id="<?php echo $row['cartItemID']; ?>">
+                                        <th scope="row" class="align-middle"><?php echo $iter = $iter + 1 ?></th>
+                                        <td data-target="orderNumber" class="align-middle"><?php echo $row['id']; ?></td>
+                                        <td data-target="shippingMethod" class="align-middle"><?php echo $row['shipping_method']; ?></td>
+                                        <td data-target="amountToPay" class="align-middle"><?php echo $row['amounttopay']; ?></td>
+                                        <td data-target="amountToPay" class="align-middle"><?php echo $row['phonenumber']; ?></td>
+                                        <td data-target="shippingData"><?php echo $row['address']."\r\n".$row['address2'].", ".$row['city']." ".$row['zipCode'].", ".$row['voivodeship']; ?></td>
+                                        <td data-target="created_at" class="align-middle"><?php echo $row['created_at']; ?></td>
+                                        <td data-target="recentUpdate" class="align-middle"><?php echo $row['updated_at']; ?></td>
+                                        <td data-target="orderStatus" class="align-middle"><?php echo $row['order_status']; ?></td>
+                                        <td class="align-middle">
+                                            <button class="btn btn-success btn-sm" type="button" data-role="updateOrder" data-id="<?php echo $row['id']; ?>" data-toggle="modal" data-target="#updateOrder" id="updateOrder">Edytuj</button>
+                                            <button class="btn btn-primary btn-sm" type="button" data-role="adminOrderContent" data-id="<?php echo $row['id']; ?>" data-toggle="modal" data-target="#adminOrderContent">Wyświetl zawartość</button>
+                                        </td>
+                                    </tr>
+                                    <?php
+                                            }
+                                        }else{
+                                    ?>
+                                            <td colspan="8"><?php echo "Nie ma żadnych zamówień"; ?></td>
+                                    <?php
+                                        }
+                                    ?>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="tab-pane" id="products" role="tabpanel">
+                        products
+                        </div>
                     </div>
                 </div>
             </div>
@@ -289,3 +384,4 @@
 <?php include 'modals/adduser.php';?>
 <?php include 'modals/edituserdata.php';?>
 <?php include 'modals/deleteuser.php';?>
+<?php include 'modals/adminordercontent.php';?>

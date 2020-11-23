@@ -10,7 +10,7 @@
         <script>
         //AKTUALIZUJE DANE
             $(document).ready(function(){
-                $(document).on('click','button[data-role=update]', function(){
+                $(document).on('click','button[data-role=updateItem]', function(){
                     itemId = $(this).data('id'); 
                     //alert($(this).data('id'));
                     var newItemQuantity = $('#quantity'+itemId).val();    
@@ -42,7 +42,7 @@
             //DELETE Item from cart
             $(document).ready(function(){
                 var itemId;
-                $(document).on('click','button[data-role=delete]', function(){
+                $(document).on('click','button[data-role=deleteItem]', function(){
                     itemId = $(this).data('id');       
                     //alert($(this).data('id'));              
                 });
@@ -79,12 +79,24 @@
                 $('#finlizeShopping').on('click', function() {
                     $('#finlizeShopping').prop('disabled', true);
                     var shippingMethod = $('#shippingMethod').val();
+                    var phonenumber = $('#phonenumber').val();
+                    var address = $('#address').val();
+                    var address2 = $('#address2').val();
+                    var city = $('#city').val();
+                    var zipCode = $('#zipCode').val();
+                    var voivodeship = $('#voivodeship').val();
                     //alert(shippingMethod);
                     $.ajax({
                         url: "scripts/finalizeorder.php",
                         type: "POST",
                         data: {
-                            shippingMethod: shippingMethod
+                            shippingMethod: shippingMethod,
+                            phonenumber: phonenumber,
+                            address: address,
+                            address2: address2,
+                            city: city,
+                            zipCode: zipCode,
+                            voivodeship: voivodeship
                         },
                         cache: false,
                         success: function(dataResult){
@@ -163,8 +175,8 @@
                                         <td data-target="price" class="align-middle"><?php echo $row['price'] ?> zł</td>
                                         <td data-target="image" class="align-middle"><img src="<?php echo $row['image'] ?>" style="width:60px; height:80px;"></td>
                                         <td class="align-middle">
-                                            <button class="btn btn-primary btn-sm mb-1" type="button" data-role="update" data-id="<?php echo $row['cartItemID']; ?>" id="editItem">Aktualizuj</button>
-                                            <button class="btn btn-danger btn-sm mt-1" type="button" data-role="delete" data-id="<?php echo $row['cartItemID']; ?>" data-toggle="modal" data-target="#deleteItemModal">Usuń</button>
+                                            <button class="btn btn-primary btn-sm mb-1" type="button" data-role="updateItem" data-id="<?php echo $row['cartItemID']; ?>" id="editItem">Aktualizuj</button>
+                                            <button class="btn btn-danger btn-sm mt-1" type="button" data-role="deleteItem" data-id="<?php echo $row['cartItemID']; ?>" data-toggle="modal" data-target="#deleteItemModal">Usuń</button>
                                         </td>
                                     </tr>
                                     <?php

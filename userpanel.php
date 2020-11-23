@@ -65,21 +65,18 @@
             //Skrypt do zamówienia w modal'u
             $(document).ready(function(){
                 $(document).on('click','button[data-role=displayOrderContent]', function(){
-                    var orderID = $(this).data('id');       
+					var orderID = $(this).data('id');       
 					//alert($(this).data('id'));       
-					$('#displayOrderContent').on('show.bs.modal', function (e) {
-						$.ajax({
+					$.ajax({
 							url: "scripts/fetchorderid.php",
 							type: "POST",
 							data: {
 								orderID: orderID
 							},
-							cache: false,
 							success : function(data){
 							$('.fetched-data').html(data);//wyświetla dane pobrane z BD
 							}
-						});
-					});					       
+						});					       
                 });
             });
         </script>
@@ -94,8 +91,8 @@
             <div class="container">
                 <div class="row">
                     <div class="col-2">
-                        <div class="list-group" id="myList" role="tablist">
-                            <button type="button" class="list-group-item list-group-item-action active btn-light active" data-toggle="list" href="#userData" role="tab">Dane</button>
+                        <div class="list-group" id="menu" role="tablist">
+                            <button type="button" class="list-group-item list-group-item-action active btn-light" data-toggle="list" href="#userData" role="tab">Dane</button>
                             <button type="button" class="list-group-item list-group-item-action btn-light" data-toggle="list" href="#userOrders" role="tab">Zamówienia</button>
                         </div>
                     </div>
@@ -197,7 +194,7 @@
 											<td data-target="recentUpdate" class="align-middle"><?php echo $row['updated_at'] ?></td>
 											<td data-target="orderStatus" class="align-middle"><?php echo $row['order_status'] ?></td>
 											<td class="align-middle">
-												<button class="btn btn-primary btn-sm mt-1" type="button" data-role="displayOrderContent" data-id="<?php echo $row['id']; ?>" onclick="$('#dataid').text($(this).data('id')); $('#displayOrderContent').modal('show');">Wyświetl zawartość</button>
+												<button class="btn btn-primary btn-sm mt-1" type="button" data-role="displayOrderContent" data-id="<?php echo $row['id']; ?>" data-toggle="modal" data-target="#displayOrderContent">Wyświetl zawartość</button>
 											</td>
 										</tr>
 										<?php

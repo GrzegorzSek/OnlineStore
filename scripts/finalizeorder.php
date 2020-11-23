@@ -5,9 +5,15 @@
     $SESSION = $_SESSION['userid'];
     $shippingMethod=$_POST['shippingMethod'];
     $check=1;
+    $phonenumber=$_POST['phonenumber'];
+    $address=$_POST['address'];
+    $address2=$_POST['address2'];
+    $city=$_POST['city'];
+    $zipCode=$_POST['zipCode'];
+    $voivodeship=$_POST['voivodeship'];
 
     //tworzenie zamówienia
-    $createNewOrder_query = "INSERT INTO clientorder(client_id, order_status, shipping_method) VALUES('$SESSION', 'oczekujące', '$shippingMethod')";
+    $createNewOrder_query = "INSERT INTO clientorder(`client_id`, `order_status`, `shipping_method`, `phonenumber`, `address`, `address2`, `city`, `zipCode`, `voivodeship`) VALUES('$SESSION', 'oczekujące', '$shippingMethod', '$phonenumber', '$address', '$address2', '$city', '$zipCode', '$voivodeship')";
     mysqli_query($link, $createNewOrder_query);
 
     //KONIEC tworzenia zamówienia
@@ -68,7 +74,7 @@
     if($shippingMethod = "Kurier"){
         $sum = $sum + 15;
     }
-    $addAmountToPay_query = "UPDATE clientorder SET amounttopay='$sum'";
+    $addAmountToPay_query = "UPDATE clientorder SET amounttopay='$sum' WHERE id='$orderID'";
     mysqli_query($link, $addAmountToPay_query);
     //KONIEC
 
