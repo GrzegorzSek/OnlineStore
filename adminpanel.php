@@ -230,7 +230,70 @@
                             alert("POSZŁO");
                         }
                     });					       
+                }); 	
+            });
+        </script>
+        <script>
+            //Skrypt do edycji zamówienia w modal'u
+            $(document).ready(function(){
+                var OrderID;
+                $(document).on('click','button[data-role=updateOrder]', function(){
+					orderID = $(this).data('id');       
+					//alert($(this).data('id'));       
+					$.ajax({
+                        url: "scripts/fetchadminorderdata.php",
+                        type: "POST",
+                        data: {
+                            orderID: orderID
+                        },
+                        success : function(data){
+                        $('.orderData').html(data);//wyświetla dane pobrane z BD
+                        }
+                    });				       
                 });	
+                $(document).on('click','button[data-role=saveUpdatedOrderData]', function(){  
+					var shippingMethod = $('#orderShippingMethod').val();
+					var amountToPay = $('#orderAmountToPay').val();
+					var phoneNumber = $('#orderPhoneNumber').val();
+					var address = $('#orderAddress').val();
+					var address2 = $('#orderAddress2').val();
+					var city = $('#orderCity').val();
+					var zipCode = $('#orderZipCode').val();
+                    var voivodeship = $('#orderVoivodeship').val(); 
+                    var orderStatus = $('#orderStatus').val();
+                    if(shippingMethod!="" && amountToPay!="" && phoneNumber!="" && address!="" && address2!="" && city!="" && zipCode!="" && voivodeship!="" && orderStatus!=""){
+                        $.ajax({
+                            url: "scripts/saveadminorderdata.php",
+                            type: "POST",
+                            data: {
+                                orderID: orderID,
+                                shippingMethod: shippingMethod,
+                                phoneNumber: phoneNumber,
+                                address: address,
+                                address2: address2,
+                                city: city,
+                                zipCode: zipCode,
+                                voivodeship: voivodeship,
+                                amountToPay: amountToPay,
+                                orderStatus: orderStatus
+                            },
+                            success: function(dataResult){
+                                var dataResult = JSON.parse(dataResult);
+                                if(dataResult.statusCode==200){
+                                    $("#saveUpdatedOrderData").prop('disabled', true);
+                                    setTimeout(function() {$('#updateOrder').modal('hide');}, 1000);
+                                    setTimeout(function() {$("#saveUpdatedOrderData").prop('disabled', false);}, 1000);
+                                    $("#orders").load(location.href+" #orders>*","");
+                                }
+                                else if(dataResult.statusCode==201){
+                                    alert("Error occured!");
+                                }		
+                            }	
+                        });	
+                    }else{
+                        alert("Uzupełnij wszystkie pola!");
+                    }			       
+                });
             });
         </script>
 	</head>
@@ -340,18 +403,18 @@
                                         if (mysqli_num_rows($result) > 0){
                                             while ($row = mysqli_fetch_assoc($result)){                                                         
                                     ?>
-                                    <tr id="<?php echo $row['cartItemID']; ?>">
+                                    <tr id="<?php echo $row['id']; ?>">
                                         <th scope="row" class="align-middle"><?php echo $iter = $iter + 1 ?></th>
                                         <td data-target="orderNumber" class="align-middle"><?php echo $row['id']; ?></td>
                                         <td data-target="shippingMethod" class="align-middle"><?php echo $row['shipping_method']; ?></td>
                                         <td data-target="amountToPay" class="align-middle"><?php echo $row['amounttopay']; ?></td>
-                                        <td data-target="amountToPay" class="align-middle"><?php echo $row['phonenumber']; ?></td>
+                                        <td data-target="phoneNumber" class="align-middle"><?php echo $row['phonenumber']; ?></td>
                                         <td data-target="shippingData"><?php echo $row['address']."\r\n".$row['address2'].", ".$row['city']." ".$row['zipCode'].", ".$row['voivodeship']; ?></td>
                                         <td data-target="created_at" class="align-middle"><?php echo $row['created_at']; ?></td>
                                         <td data-target="recentUpdate" class="align-middle"><?php echo $row['updated_at']; ?></td>
                                         <td data-target="orderStatus" class="align-middle"><?php echo $row['order_status']; ?></td>
                                         <td class="align-middle">
-                                            <button class="btn btn-success btn-sm" type="button" data-role="updateOrder" data-id="<?php echo $row['id']; ?>" data-toggle="modal" data-target="#updateOrder" id="updateOrder">Edytuj</button>
+                                            <button class="btn btn-success btn-sm" type="button" data-role="updateOrder" data-id="<?php echo $row['id']; ?>" data-toggle="modal" data-target="#updateOrder">Edytuj</button>
                                             <button class="btn btn-primary btn-sm" type="button" data-role="adminOrderContent" data-id="<?php echo $row['id']; ?>" data-toggle="modal" data-target="#adminOrderContent">Wyświetl zawartość</button>
                                         </td>
                                     </tr>
@@ -359,7 +422,7 @@
                                             }
                                         }else{
                                     ?>
-                                            <td colspan="8"><?php echo "Nie ma żadnych zamówień"; ?></td>
+                                            <td colspan="10"><?php echo "Nie ma żadnych zamówień"; ?></td>
                                     <?php
                                         }
                                     ?>
@@ -367,7 +430,64 @@
                             </table>
                         </div>
                         <div class="tab-pane" id="products" role="tabpanel">
-                        products
+                        <?php
+                                $sql = "SELECT product.id, product.name, product.price, product.colour, product.description, product.category_id, 
+                                product.subcategory_id, product.quantity, product.brand, product.size, product.image, category.name as cat_name,
+                                category.id as cat_id, subcategory.id as subcat_id, subcategory.name as subcat_name 
+                                FROM product INNER JOIN subcategory ON product.subcategory_id=subcategory.id
+                                INNER JOIN category ON category.id=subcategory.category_id";
+
+                                $result = mysqli_query($link, $sql);
+                            ?>
+                            <table class="table table-hover">
+                                <thead>
+                                    <tr>
+                                        <th scope="col">#</th>
+                                        <th scope="col">Nazwa</th>
+                                        <th scope="col">Cena</th>
+                                        <th scope="col">Kolor</th>
+                                        <th scope="col">Opis</th>
+                                        <th scope="col">Ketegoria</th>
+                                        <th scope="col">Podkategoria</th>
+                                        <th scope="col">Liczba sztuk</th>
+                                        <th scope="col">Marka</th>
+                                        <th scope="col">Rozmiar</th>
+                                        <th scope="col">Zdjęcia</th>
+                                        <th scope="col">Akcja</th>
+                                    </tr>
+                                </thead>
+                                <tbody class="productTable" id="productTable">
+                                    <?php
+                                        $iter = 0;
+                                        if (mysqli_num_rows($result) > 0){
+                                            while ($row = mysqli_fetch_assoc($result)){                                                                
+                                    ?>
+                                    <tr id="<?php echo $row['id']; ?>">
+                                        <th scope="row"><?php echo $iter = $iter + 1 ?></th>
+                                        <td data-target="name"><?php echo $row['name'] ?></td>
+                                        <td data-target="price"><?php echo $row['price'] ?></td>
+                                        <td data-target="colour"><?php echo $row['colour'] ?></td>
+                                        <td data-target="description"><?php echo $row['description'] ?></td>
+                                        <td data-target="category"><?php echo $row['cat_name'] ?></td>
+                                        <td data-target="subcategory"><?php echo $row['subcat_name'] ?></td>
+                                        <td data-target="quantity"><?php echo $row['quantity'] ?></td>
+                                        <td data-target="brand"><?php echo $row['brand'] ?></td>
+                                        <td data-target="size"><?php echo $row['size'] ?></td>
+                                        <td data-target="image"><?php echo $row['image'] ?></td>
+                                        <td>
+                                            <button class="btn btn-primary btn-sm" type="button" data-role="update" data-id="<?php echo $row['id']; ?>" data-toggle="modal" data-target="#editUserModal" id="editUser">Edytuj</button>
+                                            <button class="btn btn-danger btn-sm" type="button" data-role="delete" data-id="<?php echo $row['id']; ?>" data-toggle="modal" data-target="#deleteUserModal">Usuń</button>
+                                        </td>
+                                    </tr>
+                                    <?php
+                                            }
+                                        }else{
+                                            echo "nie ma więcej danych.";
+                                        }
+                                    ?>
+
+                                </tbody>
+                            </table>
                         </div>
                     </div>
                 </div>
@@ -385,3 +505,4 @@
 <?php include 'modals/edituserdata.php';?>
 <?php include 'modals/deleteuser.php';?>
 <?php include 'modals/adminordercontent.php';?>
+<?php include 'modals/adminorderdata.php';?>
