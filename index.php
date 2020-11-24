@@ -5,6 +5,7 @@
 <html lang="pl">
 	<head>
 		<?php include 'head.php';?>
+		<script src="register.js"></script>
 	</head>
   <body>
 		<header>

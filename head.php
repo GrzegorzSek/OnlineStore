@@ -17,5 +17,4 @@
 <script src="js/bootstrap.min.js"></script>
 
 <script src="login.js"></script>
-<script src="register.js"></script>
 <script src="sendpass.js"></script>

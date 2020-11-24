@@ -18,281 +18,26 @@
             });
         </script>
 
+        <script src="adduser.js"></script>
+        <script src="edituser.js"></script>
+        <script src="deleteuser.js"></script>
+        <script src="deleteorderitem.js"></script>
+        <script src="editorder.js"></script>
+        <script src="deleteproduct.js"></script>
+        <script src="addproduct.js"></script>
         <script>
-			//ADD USER SCRIPT
-			$(document).ready(function() {
-				$('#butsave').on('click', function() {
-					var name = $('#addName').val();
-					var surname = $('#addSurname').val();
-					var email = $('#addEmail').val();
-					var password = $('#addPassword').val();
-					var phonenumber = $('#addPhonenumber').val();
-					var address = $('#addAddress').val();
-					var address2 = $('#addAddress2').val();
-					var city = $('#addCity').val();
-					var zipCode = $('#addZipCode').val();
-					var voivodeship = $('#addVoivodeship').val();
-					if(name!="" && surname!="" && email!="" && password!="" && phonenumber!="" && address!="" && address2!="" && city!="" && zipCode!=""){
-						$.ajax({
-							url: "scripts/registersave.php",
-							type: "POST",
-							data: {
-								name: name,
-								surname: surname,
-								email: email,
-								password: password,
-								phonenumber: phonenumber,
-								address: address,
-								address2: address2,
-								city: city,			
-								zipCode: zipCode,
-								voivodeship: voivodeship,
-							},
-							cache: false,
-							success: function(dataResult){
-								var msg = "";
-								var dataResult = JSON.parse(dataResult);
-								if(dataResult.statusCode==200){
-                                    $("#butsave").prop('disabled', true);
-									var msg = "Użytkownik został dodany!";
-									$("#messageAddUser").html(msg);
-                                    $("#usersData").load(location.href+" #usersData>*","");
-									setTimeout(function() {$('#addUserModal').modal('hide');}, 1000);
-                                    setTimeout(function() {$("#butsave").prop('disabled', false);}, 1000);  
-                                    setTimeout(function() {$("#messageAddUser").hide();}, 1000);          
-								}
-								else if(dataResult.statusCode==201){
-								alert("Error occured!");
-								}
-								
-							}
-						});
-					}
-					else{
-						alert('Uzupełnij wszystkie pola!');
-					}
-				});
-			});
-        </script>
+            $(document).ready(function() {
+                $("#productCategory").change(function() {
+                    var val = $(this).val();
+                    if (val == "1") {
+                        $("#productSubcategory").html("<option value='1'>Spodnie</option><option value='2'>Koszulki</option><option value='3'>Bluzy</option>");
+                    } else if (val == "2") {
+                        $("#productSubcategory").html("<option value='4'>Botki</option><option value='5'>Na obcasie</option><option value='6'>Sportowe</option>");
 
-        <script>
-            //EDIT SCRIPT
-            $(document).ready(function(){
-                $(document).on('click','button[data-role=update]',function(){
-                    //alert($(this).data('id')); //wyświetla data-id przecisku
-                    var id = $(this).data('id');
-                    var name = $('#'+id).children('td[data-target=name]').text();
-                    var surname = $('#'+id).children('td[data-target=surname]').text();
-                    var email = $('#'+id).children('td[data-target=email]').text();
-                    var phonenumber = $('#'+id).children('td[data-target=phonenumber]').text();
-                    var address = $('#'+id).children('td[data-target=address]').text();
-                    var address2 = $('#'+id).children('td[data-target=address2]').text();
-                    var city = $('#'+id).children('td[data-target=city]').text();
-                    var zipCode = $('#'+id).children('td[data-target=zipCode]').text();
-                    var voivodeship = $('#'+id).children('td[data-target=voivodeship]').text();
+                    } else if (val == "3") {
+                        $("#productSubcategory").html("<option value='7'>Torby</option><option value='8'>Plecaki</option><option value='9'>Biżuteria</option>");
 
-                    $('#userId').val(id); //ustawia wartosci w formularzu
-                    $('#name').val(name);
-                    $('#surname').val(surname);
-                    $('#email').val(email);
-                    $('#phonenumber').val(phonenumber);
-                    $('#address').val(address);
-                    $('#address2').val(address2);
-                    $('#city').val(city);
-                    $('#zipCode').val(zipCode);
-                    $('#voivodeship').val(voivodeship);                           
-                });
-                $('#update').on('click', function() {
-                    var id = $('#userId').val();
-					var name = $('#name').val();
-					var surname = $('#surname').val();
-					var email = $('#email').val();
-					var password = $('#password').val();
-					var phonenumber = $('#phonenumber').val();
-					var address = $('#address').val();
-					var address2 = $('#address2').val();
-					var city = $('#city').val();
-					var zipCode = $('#zipCode').val();
-					var voivodeship = $('#voivodeship').val();
-					if(name!="" && surname!="" && email!="" && password!="" && phonenumber!="" && address!="" && address2!="" && city!="" && zipCode!="" && voivodeship!=""){
-						$.ajax({
-							url: "scripts/edituser.php",
-							type: "POST",
-							data: {
-                                id: id,
-								name: name,
-								surname: surname,
-								email: email,
-								password: password,
-								phonenumber: phonenumber,
-								address: address,
-								address2: address2,
-								city: city,			
-								zipCode: zipCode,
-								voivodeship: voivodeship,
-							},
-							cache: false,
-							success: function(dataResult){
-								var msg = "";
-								var dataResult = JSON.parse(dataResult);
-								if(dataResult.statusCode==200){
-                                    $("#update").prop('disabled', true);
-									var msg = "Dane użytkownika zostały zaktualizowane!";
-									$("#messageEditUser").html(msg);
-                                    $("#usersData").load(location.href+" #usersData>*","");
-									setTimeout(function() {$('#editUserModal').modal('hide');}, 1000);
-                                    setTimeout(function() {$("#update").prop('disabled', false);}, 1000);
-                                    setTimeout(function() {$("#messageEditUser").hide();}, 1000); 
-								}
-								else if(dataResult.statusCode==201){
-								alert("Error occured!");
-								}
-								
-							}
-						});
-					}
-					else{
-						alert('Uzupełnij wszystkie pola!');
-					}
-				});
-            });
-        </script>
-
-        <script>
-            //DELETE USER SCRIPT
-            $(document).ready(function(){
-                var id;
-                $(document).on('click','button[data-role=delete]', function(){
-                    id = $(this).data('id');
-                    $('#userId').val(id);        
-                    //alert($(this).data('id'));              
-                });
-                $('#deleteUser').on('click', function() {			
-                    $.ajax({
-                        url: "scripts/deleteuser.php",
-                        type: "POST",
-                        data: {
-                            id: id,
-                        },
-                        cache: false,
-                        success: function(dataResult){
-                            var msg = "";
-                            var dataResult = JSON.parse(dataResult);
-                            if(dataResult.statusCode==200){
-                                $("#deleteUser").prop('disabled', true);
-                                var msg = "Użytkownik został usunięty!";
-                                $("#messageDeleteUser").html(msg);
-                                $("#usersData").load(location.href+" #usersData>*","");//odświeża okno z danymi
-                                setTimeout(function() {$('#deleteUserModal').modal('hide');}, 1000);
-                                setTimeout(function() {$("#deleteUser").prop('disabled', false);}, 1000);
-                                setTimeout(function() {$("#messageDeleteUser").hide();}, 1000);
-                            }
-                            else if(dataResult.statusCode==201){
-                                alert("Error occured!");
-                            }		
-                        }
-                    });					
-				});
-            });
-        </script>
-        <script>
-            //Skrypt do zamówienia w modal'u
-            $(document).ready(function(){
-                var OrderID;
-                $(document).on('click','button[data-role=adminOrderContent]', function(){
-					orderID = $(this).data('id');       
-					//alert($(this).data('id'));       
-					$.ajax({
-                        url: "scripts/fetchadminordercontent.php",
-                        type: "POST",
-                        data: {
-                            orderID: orderID
-                        },
-                        success : function(data){
-                        $('.fetchedOrderData').html(data);//wyświetla dane pobrane z BD
-                        }
-                    });				       
-                });
-                $(document).on('click','button[data-role=deleteOrderItem]', function(){
-                    var itemID = $(this).data('id');       
-                    // alert(itemID); 
-                    // alert(orderID);     
-                    $.ajax({
-                        url: "scripts/admindeleteorderitem.php",
-                        type: "POST",
-                        data: {
-                            orderID: orderID,
-                            itemID: itemID
-                        },
-                        success : function(data){
-                            $("#orders").load(location.href+" #orders>*","");
-                            $(".tr"+itemID).hide();
-                            alert("POSZŁO");
-                        }
-                    });					       
-                }); 	
-            });
-        </script>
-        <script>
-            //Skrypt do edycji zamówienia w modal'u
-            $(document).ready(function(){
-                var OrderID;
-                $(document).on('click','button[data-role=updateOrder]', function(){
-					orderID = $(this).data('id');       
-					//alert($(this).data('id'));       
-					$.ajax({
-                        url: "scripts/fetchadminorderdata.php",
-                        type: "POST",
-                        data: {
-                            orderID: orderID
-                        },
-                        success : function(data){
-                        $('.orderData').html(data);//wyświetla dane pobrane z BD
-                        }
-                    });				       
-                });	
-                $(document).on('click','button[data-role=saveUpdatedOrderData]', function(){  
-					var shippingMethod = $('#orderShippingMethod').val();
-					var amountToPay = $('#orderAmountToPay').val();
-					var phoneNumber = $('#orderPhoneNumber').val();
-					var address = $('#orderAddress').val();
-					var address2 = $('#orderAddress2').val();
-					var city = $('#orderCity').val();
-					var zipCode = $('#orderZipCode').val();
-                    var voivodeship = $('#orderVoivodeship').val(); 
-                    var orderStatus = $('#orderStatus').val();
-                    if(shippingMethod!="" && amountToPay!="" && phoneNumber!="" && address!="" && address2!="" && city!="" && zipCode!="" && voivodeship!="" && orderStatus!=""){
-                        $.ajax({
-                            url: "scripts/saveadminorderdata.php",
-                            type: "POST",
-                            data: {
-                                orderID: orderID,
-                                shippingMethod: shippingMethod,
-                                phoneNumber: phoneNumber,
-                                address: address,
-                                address2: address2,
-                                city: city,
-                                zipCode: zipCode,
-                                voivodeship: voivodeship,
-                                amountToPay: amountToPay,
-                                orderStatus: orderStatus
-                            },
-                            success: function(dataResult){
-                                var dataResult = JSON.parse(dataResult);
-                                if(dataResult.statusCode==200){
-                                    $("#saveUpdatedOrderData").prop('disabled', true);
-                                    setTimeout(function() {$('#updateOrder').modal('hide');}, 1000);
-                                    setTimeout(function() {$("#saveUpdatedOrderData").prop('disabled', false);}, 1000);
-                                    $("#orders").load(location.href+" #orders>*","");
-                                }
-                                else if(dataResult.statusCode==201){
-                                    alert("Error occured!");
-                                }		
-                            }	
-                        });	
-                    }else{
-                        alert("Uzupełnij wszystkie pola!");
-                    }			       
+                    }
                 });
             });
         </script>
@@ -303,14 +48,15 @@
 		</header>
 	<main>
 		<section class="mainContent">
+            <div id="error"></div>
             <div class="break"></div>
             <div class="container-fluid pt-1">
                 <div class="row pb-1">
                     <div class="col-12">
                         <form class="form-inline float-right">
+                            <button class="btn btn-primary mr-5" type="button" data-toggle="modal" data-target="#addProduct">Dodaj produkt</button>
                             <button class="btn btn-success mr-5" type="button" data-toggle="modal" data-target="#addUserModal" id="addUser">Dodaj użytkownika</button>
                             <input class="form-control mr-1" type="search" placeholder="szukaj" id="searchInput">
-                            <!-- <button class="btn btn-dark" type="submit">znajdź</button> -->
                         </form>
                     </div>
                 </div>
@@ -473,10 +219,10 @@
                                         <td data-target="quantity"><?php echo $row['quantity'] ?></td>
                                         <td data-target="brand"><?php echo $row['brand'] ?></td>
                                         <td data-target="size"><?php echo $row['size'] ?></td>
-                                        <td data-target="image"><?php echo $row['image'] ?></td>
+                                        <td data-target="image"><img src="<?php echo $row['image'] ?>" style="width:60px; height:80px;"></td>
                                         <td>
-                                            <button class="btn btn-primary btn-sm" type="button" data-role="update" data-id="<?php echo $row['id']; ?>" data-toggle="modal" data-target="#editUserModal" id="editUser">Edytuj</button>
-                                            <button class="btn btn-danger btn-sm" type="button" data-role="delete" data-id="<?php echo $row['id']; ?>" data-toggle="modal" data-target="#deleteUserModal">Usuń</button>
+                                            <button class="btn btn-primary btn-sm" type="button" data-role="updateProduct" data-id="<?php echo $row['id']; ?>" data-toggle="modal" data-target="#updateProduct">Edytuj</button>
+                                            <button class="btn btn-danger btn-sm" type="button" data-role="deleteProduct" data-id="<?php echo $row['id']; ?>" data-toggle="modal" data-target="#deleteProduct">Usuń</button>
                                         </td>
                                     </tr>
                                     <?php
@@ -506,3 +252,6 @@
 <?php include 'modals/deleteuser.php';?>
 <?php include 'modals/adminordercontent.php';?>
 <?php include 'modals/adminorderdata.php';?>
+<?php include 'modals/deleteproduct.php';?>
+<?php include 'modals/updateproduct.php';?>
+<?php include 'modals/addproduct.php';?>
