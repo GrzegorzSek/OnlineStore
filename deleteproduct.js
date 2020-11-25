@@ -19,7 +19,7 @@ $(document).ready(function(){
                     var msg = "Użytkownik został usunięty!";
                     $("#deleteProductMessage").html(msg);
                     $("#products").load(location.href+" #products>*","");//odświeża okno z danymi
-                    setTimeout(function() {$('#deleteProduct').modal('hide');}, 1000);
+                    setTimeout(function() {$('#deleteProductModal').modal('hide');}, 1000);
                     setTimeout(function() {$("#deleteProduct").prop('disabled', false);}, 1000);
                     setTimeout(function() {$("#deleteProductMessage").hide();}, 1000);
                 }

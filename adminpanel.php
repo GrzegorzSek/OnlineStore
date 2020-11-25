@@ -223,8 +223,8 @@
                                         <td data-target="size"><?php echo $row['size'] ?></td>
                                         <td data-target="image"><img src="<?php echo $row['image'] ?>" style="width:60px; height:80px;"></td>
                                         <td>
-                                            <button class="btn btn-primary btn-sm" type="button" data-role="updateProduct" data-id="<?php echo $row['id']; ?>" data-toggle="modal" data-target="#updateProduct">Edytuj</button>
-                                            <button class="btn btn-danger btn-sm" type="button" data-role="deleteProduct" data-id="<?php echo $row['id']; ?>" data-toggle="modal" data-target="#deleteProduct">Usuń</button>
+                                            <button class="btn btn-primary btn-sm" type="button" data-role="updateProduct" data-id="<?php echo $row['id']; ?>" data-toggle="modal" data-target="#updateProductModal">Edytuj</button>
+                                            <button class="btn btn-danger btn-sm" type="button" data-role="deleteProduct" data-id="<?php echo $row['id']; ?>" data-toggle="modal" data-target="#deleteProductModal">Usuń</button>
                                         </td>
                                     </tr>
                                     <?php
