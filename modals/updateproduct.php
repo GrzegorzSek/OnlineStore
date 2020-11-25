@@ -9,11 +9,10 @@
       </div>
       <div class="form-group col-md-12" id="messageDeleteUser"></div>
       <div class="modal-body">
-        Czy na pewno chcesz usunąć użytkownika?
+        <form class="productData needs-validation" id="updateProductForm" method="post" enctype="multipart/form-data"></form>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-success" data-dismiss="modal">Nie</button>
-        <button type="button" class="btn btn-danger" id="deleteUser">Tak</button>
       </div>
     </div>
   </div>

@@ -25,8 +25,10 @@
         <script src="editorder.js"></script>
         <script src="deleteproduct.js"></script>
         <script src="addproduct.js"></script>
+        <script src="editproduct.js"></script>
         <script>
             $(document).ready(function() {
+                //Select do DODAWANIA produktu
                 $("#productCategory").change(function() {
                     var val = $(this).val();
                     if (val == "1") {
@@ -185,7 +187,7 @@
 
                                 $result = mysqli_query($link, $sql);
                             ?>
-                            <table class="table table-hover">
+                            <table class="table table-hover table-sm">
                                 <thead>
                                     <tr>
                                         <th scope="col">#</th>
