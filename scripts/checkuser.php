@@ -3,8 +3,6 @@
 
     $email = mysqli_real_escape_string($link, $_POST['email']);
     $password = mysqli_real_escape_string($link, $_POST['password']);
- 
-
 
     if ($email != "" && $password != ""){
 
@@ -16,7 +14,6 @@
 
         $count = $row['cntUser'];
 
-
         //get user id
         $sql_query_id = "SELECT * FROM user WHERE email='".$email."' and password='".$password."'";
         $result_id = mysqli_query($link, $sql_query_id);
@@ -25,6 +22,14 @@
         if($count > 0){
             $_SESSION['email'] = $email;
             $_SESSION['userid']= $row_id["id"];
+
+            $SESSION=$_SESSION['userid'];
+            $sql = "SELECT * FROM cart WHERE client_id='$SESSION'";
+            $result = mysqli_query($link, $sql);
+            if(mysqli_num_rows($result) <= 0){
+                $sql = "INSERT INTO cart(client_id) VALUES('$SESSION')";
+                mysqli_query($link, $sql);
+            }
             echo 1;
         }else{
             echo 0;
