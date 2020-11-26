@@ -55,7 +55,7 @@
             <div class="container-fluid pt-1">
                 <div class="row pb-1">
                     <div class="adminButtons col-md-6 col-lg-8">
-                        <button class="btn btn-primary float-right mr-1" type="button" data-toggle="modal" data-target="#addProduct" id="addProduct">Dodaj produkt</button>
+                        <button class="btn btn-primary float-right mr-1" type="button" data-toggle="modal" data-target="#addProduct">Dodaj produkt</button>
                         <button class="btn btn-success float-right mr-1" type="button" data-toggle="modal" data-target="#addUserModal" id="addUser">Dodaj użytkownika</button>
                     </div>
                     <div class="col-md-6 col-lg-4">
