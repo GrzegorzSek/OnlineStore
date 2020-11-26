@@ -43,6 +43,24 @@
                 });
             });
         </script>
+        <script>
+            $(document).ready(function() {
+                $('#clear').on('click', function() {
+                    $('#addProductForm input[type="text"]').val('');
+                    $('#addProductForm input[type="file"]').val('');
+                    $('#addProductForm input[type="number"]').val('');
+                });
+            });
+        </script>
+        <script>
+            $(document).ready(function() {
+                $('.AddProduct').on('click', function() {
+                    $('#addProductForm input[type="text"]').val('');
+                    $('#addProductForm input[type="file"]').val('');
+                    $('#addProductForm input[type="number"]').val('');
+                });
+            });
+        </script>
 	</head>
   <body>
 		<header>
@@ -55,7 +73,7 @@
             <div class="container-fluid pt-1">
                 <div class="row pb-1">
                     <div class="adminButtons col-md-6 col-lg-8">
-                        <button class="btn btn-primary float-right mr-1" type="button" data-toggle="modal" data-target="#addProduct">Dodaj produkt</button>
+                        <button class="AddProduct btn btn-primary float-right mr-1" type="button" data-toggle="modal" data-target="#addProductModal">Dodaj produkt</button>
                         <button class="btn btn-success float-right mr-1" type="button" data-toggle="modal" data-target="#addUserModal" id="addUser">Dodaj użytkownika</button>
                     </div>
                     <div class="col-md-6 col-lg-4">

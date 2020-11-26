@@ -1,4 +1,4 @@
-<div class="modal fade" id="addProduct" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="addProductModal modal fade" id="addProductModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
@@ -58,12 +58,11 @@
                     <input type="file" name="image" id="image" required>
                 </div>
                 <div class="form-group">
-                    <button type="submit" class="btn btn-success" id="addProductButton">Submit</button>
+                    <button type="submit" class="btn btn-success float-right ml-1" id="addProductButton">Dodaj</button>
+                    <button type="button" class="btn btn-secondary float-right" data-dismiss="modal">Zamknij</button>
+                    <button type="button" class="btn btn-danger float-left" id="clear">Wyczyść</button>
                 </div>
             </form>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-primary" data-dismiss="modal">zamknij</button>
       </div>
     </div>
   </div>
