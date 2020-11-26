@@ -54,23 +54,23 @@
             <div class="break"></div>
             <div class="container-fluid pt-1">
                 <div class="row pb-1">
-                    <div class="col-12">
-                        <form class="form-inline float-right">
-                            <button class="btn btn-primary mr-5" type="button" data-toggle="modal" data-target="#addProduct">Dodaj produkt</button>
-                            <button class="btn btn-success mr-5" type="button" data-toggle="modal" data-target="#addUserModal" id="addUser">Dodaj użytkownika</button>
-                            <input class="form-control mr-1" type="search" placeholder="szukaj" id="searchInput">
-                        </form>
+                    <div class="adminButtons col-md-6 col-lg-8">
+                        <button class="btn btn-primary float-right mr-1" type="button" data-toggle="modal" data-target="#addProduct" id="addProduct">Dodaj produkt</button>
+                        <button class="btn btn-success float-right mr-1" type="button" data-toggle="modal" data-target="#addUserModal" id="addUser">Dodaj użytkownika</button>
+                    </div>
+                    <div class="col-md-6 col-lg-4">
+                        <input class="form-control" type="search" placeholder="szukaj" id="searchInput">
                     </div>
                 </div>
                 <div class="row pr-1">
-                    <div class="col-1 border-left border-right border px-0 bg-light">
+                    <div class="adminMenu col-xs-12 col-lg-2 border-left border-right border px-0 bg-light">
                         <div class="list-group" id="menu" role="tablist">
                             <button type="button" class="list-group-item list-group-item-action active btn-light btn-sm" data-toggle="list" href="#users" role="tab">Użytkownicy</button>
                             <button type="button" class="list-group-item list-group-item-action btn-light btn-sm" data-toggle="list" href="#orders" role="tab">Zamówienia</button>
                             <button type="button" class="list-group-item list-group-item-action btn-light btn-sm" data-toggle="list" href="#products" role="tab">Produkty</button>
                         </div>
                     </div>
-                    <div class="col-11 border p-0 tab-content table-responsive" id="usersData">
+                    <div class="col-xs-12 col-lg-10 border p-0 tab-content table-responsive" id="usersData">
                         <div class="tab-pane active" id="users" role="tabpanel">
                             <?php
                                 $sql = "SELECT * FROM user";
@@ -124,7 +124,7 @@
                                 </tbody>
                             </table>
                         </div>
-                        <div class="tab-pane" id="orders" role="tabpanel">
+                        <div class="tab-pane table-sm" id="orders" role="tabpanel">
                             <?php
                                 $sql = "SELECT * FROM clientorder";
                                 $result = mysqli_query($link, $sql);
@@ -162,7 +162,7 @@
                                         <td data-target="recentUpdate" class="align-middle"><?php echo $row['updated_at']; ?></td>
                                         <td data-target="orderStatus" class="align-middle"><?php echo $row['order_status']; ?></td>
                                         <td class="align-middle">
-                                            <button class="btn btn-success btn-sm" type="button" data-role="updateOrder" data-id="<?php echo $row['id']; ?>" data-toggle="modal" data-target="#updateOrder">Edytuj</button>
+                                            <button class="btn btn-success btn-sm mb-1" type="button" data-role="updateOrder" data-id="<?php echo $row['id']; ?>" data-toggle="modal" data-target="#updateOrder">Edytuj</button>
                                             <button class="btn btn-primary btn-sm" type="button" data-role="adminOrderContent" data-id="<?php echo $row['id']; ?>" data-toggle="modal" data-target="#adminOrderContent">Wyświetl zawartość</button>
                                         </td>
                                     </tr>
@@ -223,7 +223,7 @@
                                         <td data-target="size"><?php echo $row['size'] ?></td>
                                         <td data-target="image"><img src="<?php echo $row['image'] ?>" style="width:60px; height:80px;"></td>
                                         <td>
-                                            <button class="btn btn-primary btn-sm" type="button" data-role="updateProduct" data-id="<?php echo $row['id']; ?>" data-toggle="modal" data-target="#updateProductModal">Edytuj</button>
+                                            <button class="btn btn-primary btn-sm mb-1" type="button" data-role="updateProduct" data-id="<?php echo $row['id']; ?>" data-toggle="modal" data-target="#updateProductModal">Edytuj</button>
                                             <button class="btn btn-danger btn-sm" type="button" data-role="deleteProduct" data-id="<?php echo $row['id']; ?>" data-toggle="modal" data-target="#deleteProductModal">Usuń</button>
                                         </td>
                                     </tr>

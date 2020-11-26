@@ -1,5 +1,5 @@
 <nav class="navbar fixed-top navbar-light bg-light navbar-expand-lg">
-    <a class="navbar-brand" href="#">LOGO</a>			
+    <a class="navbar-brand" href="dashboard.php">LOGO</a>			
 
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#mainMenu">
         <span class="navbar-toggler-icon"></span>
@@ -7,9 +7,6 @@
 
     <div class="collapse navbar-collapse text-uppercase" id="mainMenu">
         <ul class="navbar-nav mr-auto">
-            <li class="nav-item active">
-                <a class="nav-link" href="dashboard.php"> Główna</a>						
-            </li>
             <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" id="clothes">Ubrania</a>	
                 <div class="dropdown-menu">
@@ -39,15 +36,15 @@
             </li>
         </ul>
 
-        <form class="form-inline mr-auto" onsubmit="window.location='searchpage.php?search=' + search.value; return false;">
+        <form class="form-inline my-auto mr-auto" onsubmit="window.location='searchpage.php?search=' + search.value; return false;">
             <input class="form-control mr-1" type="search" placeholder="szukaj" id="search" name="search" required>
-            <button class="btn btn-secondary" type="submit" value="send">znajdź</button>
+            <button class="btn btn-secondary" type="submit" value="send" id="searchButton">znajdź</button>
         </form>
 
         <ul class="navbar-nav">
-            <li class="nav-item dropdown mr-4">
+            <li class="nav-item dropdown">
                 <img src="favicons/myAccountIcon.png" type="button" class="dropdown-toggle" data-offset="10,20" data-toggle="dropdown" alt="myAccountIcon">
-                <div class="dropdown-menu">
+                <div class="myProfile dropdown-menu">
                     <a class="dropdown-item" href="userpanel.php">mój profil</a>
                     <a class="dropdown-item" href="userpanel.php">zamówienia</a>
                     <a class="dropdown-item" href="logout.php">wyloguj</a>

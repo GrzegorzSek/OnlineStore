@@ -75,5 +75,31 @@ nav
 }
 .tab-content
 {
-min-height: 200px;
+	min-height: 200px;
+}
+.myProfile{
+	left: auto; 
+	right: 15px;
+}
+@media only screen and (max-width: 992px) {
+	.nav-item img{
+		margin-top: 10px;
+		margin-left: 0px;
+	}
+	.userMenu, .adminMenu{
+		margin-bottom: 10px;
+	}
+	.adminButtons{
+		margin-bottom: 4px;
+	}
+  }
+@media only screen and (max-width: 340px) {
+	#addProduct{
+		margin-bottom: 4px;
+	}
+}
+@media only screen and (max-width: 575px) {
+	#searchButton{
+		margin-top: 4px;
+	}
 }

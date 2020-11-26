@@ -90,13 +90,13 @@
             <div class="break"></div>
             <div class="container">
                 <div class="row">
-                    <div class="col-2">
+                    <div class="userMenu col-sm-12 col-lg-2">
                         <div class="list-group" id="menu" role="tablist">
                             <button type="button" class="list-group-item list-group-item-action active btn-light" data-toggle="list" href="#userData" role="tab">Dane</button>
                             <button type="button" class="list-group-item list-group-item-action btn-light" data-toggle="list" href="#userOrders" role="tab">Zamówienia</button>
                         </div>
                     </div>
-                    <div class="col-10 bg-light tab-content">
+                    <div class="col-sm-12 col-lg-10 bg-light tab-content">
 						<div class="tab-pane active" id="userData" role="tabpanel">
 							<div class="break"></div>				
 							<form>

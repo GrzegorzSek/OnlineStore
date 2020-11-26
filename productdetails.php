@@ -49,14 +49,14 @@
 			<div class="break"></div>
 			<div class="container">
                 <div class="row">
-                    <div class="col-sm-6">
+                    <div class="col-md-6">
                         <div class="col-12">
                             <figure>
-                                <a href="#"><img src="<?php echo $row['image']; ?>"></a>
+                                <img src="<?php echo $row['image']; ?>">
                             </figure>
                         </div>
                     </div>
-                    <div class="col-sm-6">
+                    <div class="col-md-6">
                         <h1><?php echo $row['name']; ?></h1>
                         <hr>
                         <div class="details text-left">
@@ -85,7 +85,7 @@
                             <p>Rozmiar: <?php echo $row['size']; ?></p>
                             <h1 class="mb-3 text-center">Cena: <?php echo $row['price']; ?>zł</h1>
                         </div>
-                        <button type="button" class="btn btn-primary btn-sm mr-1 mb-2" data-role="addToCart" data-id="<?php echo $row['id']; ?>" id="addToCart">Do koszyka</button>
+                        <button type="button" class="btn btn-primary btn mr-1 mb-2" data-role="addToCart" data-id="<?php echo $row['id']; ?>" id="addToCart">Do koszyka</button>
                     </div>
                 </div>
             </div>
