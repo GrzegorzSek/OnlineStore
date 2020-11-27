@@ -2,6 +2,9 @@
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
+        <div class="allGood"><p>Dane zostały zaktualizowane!</p></div>
+        <div class="somethingWentWrong"><p>Coś poszło nie tak!</p></div>
+        <div class="almostGood"><p>Pola nie mogą zostać puste!</p></div>
         <h5 class="modal-title">Edycja użytkownika</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
@@ -10,7 +13,6 @@
       <div class="modal-body">
             <form class="needs-validation" novalidate>
                 <div class="form-row">
-                    <div class="form-group col-md-12" id="messageEditUser"></div>
                     <div class="form-group col-md-6">
                         <label for="name">Imię</label>
                         <input type="text" class="form-control" id="name" required>
@@ -26,12 +28,9 @@
                         <input type="email" class="form-control" id="email" required>
                     </div>
                     <div class="form-group col-md-6">
-                        <label for="password">Hasło</label>
+                        <label for="phonenumber">Numer telefonu</label>
+                        <input type="tel" class="form-control" id="phonenumber" minlength="9" maxlength="9" required>
                     </div>
-                </div>
-                <div class="form-group">
-                    <label for="phonenumber">Numer telefonu</label>
-                    <input type="tel" class="form-control" id="phonenumber" maxlength="9" required>
                 </div>
                 <div class="form-group">
                     <label for="address">Adres</label>
@@ -48,7 +47,7 @@
                     </div>
                     <div class="form-group col-md-4">
                         <label for="zipCode">kod pocztowy</label>
-                        <input type="text" class="form-control" id="zipCode" pattern="[0-9]{2}[-]{1}[0-9]{3}" title="Wprowadź kod pocztowy w formacie 00-000" required>
+                        <input type="text" class="form-control" id="zipCode" minlength="6" maxlength="6" pattern="[0-9]{2}[-]{1}[0-9]{3}" title="Wprowadź kod pocztowy w formacie 00-000" required>
                     </div>
                 </div>
                 <label for="voivodeship">Województwo</label>

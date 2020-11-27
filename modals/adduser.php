@@ -2,6 +2,9 @@
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
+        <div class="allGood"><p>Użytkownik został dodany!</p></div>
+        <div class="somethingWentWrong"><p>Coś poszło nie tak!</p></div>
+        <div class="almostGood"><p>Uzupełnij wszystkie pola!</p></div>
         <h5 class="modal-title">Nowy użytkownik</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
@@ -10,7 +13,6 @@
       <div class="modal-body">
             <form class="needs-validation" novalidate>
                 <div class="form-row">
-                    <div class="form-group col-md-12" id="messageAddUser"></div>
                     <div class="form-group col-md-6">
                         <label for="name">Imię</label>
                         <input type="text" class="form-control" id="addName" placeholder="Imię" required>           

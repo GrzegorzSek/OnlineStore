@@ -31,19 +31,21 @@ $(document).ready(function() {
                     var msg = "";
                     var dataResult = JSON.parse(dataResult);
                     if(dataResult.statusCode==200){
-                        var msg = "Udało Ci się zarejestrować!";
-                        $("#messageSignUp").html(msg);
+                        $(".allGood").css('display', 'block');
                         setTimeout(function() {$('#signUp').modal('hide');}, 2000);
+                        setTimeout(function() {$(".allGood").css('display', 'none');}, 2000);
                     }
                     else if(dataResult.statusCode==201){
-                        alert("Error!");
+                        $(".somethingWentWrong").css('display', 'block');
+                        setTimeout(function() {$(".somethingWentWrong").css('display', 'none');}, 2000);
                     }
                     
                 }
             });
         }
         else{
-            alert('Uzupełnij wszystkie pola!');
+            $(".almostGood").css('display', 'block');
+            setTimeout(function() {$(".almostGood").css('display', 'none');}, 2000);
         }
     });
 });

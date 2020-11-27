@@ -1,4 +1,11 @@
-<?php include 'config.php';?>
+<?php 
+    include 'config.php';
+    
+    //sprawdza czy użytkownik jest zalogowany, jeśli nie to wraca na stronę index.php
+    if(!isset($_SESSION['userid'])){
+        header('Location: index.php');
+    }
+?>
 <?php
   $product_id=$_GET["id"];
 

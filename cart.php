@@ -27,11 +27,13 @@
                             var msg = "";
                             var dataResult = JSON.parse(dataResult);
                             if(dataResult.statusCode==200){
-                                alert("Dane zostały zaktualizowane!");
+                                $(".allGoodCart").css('display', 'block');
+                                setTimeout(function() {$(".allGoodCart").css('display', 'none');}, 2000);
                                 $("#cartItems").load(location.href+" #cartItems>*","");//odświeża okno z danymi
                             }
                             else if(dataResult.statusCode==201){
-                                alert("Error occured!");
+                                $(".somethingWentWrongCart").css('display', 'block');
+                                setTimeout(function() {$(".somethingWentWrongCart").css('display', 'none');}, 2000);
                             }		
                         }
                     });	                              
@@ -55,19 +57,19 @@
                         },
                         cache: false,
                         success: function(dataResult){
-                            var msg = "";
                             var dataResult = JSON.parse(dataResult);
                             if(dataResult.statusCode==200){
+                                $(".allGood").css('display', 'block');
+                                setTimeout(function() {$(".allGoodCart").css('display', 'none');}, 2000);
                                 $("#deleteItem").prop('disabled', true);
-                                var msg = "produkt został usunięty!";
-                                $("#messageDeleteItem").html(msg);
                                 $("#cartItems").load(location.href+" #cartItems>*","");//odświeża okno z danymi
                                 setTimeout(function() {$('#deleteItemModal').modal('hide');}, 250);
                                 setTimeout(function() {$("#deleteItem").prop('disabled', false);}, 250);
                                 setTimeout(function() {$("#messageDeleteItem").hide();}, 250);
                             }
                             else if(dataResult.statusCode==201){
-                                alert("Error occured!");
+                                $(".somethingWentWrongCart").css('display', 'block');
+                                setTimeout(function() {$(".somethingWentWrong").css('display', 'none');}, 2000);
                             }		
                         }
                     });					
@@ -110,7 +112,8 @@
                                 setTimeout(function() {$('#finlizeShopping').prop('disabled', false);}, 5000);
                             }
                             else if(dataResult.statusCode==201){
-                                alert("Error!");
+                                $(".somethingWentWrong").css('display', 'block');
+                                setTimeout(function() {$(".somethingWentWrong").css('display', 'none');}, 2000);
                             }
                             
                         }
@@ -125,6 +128,8 @@
 		</header>
 	<main>
 		<section class="mainContent">
+            <div class="allGoodCart"><p>Dane zostały zaktualizowane!</p></div>
+			<div class="somethingWentWrongCart"><p>Coś poszło nie tak!</p></div>
             <div class="break"></div>
             <div class="container">
                 <div class="row">
@@ -176,7 +181,7 @@
                                         <td data-target="image" class="align-middle"><img src="<?php echo $row['image'] ?>" style="width:60px; height:80px;"></td>
                                         <td class="align-middle">
                                             <button class="btn btn-primary btn-sm mb-1" type="button" data-role="updateItem" data-id="<?php echo $row['cartItemID']; ?>" id="editItem">Aktualizuj</button>
-                                            <button class="btn btn-danger btn-sm mt-1" type="button" data-role="deleteItem" data-id="<?php echo $row['cartItemID']; ?>" data-toggle="modal" data-target="#deleteItemModal">Usuń</button>
+                                            <button class="btn btn-danger btn-sm mb-1" type="button" data-role="deleteItem" data-id="<?php echo $row['cartItemID']; ?>" data-toggle="modal" data-target="#deleteItemModal">Usuń</button>
                                         </td>
                                     </tr>
                                     <?php

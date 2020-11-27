@@ -1,6 +1,5 @@
 //Skrypt do edycji zamówienia w modal'u
 $(document).ready(function(){
-    var OrderID;
     $(document).on('click','button[data-role=updateOrder]', function(){
         orderID = $(this).data('id');       
         //alert($(this).data('id'));       
@@ -44,18 +43,21 @@ $(document).ready(function(){
                 success: function(dataResult){
                     var dataResult = JSON.parse(dataResult);
                     if(dataResult.statusCode==200){
+                        $(".allGood").css('display', 'block');
+                        setTimeout(function() {$(".allGood").css('display', 'none');}, 1000);
                         $("#saveUpdatedOrderData").prop('disabled', true);
                         setTimeout(function() {$('#updateOrder').modal('hide');}, 1000);
                         setTimeout(function() {$("#saveUpdatedOrderData").prop('disabled', false);}, 1000);
                         $("#orders").load(location.href+" #orders>*","");
                     }
                     else if(dataResult.statusCode==201){
-                        alert("Error occured!");
+                        $(".somethingWentWrong").css('display', 'block');
+                        setTimeout(function() {$(".somethingWentWrong").css('display', 'none');}, 1000);
                     }		
                 }	
             });	
         }else{
-            alert("Uzupełnij wszystkie zamówienie!");
-        }			       
+            $(".almostGood").css('display', 'block');
+            setTimeout(function() {$(".almostGood").css('display', 'none');}, 1000);        }			       
     });
 });

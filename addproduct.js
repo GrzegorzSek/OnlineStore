@@ -1,6 +1,5 @@
 //Upload image oraz dane ADD PRODUCT
 $(document).ready(function(){
-
     $("#addProductForm").on("submit", function(e){
         $("#addProductButton").prop('disabled', true);
         e.preventDefault(); //anuluje SUBMIT

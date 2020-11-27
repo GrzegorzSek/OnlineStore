@@ -25,11 +25,12 @@ $(document).ready(function(){
         data :formData,
         contentType : false,
         processData: false,
-        success:function(response){
+        success:function(){
+            $(".allGood").css('display', 'block');
+            setTimeout(function() {$(".allGood").css('display', 'none');}, 1000);
             $("#updateProductButton").prop('disabled', true);
-            $("#error").html(response); //wyświetla błędy ze skryptu PHP
+            //$("#error").html(response); //wyświetla błędy ze skryptu PHP
             $("#products").load(location.href+" #products>*","");//odświeża okno z danymi
-            setTimeout(function() {$('#updateProductForm').modal('hide');}, 1000);
             setTimeout(function() {$("#updateProductButton").prop('disabled', false);}, 1000);
         }
         });

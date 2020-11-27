@@ -76,8 +76,6 @@
 		</header>
 	<main>
 		<section class="mainContent">
-            <div class="allGood"><p>Akcja została wykonana pomyślnie!</p></div>
-            <div class="somethingWentWrong"><p>Ups, coś poszło nie tak!</p></div>
             <div id="error"></div>
             <div class="break"></div>
             <div class="container-fluid pt-1">

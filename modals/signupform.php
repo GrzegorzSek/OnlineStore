@@ -2,6 +2,9 @@
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
+        <div class="allGood"><p>Udało Ci się zarejestrować!</p></div>
+        <div class="somethingWentWrong"><p>Coś poszło nie tak!</p></div>
+        <div class="almostGood"><p>Uzupełnij wszystkie pola!</p></div>
         <h5 class="modal-title" id="signUp">Rejestracja</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
@@ -10,7 +13,6 @@
       <div class="modal-body">
             <form class="needs-validation" novalidate>
                 <div class="form-row">
-                    <div class="form-group col-md-12" id="messageSignUp"></div>
                     <div class="form-group col-md-6">
                         <label for="name">Imię</label>
                         <input type="text" class="form-control" id="name" placeholder="Imię" required>
@@ -28,17 +30,11 @@
                     <div class="form-group col-md-6">
                         <label for="password">Hasło</label>
                         <input type="password" class="form-control" id="password" placeholder="hasło" required>
-                        <div class="valid-feedback">
-                            Jest OK!
-                        </div>
-                        <div class="invalid-feedback">
-                            podaj właściwe dane!
-                        </div>
                     </div>
                 </div>
                 <div class="form-group">
                     <label for="phonenumber">Numer telefonu</label>
-                    <input type="tel" class="form-control" id="phonenumber" placeholder="numer telefonu" maxlength="9" required>
+                    <input type="tel" class="form-control" id="phonenumber" placeholder="numer telefonu" required>
                 </div>
                 <div class="form-group">
                     <label for="address">Adres</label>
@@ -55,7 +51,7 @@
                     </div>
                     <div class="form-group col-md-4">
                         <label for="zipCode">kod pocztowy</label>
-                        <input type="text" class="form-control" id="zipCode" placeholder="00-000" pattern="[0-9]{2}[-]{1}[0-9]{3}" title="Wprowadź kod pocztowy w formacie 00-000" required>
+                        <input type="text" class="form-control" id="zipCode" placeholder="00-000" required>
                     </div>
                 </div>
                 <label for="voivodeship">Województwo</label>

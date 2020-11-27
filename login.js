@@ -8,17 +8,24 @@ $(document).ready(function(){
             $.ajax({
                 url:'scripts/checkuser.php',
                 type:'post',
-                data:{email:email, password:password},
+                data:{
+                    email: email, 
+                    password: password
+                },
                 success:function(response){
-                    var msg = "";
                     if(response == 1){
-                        window.location = "dashboard.php";
+                        $(".allGood").css('display', 'block');
+                        setTimeout(function() {window.location = "dashboard.php";}, 500);
+                        setTimeout(function() {$(".allGood").css('display', 'none');}, 500);
                     }else{
-                        msg = "Błędny email lub hasło!";
+                        $(".somethingWentWrong").css('display', 'block');
+                        setTimeout(function() {$(".somethingWentWrong").css('display', 'none');}, 2000);
                     }
-                    $("#message").html(msg);
                 }
             });
+        }else{
+            $(".almostGood").css('display', 'block');
+            setTimeout(function() {$(".almostGood").css('display', 'none');}, 2000);
         }
     });
 

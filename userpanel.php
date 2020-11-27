@@ -1,6 +1,13 @@
 <?php
 	include("config.php");
 
+	//sprawdza czy użytkownik jest zalogowany, jeśli nie to wraca na stronę index.php
+	if(!isset($_SESSION['userid'])){
+		header('Location: index.php');
+	}
+?>
+
+<?php
 	$SESSION = $_SESSION['userid'];
 	$sql_query = "SELECT * FROM user WHERE id='$SESSION'";
 	$result = mysqli_query($link, $sql_query);
@@ -42,21 +49,22 @@
 							},
 							cache: false,
 							success: function(dataResult){
-								var msg = "";
 								var dataResult = JSON.parse(dataResult);
 								if(dataResult.statusCode==200){
-									var msg = "Udało się zaktualizować Twoje dane!";
-									$("#messageUpdateUser").html(msg);
+									$(".allGood").css('display', 'block');
+									setTimeout(function() {$(".allGood").css('display', 'none');}, 2000);
 								}
 								else if(dataResult.statusCode==201){
-								alert("Error occured!");
+									$(".somethingWentWrong").css('display', 'block');
+									setTimeout(function() {$(".somethingWentWrong").css('display', 'none');}, 2000);	
 								}
 								
 							}
 						});
 					}
 					else{
-						alert('Uzupełnij wszystkie pola!');
+						$(".almostGood").css('display', 'block');
+						setTimeout(function() {$(".almostGood").css('display', 'none');}, 2000);
 					}
 				});
 			});
@@ -87,6 +95,9 @@
 		</header>
 	<main>
 		<section class="mainContent">
+			<div class="allGood"><p>Dane zostały zaktualizowane!</p></div>
+			<div class="somethingWentWrong"><p>Coś poszło nie tak!</p></div>
+			<div class="almostGood"><p>Żadne pole nie może pozostać puste!</p></div>
             <div class="break"></div>
             <div class="container">
                 <div class="row">

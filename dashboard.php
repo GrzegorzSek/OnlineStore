@@ -1,7 +1,7 @@
 <?php
 include "config.php";
 
-// Check user login or not
+//sprawdza czy użytkownik jest zalogowany, jeśli nie to wraca na stronę index.php
 if(!isset($_SESSION['userid'])){
     header('Location: index.php');
 }

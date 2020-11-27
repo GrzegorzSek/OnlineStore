@@ -81,7 +81,7 @@ nav
 	left: auto; 
 	right: 15px;
 }
-.allGood{
+.allGood, .allGoodCart{
 	display: none;
 	z-index: 10000;
 	border-radius: 5px;
@@ -94,11 +94,11 @@ nav
 	background-color: rgb(64, 187, 64);
 	opacity: 0.9;
 }
-.allGood p{
+.allGood, .somethingWentWrong, .almostGood, .allGoodCart, .somethingWentWrongCart p{
 	padding-top: 15px;
 	text-align: center;
 }
-.somethingWentWrong{
+.somethingWentWrong, .somethingWentWrongCart{
 	display: none;
 	z-index: 10000;
 	border-radius: 5px;
@@ -111,9 +111,18 @@ nav
 	background-color: rgb(199, 53, 53);
 	opacity: 0.9;
 }
-.somethingWentWrong p{
-	padding-top: 15px;
-	text-align: center;
+.almostGood{
+	display: none;
+	z-index: 10000;
+	border-radius: 5px;
+	position: fixed;
+	left: 50%;
+    transform: translate(-50%, 0);
+	height: 50px;
+	width: 300px;
+	color: white;
+	background-color: rgb(221, 171, 63);
+	opacity: 0.9;
 }
 @media only screen and (max-width: 992px) {
 	.nav-item img{
@@ -136,4 +145,89 @@ nav
 	#searchButton{
 		margin-top: 4px;
 	}
+}
+/* obrazki */
+.text {
+	position: absolute;
+	top: 0;
+	color:rgb(255, 255, 255);
+	background-color:rgba(54, 54, 54, 0.8);
+	width: 286.66px;
+	height: 382.21px;
+	line-height: 382.21px;
+	text-align: center;
+	z-index: 10;
+	opacity: 0;
+	-webkit-transition: all 0.5s ease;
+	-moz-transition: all 0.5s ease;
+	-o-transition: all 0.5s ease;
+	transition: all 0.5s ease;
+}
+@media only screen and (max-width: 1200px) {
+	.text {
+		position: absolute;
+		top: 0;
+		color:rgb(255, 255, 255);
+		background-color:rgba(54, 54, 54, 0.8);
+		width: 236.66px;
+		height: 315.55px;
+		line-height: 315.55px;
+		text-align: center;
+		z-index: 10;
+		opacity: 0;
+		-webkit-transition: all 0.5s ease;
+		-moz-transition: all 0.5s ease;
+		-o-transition: all 0.5s ease;
+		transition: all 0.5s ease;
+	}
+}
+@media only screen and (max-width: 989px) {
+	.text {
+		position: absolute;
+		top: 0;
+		color:rgb(255, 255, 255);
+		background-color:rgba(54, 54, 54, 0.8);
+		width: 209.99px;
+		height: 279.98px;
+		line-height: 279.98px;
+		text-align: center;
+		z-index: 10;
+		opacity: 0;
+		-webkit-transition: all 0.5s ease;
+		-moz-transition: all 0.5s ease;
+		-o-transition: all 0.5s ease;
+		transition: all 0.5s ease;
+	}
+}
+@media only screen and (max-width: 768px) {
+	.text {
+		position: absolute;
+		top: 0;
+		color:rgb(255, 255, 255);
+		background-color:rgba(54, 54, 54, 0.8);
+		width: 240px;
+		height: 320px;
+		line-height: 320px;
+		text-align: center;
+		z-index: 10;
+		opacity: 0;
+		-webkit-transition: all 0.5s ease;
+		-moz-transition: all 0.5s ease;
+		-o-transition: all 0.5s ease;
+		transition: all 0.5s ease;
+	}
+}
+@media only screen and (max-width: 575px) {
+	.text {
+		display: none;
+	}
+}
+.text:hover {
+	opacity:1;
+}
+img {
+	z-index:1;
+}
+.prodctNameUnderImage{
+	height: 50px;
 }

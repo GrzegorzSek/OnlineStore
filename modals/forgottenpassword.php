@@ -2,6 +2,9 @@
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
+        <div class="allGood"><p>Email został wysłany!</p></div>
+        <div class="somethingWentWrong"><p>Coś poszło nie tak EMAIL!</p></div>
+        <div class="almostGood"><p>Pole nie może być puste!</p></div>
         <h5 class="modal-title">Przypomnij hasło</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>

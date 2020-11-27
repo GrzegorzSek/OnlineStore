@@ -1,6 +1,14 @@
 <?php
 	include("config.php");
 ?>
+<?php
+    $query = "SELECT * FROM product LIMIT 6";
+    $rows = mysqli_query($link, $query);
+        $results = array();
+    while ($result =  mysqli_fetch_array($rows)){
+        $results[] = $result;
+    }
+?>
 <!doctype html>
 <html lang="pl">
 	<head>
@@ -10,7 +18,7 @@
   <body>
 		<header>
 			<nav class="navbar fixed-top navbar-light bg-light navbar-expand-lg">
-				<a class="navbar-brand" href="#">LOGO</a>			
+				<a class="navbar-brand" href="dashboard.php">LOGO</a>			
 
 				<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#mainMenu">
 					<span class="navbar-toggler-icon"></span>
@@ -18,33 +26,38 @@
 
 				<div class="collapse navbar-collapse text-uppercase" id="mainMenu">
 					<ul class="navbar-nav mr-auto">
-						<li class="nav-item active">
-							<a class="nav-link" href="index.php"> Główna</a>						
-						</li>
-						<li class="nav-item">
-							<a class="nav-link" href="#"> Kat 1</a>						
+						<li class="nav-item dropdown">
+							<a class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" id="clothes">Ubrania</a>	
+							<div class="dropdown-menu">
+								<a class="dropdown-item" href="listofproducts.php?category=<?php echo "1" ?>&subcategory=<?php echo "1" ?>" id="trousers">Spodnie</a>
+								<a class="dropdown-item" href="listofproducts.php?category=<?php echo "1" ?>&subcategory=<?php echo "2" ?>" id="t-shirts">koszulki</a>
+								<a class="dropdown-item" href="listofproducts.php?category=<?php echo "1" ?>&subcategory=<?php echo "3" ?>" id="blouses">bluzy</a>
+							</div>					
 						</li>
 						<li class="nav-item dropdown">
-							<a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button"> Kat 2</a>	
+							<a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button">Buty</a>	
 							<div class="dropdown-menu">
-								<a class="dropdown-item" href="listofproducts.php">podKat1</a>
-								<a class="dropdown-item" href="#">podKat2</a>
-								<a class="dropdown-item" href="#">podKat3</a>
-								<a class="dropdown-item" href="#">podKat4</a>
-								<a class="dropdown-item" href="#">podKat5</a>
+								<a class="dropdown-item" href="listofproducts.php?category=<?php echo "2" ?>&subcategory=<?php echo "4" ?>">botki</a>
+								<a class="dropdown-item" href="listofproducts.php?category=<?php echo "2" ?>&subcategory=<?php echo "5" ?>">na obcasie</a>
+								<a class="dropdown-item" href="listofproducts.php?category=<?php echo "2" ?>&subcategory=<?php echo "6" ?>">sportowe</a>
+							</div>					
+						</li>
+						<li class="nav-item dropdown">
+							<a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button">Akcesoria</a>	
+							<div class="dropdown-menu">
+								<a class="dropdown-item" href="listofproducts.php?category=<?php echo "3" ?>&subcategory=<?php echo "7" ?>">torby</a>
+								<a class="dropdown-item" href="listofproducts.php?category=<?php echo "3" ?>&subcategory=<?php echo "8" ?>">plecaki</a>
+								<a class="dropdown-item" href="listofproducts.php?category=<?php echo "3" ?>&subcategory=<?php echo "9" ?>">biżuteria</a>
 							</div>					
 						</li>
 						<li class="nav-item">
-							<a class="nav-link" href="#"> Kat 3</a>						
-						</li>
-						<li class="nav-item">
-							<a class="nav-link" href="contact.php"> Kontakt</a>						
+							<a class="nav-link" href="contact.php">Kontakt</a>						
 						</li>
 					</ul>
 
-					<form class="form-inline mr-auto">
-						<input class="form-control mr-1" type="search" placeholder="szukaj">
-						<button class="btn btn-secondary" type="submit">znajdź</button>
+					<form class="form-inline my-auto mr-auto" onsubmit="window.location='searchpage.php?search=' + search.value; return false;">
+						<input class="form-control mr-1" type="search" placeholder="szukaj" id="search" name="search" required>
+						<button class="btn btn-secondary" type="submit" value="send" id="searchButton">znajdź</button>
 					</form>
 
 					<ul class="navbar-nav">
@@ -62,62 +75,24 @@
 		<section class="homePage">
 			<?php include 'carousel.php';?>
 			<div class="break"></div>
-			<div class="container"> 
+        	<div class="container"> 
 				<div class="row">
-					<!-- Here photos-->					
-					<div class="col-sm-6 col-md-4">
-						<figure> 
-							<a href="productdetails.php"><img src="img/marynarka.jpg" alt="dress2"></a>
-						</figure>
-					</div>
-					<div class="col-sm-6 col-md-4">
-						<figure>
-							<a href="#"><img src="img/marynarka.jpg" alt="dress3"></a>
-						</figure>
-					</div>
-					<div class="col-sm-6 col-md-4">
-						<figure>
-							<a href="#"><img src="img/marynarka.jpg" alt="dress4"></a>
-						</figure>
-					</div>	
-					<div class="col-sm-6 col-md-4">
-						<figure>
-							<a href="#"><img src="img/marynarka.jpg" alt="dress2"></a>
-						</figure>
-					</div>
-					<div class="col-sm-6 col-md-4">
-						<figure>
-							<a href="#"><img src="img/marynarka.jpg" alt="dress3"></a>
-						</figure>
-					</div>
-					<div class="col-sm-6 col-md-4">
-						<figure>
-							<a href="#"><img src="img/marynarka.jpg" alt="dress4"></a>
-						</figure>
-					</div>
-					<div class="col-sm-6 col-md-4">
-						<figure>
-							<a href="#"><img src="img/marynarka.jpg" alt="dress2"></a>
-						</figure>
-					</div>
-					<div class="col-sm-6 col-md-4">
-						<figure>
-							<a href="#"><img src="img/marynarka.jpg" alt="dress3"></a>
-						</figure>
-					</div>
-					<div class="col-sm-6 col-md-4">
-						<figure>
-							<a href="#"><img src="img/marynarka.jpg" alt="dress4"></a>
-						</figure>
-					</div>				
+					<!-- Here photos-->		
+					<?php foreach ($results as $result){ ?>			
+						<div class="col-sm-6 col-md-4">
+							<figure> 
+								<a href="productdetails.php?id=<?php echo $result['id']; ?>"><img src="<?php echo $result['image']; ?>" alt="<?php echo $result['name']; ?>"></a>
+							</figure>
+						</div>
+					<?php }?>
 				</div>
 			</div>
-		</section>
+    	</section>
 	</main>		
-  </body>
-  <footer class="page-footer pt-4">
-	<?php include 'foot.php';?>
-  </footer>
+</body>
+	<footer class="page-footer pt-4">
+		<?php include 'foot.php';?>
+	</footer>
 </html>
 
 <?php include 'modals/loginform.php';?>

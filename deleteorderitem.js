@@ -29,7 +29,8 @@ $(document).ready(function(){
             success : function(data){
                 $("#orders").load(location.href+" #orders>*","");
                 $(".tr"+itemID).hide();
-                alert("POSZŁO");
+                $(".allGood").css('display', 'block');
+                setTimeout(function() {$(".allGood").css('display', 'none');}, 2000);
             }
         });					       
     }); 	

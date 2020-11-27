@@ -15,19 +15,19 @@ $(document).ready(function(){
             },
             cache: false,
             success: function(dataResult){
-                var msg = "";
                 var dataResult = JSON.parse(dataResult);
                 if(dataResult.statusCode==200){
+                    $(".allGood").css('display', 'block');
+                    setTimeout(function() {$(".allGood").css('display', 'none');}, 2000);
                     $("#deleteUser").prop('disabled', true);
-                    var msg = "Użytkownik został usunięty!";
-                    $("#messageDeleteUser").html(msg);
                     $("#usersData").load(location.href+" #usersData>*","");//odświeża okno z danymi
                     setTimeout(function() {$('#deleteUserModal').modal('hide');}, 1000);
                     setTimeout(function() {$("#deleteUser").prop('disabled', false);}, 1000);
                     setTimeout(function() {$("#messageDeleteUser").hide();}, 1000);
                 }
                 else if(dataResult.statusCode==201){
-                    alert("Error occured!");
+                    $(".somethingWentWrong").css('display', 'block');
+                    setTimeout(function() {$(".somethingWentWrong").css('display', 'none');}, 2000);
                 }		
             }
         });					
