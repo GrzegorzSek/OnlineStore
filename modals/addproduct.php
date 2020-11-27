@@ -43,15 +43,15 @@
                 </div>
                 <div class="form-group">
                     <label for="productPrice">Cena</label>
-                    <input type="text" class="form-control" name="productPrice" id="productPrice" required>
+                    <input type="text" class="form-control" name="productPrice" id="productPrice" pattern="[1-9]\d*|[1-9]\d*\.\d{2}" title="wprowadź dane w odpowiednim formacie np. 11 lub 11.00" required>
                 </div>
                 <div class="form-group">
                     <label for="productDescription">Opis</label>
-                    <input type="text" class="form-control" name="productDescription" id="productDescription" required>
+                    <textarea rows="4" cols="5" class="form-control" name="productDescription" id="productDescription" required></textarea>
                 </div>
                 <div class="form-group">
                     <label for="quantity">Liczba sztuk</label>
-                    <input type="text" class="form-control" name="productQuantity" id="productQuantity" required>
+                    <input type="number" class="form-control" name="productQuantity" id="productQuantity" min="1" required>
                 </div>
                 <div class="form-group">
                     <label for="productImage">Wybierz zdjęcie:</label><br>

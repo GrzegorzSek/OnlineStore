@@ -48,7 +48,7 @@ $(document).ready(function() {
             });
         }
         else{
-            alert('Uzupełnij wszystkie POLAPOLA!');
+            alert('Uzupełnij wszystkie pola!');
         }
     });
 });

@@ -124,7 +124,7 @@
 								<div class="form-row">
 									<div class="form-group col-6">
 										<label for="phonenumber">Numer telefonu:</label>
-										<input type="text" class="form-control" id="phonenumber" value="<?php echo $row['phonenumber']; ?>">
+										<input type="tel" class="form-control" id="phonenumber" value="<?php echo $row['phonenumber']; ?>" maxlength="9">
 									</div>
 									<div class="form-group col-6">
 										<label for="address">Adres:</label>
@@ -144,7 +144,7 @@
 								<div class="form-row">
 									<div class="form-group col-6">
 										<label for="zipCode">Kod pocztowy:</label>
-										<input type="text" class="form-control" id="zipCode" value="<?php echo $row['zipCode']; ?>">
+										<input type="text" class="form-control" id="zipCode" value="<?php echo $row['zipCode']; ?>" pattern="[0-9]{2}[-]{1}[0-9]{3}" title="Wprowadź kod pocztowy w formacie 00-000">
 									</div>
 									<div class="form-group col-6">
 										<label for="voivodeship">Województwo:</label>

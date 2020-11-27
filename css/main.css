@@ -81,6 +81,40 @@ nav
 	left: auto; 
 	right: 15px;
 }
+.allGood{
+	display: none;
+	z-index: 10000;
+	border-radius: 5px;
+	position: fixed;
+	left: 50%;
+    transform: translate(-50%, 0);
+	height: 50px;
+	width: 300px;
+	color: white;
+	background-color: rgb(64, 187, 64);
+	opacity: 0.9;
+}
+.allGood p{
+	padding-top: 15px;
+	text-align: center;
+}
+.somethingWentWrong{
+	display: none;
+	z-index: 10000;
+	border-radius: 5px;
+	position: fixed;
+	left: 50%;
+    transform: translate(-50%, 0);
+	height: 50px;
+	width: 300px;
+	color: white;
+	background-color: rgb(199, 53, 53);
+	opacity: 0.9;
+}
+.somethingWentWrong p{
+	padding-top: 15px;
+	text-align: center;
+}
 @media only screen and (max-width: 992px) {
 	.nav-item img{
 		margin-top: 10px;

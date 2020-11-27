@@ -32,7 +32,7 @@
                 </div>
                 <div class="form-group">
                     <label for="phonenumber">Numer telefonu</label>
-                    <input type="text" class="form-control" id="addPhonenumber" placeholder="numer telefonu" required>
+                    <input type="tel" class="form-control" id="addPhonenumber" placeholder="numer telefonu" maxlength="9" required>
                 </div>
                 <div class="form-group">
                     <label for="address">Adres</label>
@@ -49,7 +49,7 @@
                     </div>
                     <div class="form-group col-md-4">
                         <label for="zipCode">kod pocztowy</label>
-                        <input type="text" class="form-control" id="addZipCode" placeholder="00-000" required>
+                        <input type="text" class="form-control" id="addZipCode" placeholder="00-000" maxlength="6" pattern="[0-9]{2}[-]{1}[0-9]{3}" title="Wprowadź kod pocztowy w formacie 00-000" required>
                     </div>
                 </div>
                 <label for="voivodeship">Województwo</label>
