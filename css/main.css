@@ -228,6 +228,8 @@ nav
 img {
 	z-index:1;
 }
-.prodctNameUnderImage{
-	height: 50px;
+.noHover{
+	text-decoration: none !important;
+	color: white !important;
+	display: block;
 }

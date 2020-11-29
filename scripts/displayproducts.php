@@ -89,8 +89,8 @@ if(isset($_POST["action"]))
                     <h5 class="prodctNameUnderImage">'.$result['name'].'</h5>
                     <hr>
                     <h6 class="mb-3">'.$result['price'].' zł</h6>
-                    <button type="button" class="btn btn-primary mr-1 mb-2" data-role="addToCart" data-id="'.$result['id'].'" id="addToCart">Do koszyka</button>
-                    <button type="button" class="btn btn-secondary mr-1 mb-2"><a href="productdetails.php?id='.$result['id'].'">Szczegóły</a></button>
+                    <button type="button" class="addToCart btn btn-primary mr-2" data-role="addToCart" data-id="'.$result['id'].'" id="addToCart">Do koszyka</button>
+					<button type="button" class="btn btn-secondary"><a class="noHover" href="productdetails.php?id='.$result['id'].'">Szczegóły</a></button>
                 </div>
             </div>
 			';
