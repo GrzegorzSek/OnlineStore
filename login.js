@@ -3,6 +3,7 @@ $(document).ready(function(){
     $("#but_submit").click(function(){
         var email = $("#email").val().trim();
         var password = $("#password").val().trim();
+        //alert(password);
 
         if( email != "" && password != "" ){
             $.ajax({
@@ -20,6 +21,7 @@ $(document).ready(function(){
                     }else{
                         $(".somethingWentWrong").css('display', 'block');
                         setTimeout(function() {$(".somethingWentWrong").css('display', 'none');}, 2000);
+                        $("#error").html(response);
                     }
                 }
             });

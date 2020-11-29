@@ -11,6 +11,7 @@
         </button>
       </div>
       <div class="modal-body">
+        <div class="error" id="error"></div>
         <form class="form-login">
           <div class="form-row">
             <div class="form-group col-md-12">

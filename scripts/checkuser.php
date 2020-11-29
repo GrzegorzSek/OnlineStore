@@ -1,21 +1,22 @@
 <?php
     include "../config.php";
 
-    $email = mysqli_real_escape_string($link, $_POST['email']);
-    $password = mysqli_real_escape_string($link, $_POST['password']);
+    $email = $_POST['email'];
+    $password = md5($_POST['password']);
+    //echo $password.'<br>';
 
     if ($email != "" && $password != ""){
 
 
         //counting found rows
-        $sql_query = "SELECT count(*) as cntUser FROM user WHERE email='".$email."' and password='".$password."'";
+        $sql_query = "SELECT count(*) as cntUser FROM user WHERE `email`='".$email."' and `password`='".$password."'";
         $result = mysqli_query($link, $sql_query);
         $row = mysqli_fetch_array($result);
 
         $count = $row['cntUser'];
 
         //get user id
-        $sql_query_id = "SELECT * FROM user WHERE email='".$email."' and password='".$password."'";
+        $sql_query_id = "SELECT * FROM user WHERE `email`='".$email."' and `password`='".$password."'";
         $result_id = mysqli_query($link, $sql_query_id);
         $row_id = mysqli_fetch_array($result_id);
 
