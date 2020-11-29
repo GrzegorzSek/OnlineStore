@@ -1,6 +1,7 @@
 <?php
 include "config.php";
 
+$SESSION=$_SESSION['userid'];
 //sprawdza czy użytkownik jest zalogowany, jeśli nie to wraca na stronę index.php
 if(!isset($_SESSION['userid'])){
     header('Location: index.php');

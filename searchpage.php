@@ -5,7 +5,6 @@
 		header('Location: index.php');
 	}
 ?>
-
 <?php
     $search=$_GET["search"];
 ?>

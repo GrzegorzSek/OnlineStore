@@ -1,6 +1,13 @@
 <?php
 
-	include("config.php");
+    include("config.php");
+
+    $SESSION = $_SESSION['userid'];
+?>
+<?php
+    if(!isset($_SESSION['userid']) || $SESSION!='66'){
+        header('Location: index.php');
+    }
 ?>
 <!doctype html>
 <html lang="pl">

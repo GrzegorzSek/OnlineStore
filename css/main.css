@@ -233,3 +233,9 @@ img {
 	color: white !important;
 	display: block;
 }
+.adminPanelLink{
+	display: none;
+}
+.adminClass{
+	margin-top: 7px;
+}

@@ -1,6 +1,11 @@
 <?php
 	include("config.php");
 ?>
+<?php
+    if(!isset($_SESSION['userid'])){
+        header('Location: index.php');
+    }
+?>
 <!doctype html>
 <html lang="pl">
 	<head>

@@ -28,10 +28,10 @@
             $sql = "SELECT * FROM cart WHERE client_id='$SESSION'";
             $result = mysqli_query($link, $sql);
             if(mysqli_num_rows($result) <= 0){
-                $sql = "INSERT INTO cart(client_id) VALUES('$SESSION')";
+                $sql = "INSERT INTO cart(client_id) VALUES('$SESSION')"; //tworzy wózek jeśli użytkownik go nie posiada
                 mysqli_query($link, $sql);
             }
-            echo 1;
+                echo 1;
         }else{
             echo 0;
         }
