@@ -2,6 +2,7 @@
 	include("config.php");
 ?>
 <?php
+    $SESSION=$_SESSION['userid'];
     if(!isset($_SESSION['userid'])){
         header('Location: index.php');
     }
@@ -56,7 +57,8 @@
                 <div class="row justify-content-center">
                     <div class="col-9 mb-5">
                     <p class="text-justify">
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque dolor turpis, cursus at metus a, luctus iaculis ante. Integer rutrum orci non turpis rhoncus condimentum. Nulla eget purus augue. Etiam tellus lorem, placerat in quam nec, fermentum posuere risus. Duis consequat diam eget mi ultrices volutpat. Maecenas nec imperdiet justo, ac rutrum felis. Nunc tincidunt magna ac nisl vehicula egestas. Fusce faucibus euismod ante, ac iaculis felis venenatis a. Aenean bibendum massa pellentesque sapien convallis, a porttitor odio viverra. Aliquam imperdiet ex purus, id placerat tortor vestibulum quis. Sed tempus ultricies ultricies. Donec leo lorem, volutpat ac est vitae, tristique viverra sem. Maecenas tempor dapibus ex nec maximus.
+                        Tutaj możesz napisać wiadomość do naszego sklepu. Zadać pytanie dotyczące jakiejść oferty, dostępności produktu lub jego ceny.
+                        Możesz również zadać pytanie odnośnie złożonego przez siebie zamówienia lub też złożyć reklamację na dany towar.
                     </p>
                     </div>
                     <div class="col-sm-6">
