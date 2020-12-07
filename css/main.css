@@ -337,3 +337,8 @@ img {
 		margin-top: 4px;
 	}
 }
+@media only screen and (max-width: 1235px) {
+	.deleteUserBut{
+		margin-top: 2px;
+	}
+}

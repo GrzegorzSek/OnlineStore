@@ -144,7 +144,7 @@
                                         <td data-target="voivodeship"><?php echo $row['voivodeship'] ?></td>
                                         <td>
                                             <button class="btn btn-primary btn-sm" type="button" data-role="update" data-id="<?php echo $row['id']; ?>" data-toggle="modal" data-target="#editUserModal" id="editUser">Edytuj</button>
-                                            <button class="btn btn-danger btn-sm" type="button" data-role="delete" data-id="<?php echo $row['id']; ?>" data-toggle="modal" data-target="#deleteUserModal">Usuń</button>
+                                            <button class="deleteUserBut btn btn-danger btn-sm" type="button" data-role="delete" data-id="<?php echo $row['id']; ?>" data-toggle="modal" data-target="#deleteUserModal">Usuń</button>
                                         </td>
                                     </tr>
                                     <?php
