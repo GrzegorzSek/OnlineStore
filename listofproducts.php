@@ -104,9 +104,11 @@ $subcategory=$_GET["subcategory"];
 								<option value="a_to_z">A-Z</option>
 								<option value="z_to_a">Z-A</option>
 							</select>
-							<button type="button" name="filter" class="btn btn-primary float-right ml-1" id="filter">Filtruj</button>
 							</div>
 						</div>
+					</div>
+					<div class="col-lg-1">
+						<button type="button" name="filter" class="btn btn-primary" id="filter">Filtruj</button>
 					</div>
 				</div>
 			</div>
