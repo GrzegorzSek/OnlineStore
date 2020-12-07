@@ -34,7 +34,8 @@ if(!isset($_SESSION['userid'])){
                 <!-- Here photos-->		
                 <?php foreach ($results as $result){ ?>			
                     <div class="col-sm-6 col-md-4">
-                        <figure> 
+                        <figure>
+                            <span class="shadow h3">Szczegóły</span> 
                             <a href="productdetails.php?id=<?php echo $result['id']; ?>"><img src="<?php echo $result['image']; ?>" alt="<?php echo $result['name']; ?>"></a>
                         </figure>
                     </div>

@@ -242,3 +242,81 @@ img {
 	font-family: sans;
 	font-weight: bold;
 }
+.shadow {
+	position: absolute;
+	top: 0;
+	color:rgb(255, 255, 255);
+	background-color:rgba(54, 54, 54, 0.8);
+	width: 350px;
+	height: 466.66px;
+	line-height: 466.66px;
+	text-align: center;
+	z-index: 10;
+	opacity: 0;
+	-webkit-transition: all 0.5s ease;
+	-moz-transition: all 0.5s ease;
+	-o-transition: all 0.5s ease;
+	transition: all 0.5s ease;
+}
+@media only screen and (max-width: 1200px) {
+	.shadow {
+		position: absolute;
+		top: 0;
+		color:rgb(255, 255, 255);
+		background-color:rgba(54, 54, 54, 0.8);
+		width: 289.98px;
+		height: 386.64px;
+		line-height: 386.64px;
+		text-align: center;
+		z-index: 10;
+		opacity: 0;
+		-webkit-transition: all 0.5s ease;
+		-moz-transition: all 0.5s ease;
+		-o-transition: all 0.5s ease;
+		transition: all 0.5s ease;
+	}
+}
+@media only screen and (max-width: 991px) {
+	.shadow {
+		position: absolute;
+		top: 0;
+		color:rgb(255, 255, 255);
+		background-color:rgba(54, 54, 54, 0.8);
+		width: 210px;
+		height: 280px;
+		line-height: 280px;
+		text-align: center;
+		z-index: 10;
+		opacity: 0;
+		-webkit-transition: all 0.5s ease;
+		-moz-transition: all 0.5s ease;
+		-o-transition: all 0.5s ease;
+		transition: all 0.5s ease;
+	}
+}
+@media only screen and (max-width: 767px) {
+	.shadow {
+		position: absolute;
+		top: 0;
+		color:rgb(255, 255, 255);
+		background-color:rgba(54, 54, 54, 0.8);
+		width: 240px;
+		height: 320px;
+		line-height: 320px;
+		text-align: center;
+		z-index: 10;
+		opacity: 0;
+		-webkit-transition: all 0.5s ease;
+		-moz-transition: all 0.5s ease;
+		-o-transition: all 0.5s ease;
+		transition: all 0.5s ease;
+	}
+}
+@media only screen and (max-width: 575px) {
+	.shadow {
+		display: none;
+	}
+}
+.shadow:hover {
+	opacity:1;
+}
