@@ -3,22 +3,31 @@ $(document).ready(function(){
     $("#but_submit").click(function(){
         var email = $("#email").val().trim();
         var password = $("#password").val().trim();
+        //alert(password);
 
         if( email != "" && password != "" ){
             $.ajax({
                 url:'scripts/checkuser.php',
                 type:'post',
-                data:{email:email, password:password},
+                data:{
+                    email: email, 
+                    password: password
+                },
                 success:function(response){
-                    var msg = "";
                     if(response == 1){
-                        window.location = "dashboard.php";
+                        $(".allGood").css('display', 'block');
+                        setTimeout(function() {window.location = "dashboard.php";}, 500);
+                        setTimeout(function() {$(".allGood").css('display', 'none');}, 500);
                     }else{
-                        msg = "Błędny email lub hasło!";
+                        $(".somethingWentWrong").css('display', 'block');
+                        setTimeout(function() {$(".somethingWentWrong").css('display', 'none');}, 2000);
+                        $("#error").html(response);
                     }
-                    $("#message").html(msg);
                 }
             });
+        }else{
+            $(".almostGood").css('display', 'block');
+            setTimeout(function() {$(".almostGood").css('display', 'none');}, 2000);
         }
     });
 

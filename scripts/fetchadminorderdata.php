@@ -23,11 +23,11 @@
                     </div>
                     <div class="form-group col-md-4">
                         <label for="amountToPay">Kwota</label>
-                        <input type="text" class="form-control" id="orderAmountToPay" value="'.$row['amounttopay'].'" required>
+                        <input type="text" class="form-control" id="orderAmountToPay" value="'.$row['amounttopay'].'" pattern="[1-9]\d*|[1-9]\d*\.\d{2}" title="wprowadź dane w odpowiednim formacie np. 11 lub 11.00" required>
                     </div>
                     <div class="form-group col-md-4">
                         <label for="phoneNumber">Numer telefonu</label>
-                        <input type="text" class="form-control" id="orderPhoneNumber" value="'.$row['phonenumber'].'" required>
+                        <input type="tel" class="form-control" id="orderPhoneNumber" value="'.$row['phonenumber'].'" maxlength="9" required>
                     </div>
                 </div>
                 <div class="form-row">
@@ -47,7 +47,7 @@
                     </div>
                     <div class="form-group col-md-4">
                         <label for="zipCode">kod pocztowy</label>
-                        <input type="text" class="form-control" id="orderZipCode" value="'.$row['zipCode'].'" required>
+                        <input type="text" class="form-control" id="orderZipCode" value="'.$row['zipCode'].'" pattern="[0-9]{2}[-]{1}[0-9]{3}" title="Wprowadź kod pocztowy w formacie 00-000" required>
                     </div>
                 </div>
                 <div class="form-row">

@@ -29,26 +29,27 @@ $(document).ready(function() {
                 },
                 cache: false,
                 success: function(dataResult){
-                    var msg = "";
                     var dataResult = JSON.parse(dataResult);
                     if(dataResult.statusCode==200){
+                        $(".allGood").css('display', 'block');
+                        setTimeout(function() {$(".allGood").css('display', 'none');}, 1000);
                         $("#butsave").prop('disabled', true);
-                        var msg = "Użytkownik został dodany!";
-                        $("#messageAddUser").html(msg);
                         $("#usersData").load(location.href+" #usersData>*","");
                         setTimeout(function() {$('#addUserModal').modal('hide');}, 1000);
                         setTimeout(function() {$("#butsave").prop('disabled', false);}, 1000);  
                         setTimeout(function() {$("#messageAddUser").hide();}, 1000);          
                     }
                     else if(dataResult.statusCode==201){
-                        alert("Error occured!");
+                        $(".somethingWentWrong").css('display', 'block');
+                        setTimeout(function() {$(".somethingWentWrong").css('display', 'none');}, 2000);
                     }
                     
                 }
             });
         }
         else{
-            alert('Uzupełnij wszystkie POLAPOLA!');
+            $(".almostGood").css('display', 'block');
+            setTimeout(function() {$(".almostGood").css('display', 'none');}, 2000);
         }
     });
 });

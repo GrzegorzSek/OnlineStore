@@ -2,6 +2,9 @@
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
+        <div class="allGood"><p>Użytkownik został dodany!</p></div>
+        <div class="somethingWentWrong"><p>Coś poszło nie tak!</p></div>
+        <div class="almostGood"><p>Uzupełnij wszystkie pola!</p></div>
         <h5 class="modal-title">Nowy użytkownik</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
@@ -10,7 +13,6 @@
       <div class="modal-body">
             <form class="needs-validation" novalidate>
                 <div class="form-row">
-                    <div class="form-group col-md-12" id="messageAddUser"></div>
                     <div class="form-group col-md-6">
                         <label for="name">Imię</label>
                         <input type="text" class="form-control" id="addName" placeholder="Imię" required>           
@@ -32,7 +34,7 @@
                 </div>
                 <div class="form-group">
                     <label for="phonenumber">Numer telefonu</label>
-                    <input type="text" class="form-control" id="addPhonenumber" placeholder="numer telefonu" required>
+                    <input type="tel" class="form-control" id="addPhonenumber" placeholder="numer telefonu" maxlength="9" required>
                 </div>
                 <div class="form-group">
                     <label for="address">Adres</label>
@@ -49,7 +51,7 @@
                     </div>
                     <div class="form-group col-md-4">
                         <label for="zipCode">kod pocztowy</label>
-                        <input type="text" class="form-control" id="addZipCode" placeholder="00-000" required>
+                        <input type="text" class="form-control" id="addZipCode" placeholder="00-000" maxlength="6" pattern="[0-9]{2}[-]{1}[0-9]{3}" title="Wprowadź kod pocztowy w formacie 00-000" required>
                     </div>
                 </div>
                 <label for="voivodeship">Województwo</label>

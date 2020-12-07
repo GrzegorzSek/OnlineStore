@@ -42,6 +42,9 @@
         </form>
 
         <ul class="navbar-nav">
+            <li class="nav-item">
+                <div class="adminClass"><?php if($SESSION=='66'){echo '<a href="adminpanel.php">Admin</a>';} ?></div>
+            </li>
             <li class="nav-item dropdown">
                 <img src="favicons/myAccountIcon.png" type="button" class="dropdown-toggle" data-offset="10,20" data-toggle="dropdown" alt="myAccountIcon">
                 <div class="myProfile dropdown-menu">

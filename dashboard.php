@@ -1,14 +1,15 @@
 <?php
 include "config.php";
 
-// Check user login or not
+$SESSION=$_SESSION['userid'];
+//sprawdza czy użytkownik jest zalogowany, jeśli nie to wraca na stronę index.php
 if(!isset($_SESSION['userid'])){
     header('Location: index.php');
 }
 
 ?>
 <?php
-    $query = "SELECT * FROM product LIMIT 6";
+    $query = "SELECT * FROM product ORDER BY RAND() LIMIT 6";
     $rows = mysqli_query($link, $query);
         $results = array();
     while ($result =  mysqli_fetch_array($rows)){
@@ -33,8 +34,11 @@ if(!isset($_SESSION['userid'])){
                 <!-- Here photos-->		
                 <?php foreach ($results as $result){ ?>			
                     <div class="col-sm-6 col-md-4">
-                        <figure> 
-                            <a href="productdetails.php?id=<?php echo $result['id']; ?>"><img src="<?php echo $result['image']; ?>" alt="<?php echo $result['name']; ?>"></a>
+                        <figure>
+                            <a href="productdetails.php?id=<?php echo $result['id']; ?>">
+                                <span class="shadow h3">Szczegóły</span> 
+                                <img src="<?php echo $result['image']; ?>" alt="<?php echo $result['name']; ?>">
+                            </a>
                         </figure>
                     </div>
                 <?php }?>

@@ -1,6 +1,13 @@
 <?php
 
-	include("config.php");
+    include("config.php");
+
+    $SESSION = $_SESSION['userid'];
+?>
+<?php
+    if(!isset($_SESSION['userid']) || $SESSION!='66'){
+        header('Location: index.php');
+    }
 ?>
 <!doctype html>
 <html lang="pl">
@@ -9,12 +16,18 @@
         <script>
             //SKRYPT DO SZUKANIA
             $(document).ready(function(){
-            $("#searchInput").on("keyup", function() {
-                var value = $(this).val().toLowerCase();
-                $("#adminTable tr").filter(function() {
-                $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+                $("#searchInput").on("keyup", function() {
+                    var value = $(this).val().toLowerCase();
+                    $("#adminTable tr").filter(function() {
+                        $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+                    });
+                    $("#orderTable tr").filter(function() {
+                        $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+                    });
+                    $("#productTable tr").filter(function() {
+                        $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+                    });
                 });
-            });
             });
         </script>
 
@@ -32,12 +45,12 @@
                 $("#productCategory").change(function() {
                     var val = $(this).val();
                     if (val == "1") {
-                        $("#productSubcategory").html("<option value='1'>Spodnie</option><option value='2'>Koszulki</option><option value='3'>Bluzy</option>");
+                        $("#productSubcategory").html("<option>Wybierz podkategorię</option><option value='1'>Spodnie</option><option value='2'>Koszulki</option><option value='3'>Bluzy</option>");
                     } else if (val == "2") {
-                        $("#productSubcategory").html("<option value='4'>Botki</option><option value='5'>Na obcasie</option><option value='6'>Sportowe</option>");
+                        $("#productSubcategory").html("<option>Wybierz podkategorię</option><option value='4'>Botki</option><option value='5'>Na obcasie</option><option value='6'>Sportowe</option>");
 
                     } else if (val == "3") {
-                        $("#productSubcategory").html("<option value='7'>Torby</option><option value='8'>Plecaki</option><option value='9'>Biżuteria</option>");
+                        $("#productSubcategory").html("<option>Wybierz podkategorię</option><option value='7'>Torby</option><option value='8'>Plecaki</option><option value='9'>Biżuteria</option>");
 
                     }
                 });
@@ -49,6 +62,8 @@
                     $('#addProductForm input[type="text"]').val('');
                     $('#addProductForm input[type="file"]').val('');
                     $('#addProductForm input[type="number"]').val('');
+                    $('#productCategory').prop('selectedIndex',0);
+                    $('#productSubcategory').prop('selectedIndex',0);   
                 });
             });
         </script>
@@ -201,7 +216,7 @@
                                 product.subcategory_id, product.quantity, product.brand, product.size, product.image, category.name as cat_name,
                                 category.id as cat_id, subcategory.id as subcat_id, subcategory.name as subcat_name 
                                 FROM product INNER JOIN subcategory ON product.subcategory_id=subcategory.id
-                                INNER JOIN category ON category.id=subcategory.category_id";
+                                INNER JOIN category ON category.id=subcategory.category_id ORDER BY product.id DESC";
 
                                 $result = mysqli_query($link, $sql);
                             ?>

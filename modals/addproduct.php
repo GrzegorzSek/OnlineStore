@@ -2,6 +2,8 @@
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
+        <div class="allGood"><p>Produkt został dodany!</p></div>
+        <div class="somethingWentWrong"><p>Coś poszło nie tak!</p></div>
         <h5 class="modal-title">Dodawanie produktu</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
@@ -18,40 +20,46 @@
                     <label for="brand">Marka</label>
                     <input type="text" class="form-control" name="productBrand" id="productBrand" required>
                 </div>
-                <div class="form-group">
-                    <label for="CategoryLabel">Wybierz kategorię:</label>
-                    <select id="productCategory" name="productCategory" class="form-control" required>
-                        <option>Wybierz kategorię</option>
-                        <option value="1">Ubrania</option>
-                        <option value="2">Buty</option>
-                        <option value="3">Akcesoria</option>
-                    </select>
+                <div class="form-row">
+                    <div class="form-group col-md-6">
+                        <label for="CategoryLabel">Wybierz kategorię:</label>
+                        <select id="productCategory" name="productCategory" class="form-control" required>
+                            <option>Wybierz kategorię</option>
+                            <option value="1">Ubrania</option>
+                            <option value="2">Buty</option>
+                            <option value="3">Akcesoria</option>
+                        </select>
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label for="subCategoryLabel">Wybierz podkategorię:</label>
+                        <select id="productSubcategory" name="productSubcategory" class="form-control" required>
+                            <option>Wybierz podkategorię</option>
+                        </select>
+                    </div>
+                </div>   
+                <div class="form-row">       
+                    <div class="form-group col-md-6">
+                        <label for="productSize">Rozmiar</label>
+                        <input type="text" class="form-control" name="productSize" id="productSize" required>
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label for="productColour">Kolor</label>
+                        <input type="text" class="form-control" name="productColour" id="productColour" required>
+                    </div>
                 </div>
-                <div class="form-group">
-                    <label for="subCategoryLabel">Wybierz podkategorię:</label>
-                    <select id="productSubcategory" name="productSubcategory" class="form-control" required>
-                        <option>Wybierz podkategorię</option>
-                    </select>
-                </div>
-                <div class="form-group">
-                    <label for="productSize">Rozmiar</label>
-                    <input type="text" class="form-control" name="productSize" id="productSize" required>
-                </div>
-                <div class="form-group">
-                    <label for="productColour">Kolor</label>
-                    <input type="text" class="form-control" name="productColour" id="productColour" required>
-                </div>
-                <div class="form-group">
-                    <label for="productPrice">Cena</label>
-                    <input type="text" class="form-control" name="productPrice" id="productPrice" required>
+                <div class="form-row"> 
+                    <div class="form-group col-md-6">
+                        <label for="productPrice">Cena</label>
+                        <input type="text" class="form-control" name="productPrice" id="productPrice" pattern="[1-9]\d*|[1-9]\d*\.\d{2}" title="wprowadź dane w odpowiednim formacie np. 11 lub 11.00" required>
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label for="quantity">Liczba sztuk</label>
+                        <input type="number" class="form-control" name="productQuantity" id="productQuantity" min="1" required>
+                    </div>
                 </div>
                 <div class="form-group">
                     <label for="productDescription">Opis</label>
-                    <input type="text" class="form-control" name="productDescription" id="productDescription" required>
-                </div>
-                <div class="form-group">
-                    <label for="quantity">Liczba sztuk</label>
-                    <input type="text" class="form-control" name="productQuantity" id="productQuantity" required>
+                    <textarea rows="4" cols="5" class="form-control" name="productDescription" id="productDescription" required></textarea>
                 </div>
                 <div class="form-group">
                     <label for="productImage">Wybierz zdjęcie:</label><br>

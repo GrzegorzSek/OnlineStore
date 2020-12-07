@@ -8,22 +8,22 @@
 		<div class="carousel-item active">
 			<img class="d-block w-75" src="img/landscape1.jpg" alt="First slide">
 			<div class="carousel-caption d-none d-md-block">
-				<h5>DUZY tekst</h5>
-				<p>mniejszy tekst</p>
+				<h1 class="karuzela">Nowa kolekcja obuwia sportowego!</h1>
+				<p class="h3 karuzela">Sprawdź teraz!</p>
 			</div>
 		</div>
 		<div class="carousel-item">
 			<img class="d-block w-75" src="img/landscape2.jpg" alt="Second slide">
 			<div class="carousel-caption d-none d-md-block">
-				<h5>Większy tekst2</h5>
-				<p>mniejszy tekst2</p>
+				<h1 class="karuzela">Szukasz eleganckich spodni?</h1>
+				<p class="h3 karuzela">Sprawdź naszą ofertę!</p>
 		    </div>
 	    </div>
 	    <div class="carousel-item">
 		    <img class="d-block w-75" src="img/landscape3.jpg" alt="Third slide">
 		    <div class="carousel-caption d-none d-md-block">
-			    <h5>Większy tekst3</h5>
-			    <p>mniejszy tekst3</p>
+			    <h5></h5>
+			    <p></p>
 		    </div>
 		</div>
 	</div>

@@ -29,14 +29,13 @@ $(document).ready(function(){
         var name = $('#name').val();
         var surname = $('#surname').val();
         var email = $('#email').val();
-        var password = $('#password').val();
         var phonenumber = $('#phonenumber').val();
         var address = $('#address').val();
         var address2 = $('#address2').val();
         var city = $('#city').val();
         var zipCode = $('#zipCode').val();
         var voivodeship = $('#voivodeship').val();
-        if(name!="" && surname!="" && email!="" && password!="" && phonenumber!="" && address!="" && address2!="" && city!="" && zipCode!="" && voivodeship!=""){
+        if(name!="" && surname!="" && email!="" && phonenumber!="" && address!="" && address2!="" && city!="" && zipCode!="" && voivodeship!=""){
             $.ajax({
                 url: "scripts/edituser.php",
                 type: "POST",
@@ -45,7 +44,6 @@ $(document).ready(function(){
                     name: name,
                     surname: surname,
                     email: email,
-                    password: password,
                     phonenumber: phonenumber,
                     address: address,
                     address2: address2,
@@ -55,26 +53,26 @@ $(document).ready(function(){
                 },
                 cache: false,
                 success: function(dataResult){
-                    var msg = "";
                     var dataResult = JSON.parse(dataResult);
                     if(dataResult.statusCode==200){
+                        $(".allGood").css('display', 'block');
+                        setTimeout(function() {$(".allGood").css('display', 'none');}, 2000);
                         $("#update").prop('disabled', true);
-                        var msg = "Dane użytkownika zostały zaktualizowane!";
-                        $("#messageEditUser").html(msg);
                         $("#usersData").load(location.href+" #usersData>*","");
-                        setTimeout(function() {$('#editUserModal').modal('hide');}, 1000);
-                        setTimeout(function() {$("#update").prop('disabled', false);}, 1000);
-                        setTimeout(function() {$("#messageEditUser").hide();}, 1000); 
+                        setTimeout(function() {$('#editUserModal').modal('hide');}, 2000);
+                        setTimeout(function() {$("#update").prop('disabled', false);}, 2000);
+                        setTimeout(function() {$("#messageEditUser").hide();}, 2000); 
                     }
                     else if(dataResult.statusCode==201){
-                    alert("Error occured!");
+                        $(".somethingWentWrong").css('display', 'block');
+                        setTimeout(function() {$(".somethingWentWrong").css('display', 'none');}, 2000);                    
                     }
-                    
                 }
             });
         }
         else{
-            alert('Uzupełnij wszystkie edit!');
+            $(".almostGood").css('display', 'block');
+            setTimeout(function() {$(".almostGood").css('display', 'none');}, 2000);
         }
     });
 });

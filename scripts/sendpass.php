@@ -6,7 +6,7 @@
     $sql_query_id = "SELECT * FROM user WHERE email='".$email."'";
     $result_id = mysqli_query($link, $sql_query_id);
     $row_id = mysqli_fetch_array($result_id);
-    $password = $row_id['password'];
+    $password = md5($row_id['password']);
 
     $subject="Przypomnienie hasla ze strony OnlineStore";
     $mailHeaders = "Przypomnienie hasla";

@@ -24,25 +24,29 @@
                     <label for="brand">Marka</label>
                     <input type="text" class="form-control" name="productBrand" id="productBrand" value="'.$row['brand'].'" required>
                 </div>
-                <div class="form-group">
-                    <label for="productSize">Rozmiar</label>
-                    <input type="text" class="form-control" name="productSize" id="productSize" value="'.$row['size'].'" required>
+                <div class="form-row">
+                    <div class="form-group col-md-6">
+                        <label for="productSize">Rozmiar</label>
+                        <input type="text" class="form-control" name="productSize" id="productSize" value="'.$row['size'].'" required>
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label for="productColour">Kolor</label>
+                        <input type="text" class="form-control" name="productColour" id="productColour" value="'.$row['colour'].'" required>
+                    </div>
                 </div>
-                <div class="form-group">
-                    <label for="productColour">Kolor</label>
-                    <input type="text" class="form-control" name="productColour" id="productColour" value="'.$row['colour'].'" required>
-                </div>
-                <div class="form-group">
-                    <label for="productPrice">Cena</label>
-                    <input type="text" class="form-control" name="productPrice" id="productPrice" value="'.$row['price'].'" required>
+                <div class="form-row">
+                    <div class="form-group col-md-6">
+                        <label for="productPrice">Cena</label>
+                        <input type="text" class="form-control" name="productPrice" id="productPrice" value="'.$row['price'].'" pattern="[1-9]\d*|[1-9]\d*\.\d{2}" title="wprowadź dane w odpowiednim formacie np. 11 lub 11.00" required>
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label for="quantity">Liczba sztuk</label>
+                        <input type="number" class="form-control" name="productQuantity" id="productQuantity" value="'.$row['quantity'].'" min="1" required>
+                    </div>
                 </div>
                 <div class="form-group">
                     <label for="productDescription">Opis</label>
-                    <input type="text" class="form-control" name="productDescription" id="productDescription" value="'.$row['description'].'" required>
-                </div>
-                <div class="form-group">
-                    <label for="quantity">Liczba sztuk</label>
-                    <input type="text" class="form-control" name="productQuantity" id="productQuantity" value="'.$row['quantity'].'" required>
+                    <textarea rows="4" cols="5" class="form-control" name="productDescription" id="productDescription" value="'.$row['description'].'" required></textarea>
                 </div>
                 <div class="form-group">
                     <label for="productImage">Wybierz zdjęcie:</label><br>
@@ -50,7 +54,8 @@
                     <input type="hidden" id="productID" name="productID" value="'.$row['id'].'">
                 </div>
                 <div class="form-group">
-                    <button type="submit" class="btn btn-success" id="updateProductButton">Submit</button>
+                    <button type="submit" class="btn btn-success float-right" id="updateProductButton">Zaktualizuj</button>
+                    <button type="button" class="btn btn-secondary float-right mr-1" data-dismiss="modal">Zamknij</button>
                 </div>
             ';
             

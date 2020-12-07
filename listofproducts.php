@@ -1,4 +1,12 @@
-<?php include 'config.php';?>
+<?php 
+	include 'config.php';
+
+	$SESSION=$_SESSION['userid'];
+	//sprawdza czy użytkownik jest zalogowany, jeśli nie to wraca na stronę index.php
+	if(!isset($_SESSION['userid'])){
+		header('Location: index.php');
+	}
+?>
 <?php
 $category=$_GET["category"];
 $subcategory=$_GET["subcategory"];
@@ -39,6 +47,9 @@ $subcategory=$_GET["subcategory"];
 					return filter;
 				}
 				$("#filter").click(function(){
+					filter_data();
+				});
+				$("#filter2").click(function(){
 					filter_data();
 				});
 			});
@@ -93,6 +104,7 @@ $subcategory=$_GET["subcategory"];
 								<option value="a_to_z">A-Z</option>
 								<option value="z_to_a">Z-A</option>
 							</select>
+							<button type="button" name="filter" class="btn btn-primary float-right ml-1" id="filter">Filtruj</button>
 							</div>
 						</div>
 					</div>
@@ -102,18 +114,6 @@ $subcategory=$_GET["subcategory"];
 			<div class="container">
 				<div class="row">
 					<div class="col-lg-2 bg-light border pt-2 px-1">
-						<!-- <h5>Podkategorie</h5>
-
-						<div class="text-left text-dark small text-uppercase mb-5">
-							<p class="mb-4">wróć do <a href="#!" class="card-link-secondary"><strong>ubrania</strong></a></p>
-
-							<p class="mb-3"><a href="#!" class="card-link-secondary link-dark">kat1</a></p>
-							<p class="mb-3"><a href="#!" class="card-link-secondary link-dark">kat1</a></p>
-							<p class="mb-3"><a href="#!" class="card-link-secondary">kat1</a></p>
-							<p class="mb-3"><a href="#!" class="card-link-secondary">kat1</a></p>
-							<p class="mb-3"><a href="#!" class="card-link-secondary">kat1</a></p>
-							<p class="mb-3"><a href="#!" class="card-link-secondary">kat1</a></p>
-						</div> -->
 						<h6>Cena</h6>
 						<div class="list-group d-flex align-items-center mt-4 pb-1">
 							<div class="md-form md-outline my-0">
@@ -130,7 +130,7 @@ $subcategory=$_GET["subcategory"];
 							<h4>Marka</h4>
 							<div>
 								<?php
-									$query = "SELECT DISTINCT(brand) FROM product ORDER BY brand ASC";
+									$query = "SELECT DISTINCT(brand) FROM product WHERE category_id='".$category."' AND subcategory_id='".$subcategory."' ORDER BY brand ASC";
 									$rows = mysqli_query($link, $query);
 										$results = array();
 									while ($result =  mysqli_fetch_array($rows)){
@@ -150,7 +150,7 @@ $subcategory=$_GET["subcategory"];
 							<h4>Rozmiar</h4>
 							<div>
 								<?php
-									$query = "SELECT DISTINCT(size) FROM product ORDER BY size ASC";
+									$query = "SELECT DISTINCT(size) FROM product WHERE category_id='".$category."' AND subcategory_id='".$subcategory."' ORDER BY size ASC";
 									$rows = mysqli_query($link, $query);
 										$results = array();
 									while ($result =  mysqli_fetch_array($rows)){
@@ -166,8 +166,8 @@ $subcategory=$_GET["subcategory"];
 								?>
 							</div>
 						</div>
-						<div class="filterButton">
-							<button type="button" name="filter" class="btn btn-primary my-2 float-right" id="filter">Filtruj</button>
+						<div class="filterButton2">
+							<button type="button" name="filter2" class="btn btn-primary my-2 float-right" id="filter2">Filtruj</button>
 						</div>
 					</div>
 					<!-- KONIEC SORTOWANIA-->
