@@ -113,51 +113,51 @@
 							<form>
 								<div class="form-row">
 									<div class="form-group col-md-12" id="messageUpdateUser"></div>
-									<div class="form-group col-6">
+									<div class="form-group col-md-6">
 										<label for="name">Imię:</label>
 										<input type="text" class="form-control" id="name" value="<?php echo $row['name']; ?>">
 									</div>
-									<div class="form-group col-6">
+									<div class="form-group col-md-6">
 										<label for="surname">Nazwisko:</label>
 										<input type="text" class="form-control" id="surname" value="<?php echo $row['surname']; ?>">
 									</div>
 								</div>
 								<div class="form-row">
-									<div class="form-group col-6">
+									<div class="form-group col-md-6">
 										<label for="email">Email:</label>
 										<input type="email" class="form-control" id="email" value="<?php echo $row['email']; ?>">
 									</div>
-									<div class="form-group col-6">
+									<div class="form-group col-md-6">
 										<label for="password">Hasło:</label>
 										<input type="password" class="form-control" id="password" value="<?php echo $row['password']; ?>">
 									</div>
 								</div>	
 								<div class="form-row">
-									<div class="form-group col-6">
+									<div class="form-group col-md-4">
 										<label for="phonenumber">Numer telefonu:</label>
 										<input type="tel" class="form-control" id="phonenumber" value="<?php echo $row['phonenumber']; ?>" maxlength="9">
 									</div>
-									<div class="form-group col-6">
+									<div class="form-group col-md-8">
 										<label for="address">Adres:</label>
 										<input type="text" class="form-control" id="address" value="<?php echo $row['address']; ?>">
 									</div>
 								</div>
 								<div class="form-row">
-									<div class="form-group col-6">
+									<div class="form-group col-md-6">
 										<label for="address2">Adres 2:</label>
 										<input type="text" class="form-control" id="address2" value="<?php echo $row['address2']; ?>">
 									</div>
-									<div class="form-group col-6">
+									<div class="form-group col-md-6">
 										<label for="city">Miasto:</label>
 										<input type="text" class="form-control" id="city" value="<?php echo $row['city']; ?>">
 									</div>
 								</div>
 								<div class="form-row">
-									<div class="form-group col-6">
+									<div class="form-group col-md-3">
 										<label for="zipCode">Kod pocztowy:</label>
 										<input type="text" class="form-control" id="zipCode" value="<?php echo $row['zipCode']; ?>" pattern="[0-9]{2}[-]{1}[0-9]{3}" title="Wprowadź kod pocztowy w formacie 00-000">
 									</div>
-									<div class="form-group col-6">
+									<div class="form-group col-md-9">
 										<label for="voivodeship">Województwo:</label>
 										<input type="text" class="form-control" id="voivodeship" value="<?php echo $row['voivodeship']; ?>">
 									</div>
