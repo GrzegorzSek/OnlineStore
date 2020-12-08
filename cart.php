@@ -64,7 +64,7 @@
                         success: function(dataResult){
                             var dataResult = JSON.parse(dataResult);
                             if(dataResult.statusCode==200){
-                                $(".allGood").css('display', 'block');
+                                $(".allGoodCart").css('display', 'block');
                                 setTimeout(function() {$(".allGoodCart").css('display', 'none');}, 2000);
                                 $("#deleteItem").prop('disabled', true);
                                 $("#cartItems").load(location.href+" #cartItems>*","");//odświeża okno z danymi

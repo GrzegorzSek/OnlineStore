@@ -72,10 +72,12 @@ $subcategory=$_GET["subcategory"];
                         success: function(dataResult){
                             var dataResult = JSON.parse(dataResult);
                             if(dataResult.statusCode==200){
-								alert("Produkt został dodany do koszyka!");
+                                $(".allGoodCart").css('display', 'block');
+                                setTimeout(function() {$(".allGoodCart").css('display', 'none');}, 2000);
                             }
                             else if(dataResult.statusCode==201){
-								alert("Error occured!");
+                                $(".somethingWentWrongCart").css('display', 'block');
+                                setTimeout(function() {$(".somethingWentWrong").css('display', 'none');}, 2000);
                             }		
                         }
                     });     
@@ -89,6 +91,8 @@ $subcategory=$_GET["subcategory"];
 	</header>
 	<main>
 		<section class="homePage">
+			<div class="allGoodCart"><p>Przedmiot został dodany do koszyka!</p></div>
+			<div class="somethingWentWrongCart"><p>Coś poszło nie tak!</p></div>
 			<div class="break">
 			</div>
 			<div class="col-lg-12 mb-2">
