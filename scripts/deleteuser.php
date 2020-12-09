@@ -3,6 +3,9 @@
     
     $id=$_POST['id'];
 
+	$sql = "DELETE FROM cart WHERE `client_id`='$id'";
+	mysqli_query($link, $sql);
+
     $sql = "DELETE FROM user WHERE `id`='$id'";
 
 	if (mysqli_query($link, $sql)) {

@@ -64,7 +64,7 @@
                         success: function(dataResult){
                             var dataResult = JSON.parse(dataResult);
                             if(dataResult.statusCode==200){
-                                $(".allGood").css('display', 'block');
+                                $(".allGoodCart").css('display', 'block');
                                 setTimeout(function() {$(".allGoodCart").css('display', 'none');}, 2000);
                                 $("#deleteItem").prop('disabled', true);
                                 $("#cartItems").load(location.href+" #cartItems>*","");//odświeża okno z danymi
@@ -138,12 +138,12 @@
             <div class="break"></div>
             <div class="container">
                 <div class="row">
-                    <div class="col-2">
+                    <div class="col-lg-2 col-md-12 mt-1">
                         <div class="list-group">
                             <button type="button" class="list-group-item list-group-item-action active btn-light">Koszyk</button>
                         </div>
                     </div>
-                    <div class="col-10 bg-light">
+                    <div class="col-lg-10 col-md-12 bg-light mt-1">
 						<div class="break"></div>				
 						<div class="col-12 border p-0 table-responsive text-center" id="cartItems">
                             <?php
